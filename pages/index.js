@@ -24,6 +24,24 @@ const methodBriefs = {
   结果复盘: "把项目沉淀成下一次SOP"
 };
 
+const identityMetrics = [
+  {
+    label: "小成就APP",
+    value: "0→1上线",
+    detail: "AI产品实践 / LLM辅助开发"
+  },
+  {
+    label: "滴滴",
+    value: "20W+新增",
+    detail: "3个月GMV 300W+"
+  },
+  {
+    label: "美团",
+    value: "520人生态",
+    detail: "单场GMV峰值120W+"
+  }
+];
+
 const layers = [
   { href: "#personal-info", label: "个人信息", color: "blue" },
   { href: "#timeline", label: "经历时间线", color: "blue" },
@@ -218,7 +236,7 @@ export default function HomePage() {
 
             <figure className="profile-polaroid draggable-node" {...bindDrag("profile")}>
               <img src={publicPath("/assets/profile-luqian.jpg")} alt="卢倩个人照片" />
-              <figcaption>AI产品运营 · 增长策略</figcaption>
+              <figcaption>AI产品运营转型</figcaption>
             </figure>
 
             <section
@@ -227,18 +245,27 @@ export default function HomePage() {
               {...bindDrag("personal-info")}
             >
               <div className="card-pin yellow" />
-              <div className="avatar-mark">LQ</div>
-              <h1>{profile.name}</h1>
-              <p>{profile.headline}</p>
-              <div className="os-tags os-tags-compact">
+              <div className="identity-topline">
+                <div className="avatar-mark">LQ</div>
+                <div>
+                  <span>AI Product Operations</span>
+                  <h1>{profile.name}</h1>
+                </div>
+              </div>
+              <p className="identity-headline">{profile.headline}</p>
+              <div className="os-tags os-tags-compact" aria-label="核心能力标签">
                 {profile.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-              <div className="identity-proof-list">
-                <span>小成就APP：AI产品0→1上线｜LLM辅助开发</span>
-                <span>滴滴：2个月新增20W+用户｜3个月GMV 300W+</span>
-                <span>美团：KOS生态520人｜单场GMV峰值120W+</span>
+              <div className="identity-metric-grid">
+                {identityMetrics.map((metric) => (
+                  <article key={metric.label}>
+                    <span>{metric.label}</span>
+                    <strong>{metric.value}</strong>
+                    <small>{metric.detail}</small>
+                  </article>
+                ))}
               </div>
               <div className="contact-inline contact-reveal">
                 <button
@@ -297,13 +324,13 @@ export default function HomePage() {
             </section>
 
             <section className="sticky-note note-yellow draggable-node" {...bindDrag("story")}>
-              <b>核心叙事</b>
-              <p>拆路径、配动作、看数据，把经验沉淀成可复用模型。</p>
+              <b>方法线索</b>
+              <p>问题定义 → MVP验证 → 数据复盘 → 规模化运营。</p>
             </section>
 
             <section className="quote-card draggable-node" {...bindDrag("quote")}>
-              <p>让用户愿意行动，再让路径变短。</p>
-              <span>Growth note</span>
+              <p>从AI工具到业务结果：先验证，再放大。</p>
+              <span>AI product ops note</span>
             </section>
 
             <section

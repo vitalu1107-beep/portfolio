@@ -9,7 +9,7 @@ export const profile = {
   phone: "15676727875",
   wechat: "your-wechat-id",
   resumeUrl: "/resume/luqian-resume.pdf",
-  tags: ["AI产品运营转型", "AI产品实践", "LLM辅助开发", "AI驱动增长方法"],
+  tags: ["AI产品实践", "LLM辅助开发", "AI驱动增长"],
   highlights: [
     {
       label: "用户增长",
