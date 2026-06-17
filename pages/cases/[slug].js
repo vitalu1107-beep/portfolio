@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { GrowthLine, FunnelChart } from "../../components/Charts";
-import ImageGallery from "../../components/ImageGallery";
+import AssetImage from "../../components/AssetImage";
 import { caseStudies, getCaseBySlug } from "../../data/cases";
 import { profile } from "../../data/profile";
 import { publicPath } from "../../lib/paths";
@@ -13,11 +13,42 @@ const caseNav = [
   { href: "#actions", label: "执行路径" },
   { href: "#results", label: "数据结果" },
   { href: "#review", label: "复盘沉淀" },
-  { href: "#gallery", label: "项目截图" }
+  { href: "#gallery", label: "证据链" }
 ];
+
+function findVisual(item, keywords, fallbackIndex = 0) {
+  const gallery = item.gallery || [];
+  const matched = gallery.find((visual) =>
+    keywords.some((keyword) => `${visual.title}${visual.caption}`.includes(keyword))
+  );
+  return matched || gallery[fallbackIndex] || gallery[0];
+}
+
+function EvidenceFigure({ visual, badge }) {
+  if (!visual) return null;
+
+  return (
+    <figure className="case-evidence-figure">
+      <div className="case-evidence-frame">
+        <AssetImage src={visual.src} alt={visual.title} className="case-evidence-image" />
+      </div>
+      <figcaption>
+        <span>{badge}</span>
+        <strong>{visual.title}</strong>
+        <small>{visual.caption}</small>
+      </figcaption>
+    </figure>
+  );
+}
 
 export default function CaseDetailPage({ item }) {
   const pageTitle = `${item.shortTitle} | 卢倩作品集`;
+  const gallery = item.gallery || [];
+  const problemVisual = gallery[0];
+  const strategyVisual = findVisual(item, ["流程", "原型", "路径", "方案", "活动节奏"], 1);
+  const resultVisual = findVisual(item, ["结果", "效果", "看板", "目标"], 3);
+  const reviewVisual = gallery[gallery.length - 1];
+  const evidenceStrip = gallery.slice(0, 5);
 
   return (
     <>
@@ -91,61 +122,100 @@ export default function CaseDetailPage({ item }) {
             </aside>
 
             <div className="case-report-body">
-              <section className="case-panel case-question-panel" id="problem">
-                <span className="case-section-label">01 / Problem</span>
-                <h2>背景问题</h2>
-                <p>{item.problem}</p>
+              <section className="case-story-panel case-question-panel" id="problem">
+                <div className="case-story-copy">
+                  <span className="case-section-label">01 / Problem</span>
+                  <h2>背景问题</h2>
+                  <p>{item.problem}</p>
+                </div>
+                <EvidenceFigure visual={problemVisual} badge="问题证据" />
               </section>
 
-              <section className="case-panel case-strategy-panel" id="strategy">
-                <div>
+              <section className="case-story-panel case-story-panel-reverse" id="strategy">
+                <EvidenceFigure visual={strategyVisual} badge="策略证据" />
+                <div className="case-story-copy">
                   <span className="case-section-label">02 / Strategy</span>
                   <h2>我的策略判断</h2>
                   <p>{item.strategy}</p>
-                </div>
-                <div className="case-method-card">
-                  <span>使用的方法论</span>
-                  <div>
-                    {item.methods.map((method) => (
-                      <b key={method}>{method}</b>
-                    ))}
+                  <div className="case-method-card">
+                    <span>使用的方法论</span>
+                    <div>
+                      {item.methods.map((method) => (
+                        <b key={method}>{method}</b>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </section>
 
-              <section className="case-panel" id="actions">
-                <span className="case-section-label">03 / Execution</span>
-                <h2>执行路径</h2>
-                <div className="case-step-list">
-                  {item.actions.map((action, index) => (
-                    <article key={action}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <p>{action}</p>
-                    </article>
-                  ))}
+              <section className="case-panel case-execution-panel" id="actions">
+                <div className="case-board-head">
+                  <span className="case-section-label">03 / Execution</span>
+                  <h2>执行路径</h2>
+                  <p>把动作和产出物放在同一张板上，招聘方可以直接看到每一步对应的交付。</p>
+                </div>
+                <div className="case-action-board">
+                  {item.actions.map((action, index) => {
+                    const visual = gallery[index + 1] || gallery[index] || gallery[0];
+
+                    return (
+                      <article key={action}>
+                        {visual && (
+                          <AssetImage
+                            src={visual.src}
+                            alt={visual.title}
+                            className="case-action-image"
+                          />
+                        )}
+                        <div>
+                          <span>{String(index + 1).padStart(2, "0")}</span>
+                          <p>{action}</p>
+                        </div>
+                      </article>
+                    );
+                  })}
                 </div>
               </section>
 
-              <section className="case-panel" id="results">
-                <span className="case-section-label">04 / Data</span>
-                <h2>数据结果</h2>
-                <p>{item.result}</p>
+              <section className="case-panel case-results-panel" id="results">
+                <div className="case-result-top">
+                  <div>
+                    <span className="case-section-label">04 / Data</span>
+                    <h2>数据结果</h2>
+                    <p>{item.result}</p>
+                  </div>
+                  <EvidenceFigure visual={resultVisual} badge="结果证据" />
+                </div>
                 <div className="case-chart-grid">
                   <GrowthLine data={item.chart.points} title={item.chart.title} />
                   <FunnelChart data={item.funnel} />
                 </div>
               </section>
 
-              <section className="case-panel case-review-panel" id="review">
-                <span className="case-section-label">05 / Review</span>
-                <h2>复盘总结</h2>
-                <p>{item.review}</p>
+              <section className="case-story-panel case-review-panel" id="review">
+                <div className="case-story-copy">
+                  <span className="case-section-label">05 / Review</span>
+                  <h2>复盘总结</h2>
+                  <p>{item.review}</p>
+                </div>
+                <EvidenceFigure visual={reviewVisual} badge="复盘证据" />
               </section>
 
               <section className="case-panel case-gallery-panel" id="gallery">
                 <span className="case-section-label">06 / Evidence</span>
-                <h2>项目截图</h2>
-                <ImageGallery items={item.gallery} />
+                <h2>证据链总览</h2>
+                <p>这些不是单独展示的图片，而是支撑前面判断、策略、执行和结果的项目材料。</p>
+                <div className="case-evidence-strip">
+                  {evidenceStrip.map((visual, index) => (
+                    <figure key={visual.src}>
+                      <AssetImage src={visual.src} alt={visual.title} className="case-strip-image" />
+                      <figcaption>
+                        <span>{String(index + 1).padStart(2, "0")}</span>
+                        <strong>{visual.title}</strong>
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
               </section>
             </div>
           </div>
