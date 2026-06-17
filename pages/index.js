@@ -1,6 +1,5 @@
 import Link from "next/link";
 import CaseCard from "../components/CaseCard";
-import MetricGrid from "../components/MetricGrid";
 import SectionHeader from "../components/SectionHeader";
 import SiteShell from "../components/SiteShell";
 import { caseStudies, featuredCaseSlugs } from "../data/cases";
@@ -32,8 +31,30 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <aside className="hero-panel" aria-label="核心结果">
-          <MetricGrid metrics={profile.highlights} />
+        <aside className="hero-terminal" aria-label="核心结果">
+          <div className="window-chrome">
+            <span className="dot red" />
+            <span className="dot yellow" />
+            <span className="dot green" />
+            <b>growth-os / dashboard</b>
+          </div>
+          <div className="terminal-body">
+            <p>
+              <span>$</span> whoami
+            </p>
+            <strong>{profile.role}</strong>
+            <p>
+              <span>$</span> cat core-metrics.json
+            </p>
+            <div className="terminal-metrics">
+              {profile.highlights.map((item) => (
+                <div key={item.label}>
+                  <b>{item.value}</b>
+                  <span>{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </aside>
       </section>
 

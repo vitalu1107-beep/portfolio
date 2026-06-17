@@ -5,6 +5,12 @@ import MetricGrid from "./MetricGrid";
 export default function CaseCard({ item, compact = false }) {
   return (
     <article className={compact ? "case-card compact" : "case-card"}>
+      <div className="case-window-bar">
+        <span className="dot red" />
+        <span className="dot yellow" />
+        <span className="dot green" />
+        <b>{item.shortTitle}.case</b>
+      </div>
       <Link href={`/cases/${item.slug}`} aria-label={`查看${item.title}`}>
         <AssetImage src={item.heroImage} alt={item.title} className="case-card-image" />
       </Link>
