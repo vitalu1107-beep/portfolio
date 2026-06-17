@@ -17,6 +17,15 @@ export default function CaseDetailPage({ item }) {
           <div className="eyebrow">{item.company} · {item.category}</div>
           <h1>{item.title}</h1>
           <p>{item.summary}</p>
+          {item.externalLinks && (
+            <div className="external-link-row">
+              {item.externalLinks.map((link) => (
+                <a href={link.href} target="_blank" rel="noreferrer" key={link.href}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
           <MetricGrid metrics={item.metrics} />
         </section>
 

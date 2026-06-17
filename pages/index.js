@@ -10,13 +10,22 @@ const layers = [
   { href: "#personal-info", label: "个人信息", color: "blue" },
   { href: "#timeline", label: "经历时间线", color: "blue" },
   { href: "#capabilities", label: "核心能力", color: "yellow" },
-  { href: "#project-experience", label: "项目经历", color: "red" },
+  ...caseStudies.map((item, index) => ({
+    href: `#project-${item.slug}`,
+    label: item.shortTitle,
+    color: index === 0 ? "red" : index === 1 ? "blue" : "yellow"
+  })),
   { href: "#contact", label: "联系方式", color: "green" }
 ];
 
-function ProjectNode({ item, index }) {
+function ProjectNode({ item, index, dragProps }) {
   return (
-    <article className="canvas-project">
+    <section
+      className={`canvas-card project-node-card project-node-${index + 1} draggable-node`}
+      id={`project-${item.slug}`}
+      {...dragProps}
+    >
+      <div className="card-pin red" />
       <div className="project-index">0{index + 1}</div>
       <AssetImage src={item.heroImage} alt={item.shortTitle} className="canvas-project-image" />
       <div className="canvas-project-copy">
@@ -31,9 +40,16 @@ function ProjectNode({ item, index }) {
             </b>
           ))}
         </div>
-        <Link href={`/cases/${item.slug}`}>查看完整案例</Link>
+        <div className="project-link-row">
+          <Link href={`/cases/${item.slug}`}>查看完整案例</Link>
+          {item.externalLinks?.map((link) => (
+            <a href={link.href} target="_blank" rel="noreferrer" key={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </div>
       </div>
-    </article>
+    </section>
   );
 }
 
@@ -236,23 +252,14 @@ export default function HomePage() {
               ))}
             </section>
 
-            <section
-              className="canvas-card project-board draggable-node"
-              id="project-experience"
-              {...bindDrag("project-experience")}
-            >
-              <div className="card-pin red" />
-              <div className="board-head">
-                <span>Project Experience</span>
-                <h2>3个项目经历</h2>
-                <p>直接在一个画布里看项目全貌；需要深挖时，再进入单个案例详情。</p>
-              </div>
-              <div className="canvas-project-grid">
-                {caseStudies.map((item, index) => (
-                  <ProjectNode item={item} index={index} key={item.slug} />
-                ))}
-              </div>
-            </section>
+            {caseStudies.map((item, index) => (
+              <ProjectNode
+                item={item}
+                index={index}
+                key={item.slug}
+                dragProps={bindDrag(`project-${item.slug}`)}
+              />
+            ))}
 
             <section
               className="canvas-card contact-card draggable-node"

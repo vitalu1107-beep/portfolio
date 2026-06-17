@@ -79,6 +79,16 @@ export const caseStudies = [
         title: "下一步模型",
         caption: "围绕产品、增长、商业三条线继续升级。"
       }
+    ],
+    externalLinks: [
+      {
+        label: "打开网页版",
+        href: "https://vitalu1107-beep.github.io/xiaochengji-pwa/"
+      },
+      {
+        label: "查看仓库",
+        href: "https://github.com/vitalu1107-beep/xiaochengji-pwa"
+      }
     ]
   },
   {
