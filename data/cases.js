@@ -1,14 +1,96 @@
 export const caseStudies = [
   {
+    slug: "tiny-achievement-app",
+    title: "小成就 APP｜7天从0-1验证正反馈机制的产品实践",
+    shortTitle: "小成就 APP",
+    category: "产品验证",
+    company: "个人产品实践",
+    period: "2026 产品实战复盘",
+    summary:
+      "围绕“人不缺目标，缺的是持续行动的正反馈”这一洞察，用7天完成从问题定义、低保真原型、PWA搭建到真实使用验证的闭环。",
+    heroImage: "/assets/cases/app-hero.jpg",
+    accent: "#16a34a",
+    metrics: [
+      { value: "7天", label: "从想法到上线" },
+      { value: "3-5条", label: "日均记录" },
+      { value: "第3天", label: "出现主动打开" },
+      { value: "MVP", label: "最小验证闭环" }
+    ],
+    problem:
+      "ToDo类工具常常强调“未完成”，打卡机制依赖外部约束，容易给用户带来压力。项目希望验证：如果只记录已完成的小行动，是否能让用户在没有积分、打卡和社交激励的情况下自然产生持续行动。",
+    strategy:
+      "把产品目标从“管理任务”改成“制造完成感”。主动放弃目标设定、打卡签到、社交互动等完整功能，只保留记录、保存、展示这条最短路径，用极简体验验证正反馈是否成立。",
+    actions: [
+      "先做竞品与痛点拆解，明确现有工具的压力来源：未完成导向、外部约束、操作成本高。",
+      "输出低保真原型，定义用户路径为“记录 → 保存 → 展示”，优先验证核心行为而不是功能完整性。",
+      "使用 GitHub、HTML/CSS/JS 和 AI 辅助工具快速搭建 PWA，上线一个能真实使用的 MVP。",
+      "连续使用并记录卡点，发现用户抗拒“思考记录”，于是把迭代重点放在降低行为阻力和输入负担。"
+    ],
+    methods: ["MVP最小验证", "行为设计", "正反馈闭环", "用户阻力分析", "快速迭代"],
+    result:
+      "连续使用7天，日均记录3-5条；第3天开始出现无提醒主动打开行为。数据看板显示低门槛操作、强正反馈和行为自驱具备基础增长潜力。",
+    review:
+      "这不是一个追求功能完整的工具项目，而是一次关于内在驱动的验证。下一步应围绕情绪共鸣继续升级：产品侧增加成长反馈，增长侧设计成就卡片分享，商业侧探索AI成长报告与会员订阅。",
+    chart: {
+      type: "growth",
+      title: "7天验证路径",
+      points: [
+        { label: "定义", value: 15 },
+        { label: "原型", value: 32 },
+        { label: "上线", value: 56 },
+        { label: "使用", value: 78 },
+        { label: "复盘", value: 100 }
+      ]
+    },
+    funnel: [
+      { label: "发现痛点", value: 100 },
+      { label: "功能减法", value: 76 },
+      { label: "MVP上线", value: 58 },
+      { label: "行为验证", value: 42 }
+    ],
+    gallery: [
+      {
+        src: "/assets/cases/app-research.jpg",
+        title: "调研与方向确定",
+        caption: "从现有 ToDo 工具痛点出发，决定做功能减法。"
+      },
+      {
+        src: "/assets/cases/app-process.jpg",
+        title: "7天闭环流程",
+        caption: "用最小验证和快速迭代完成从定义到复盘。"
+      },
+      {
+        src: "/assets/cases/app-prototype.jpg",
+        title: "低保真原型",
+        caption: "只保留记录、保存、展示三步核心路径。"
+      },
+      {
+        src: "/assets/cases/app-dashboard.jpg",
+        title: "行为验证结果",
+        caption: "连续使用7天，观察记录频率与主动打开信号。"
+      },
+      {
+        src: "/assets/cases/app-optimization.jpg",
+        title: "关键体验优化",
+        caption: "从任务负担转向更轻的习惯养成体验。"
+      },
+      {
+        src: "/assets/cases/app-next-model.jpg",
+        title: "下一步模型",
+        caption: "围绕产品、增长、商业三条线继续升级。"
+      }
+    ]
+  },
+  {
     slug: "community-growth",
-    title: "6个月从0搭建社区团购私域池，完成100W+用户增长",
-    shortTitle: "用户增长 / 社群裂变",
+    title: "社群裂变项目｜6个月从0操盘100W+团购私域用户增长",
+    shortTitle: "社群裂变项目",
     category: "用户增长",
     company: "滴滴橙心优选",
     period: "社区团购新城拓展阶段",
     summary:
-      "在新城市冷启动阶段，通过线下 BD、团长触点和线上社群裂变三方联动，快速建立本地私域流量池，并把裂变活动复制成可持续获客模型。",
-    heroImage: "/assets/cases/community-user-profile.jpg",
+      "在新城市冷启动阶段，通过线下BD、线下团长和线上社群三方联动，快速建立本地私域流量池，并把裂变活动复制成可持续获客模型。",
+    heroImage: "/assets/cases/community-profile.jpg",
     accent: "#2563eb",
     metrics: [
       { value: "100W+", label: "C端用户增量" },
@@ -17,29 +99,29 @@ export const caseStudies = [
       { value: "1:5", label: "ROI" }
     ],
     problem:
-      "头部社区团购业务进入浙江新城市，B端与C端用户基础几乎从零开始。业务既需要建立线下信任，也需要沉淀可触达、可转化的私域用户池。",
+      "头部社区团购业务进入浙江新城市，B端与C端用户基础几乎从零开始。业务既需要建立线下信任，也需要沉淀可触达、可转化的同城私域用户池。",
     strategy:
-      "把增长链路拆成“线下信任获取 - 目标用户分层 - 社群裂变承接 - 标杆用户放大”四段，用小范围验证找到有效话术和物料，再复制到更多城市和社群。",
+      "把增长链路拆成“线下信任获取 - 用户标签分层 - 社群裂变承接 - 品牌背书放大 - 活动复盘复制”五段，用标准化话术和物料提升一线执行效率。",
     actions: [
-      "搭建线下 BD 引流话术、操作视频和团长协作流程，让一线团队可以标准化获客。",
-      "建立用户意向度标签，将用户按需求、信任度、消费意愿分层，并匹配不同触达节奏。",
-      "设计新用户推荐礼、好评素材、明星宣发、滴滴 App 联动等裂变物料，提高用户加入和转介绍动力。",
-      "沉淀活动复盘文档，把 1.0、2.0、3.0 版本的动作差异、成本和转化表现结构化记录。"
+      "为线下BD和团长准备引流话术、操作视频和协作流程，让一线团队能稳定获取种子用户。",
+      "建立客户意向度标签体系，对不同意向用户制定差异化消息触达策略。",
+      "设计新用户推荐礼、客户好评素材、明星宣发和滴滴App联动，增强加入社群和转介绍动机。",
+      "复盘1.0、2.0、3.0版本活动，把有效物料、成本结构和转化路径沉淀成可复制打法。"
     ],
     methods: ["AARRR", "社群裂变", "用户标签分层", "线下BD协同", "ROI复盘"],
     result:
       "C端用户增量突破100W+，B端用户增量5W+；C端目标70W超额完成143%，B端目标3W超额完成60%；单个用户成本约1元，仅为同行约1/5。",
     review:
-      "增长不是单点活动，而是“渠道、话术、物料、承接、复盘”的系统工程。后续重点应继续提升分层触达精度，并把低成本裂变与高价值用户运营结合。",
+      "增长不是单点活动，而是渠道、话术、物料、承接、复盘的系统工程。后续重点应继续提升分层触达精度，并把低成本裂变与高价值用户运营结合。",
     chart: {
       type: "growth",
       title: "私域用户增长节奏",
       points: [
-        { label: "启动", value: 0 },
-        { label: "标签分层", value: 22 },
-        { label: "首轮裂变", value: 48 },
-        { label: "规模复制", value: 76 },
-        { label: "目标达成", value: 100 }
+        { label: "冷启动", value: 0 },
+        { label: "BD引流", value: 24 },
+        { label: "标签分层", value: 46 },
+        { label: "裂变放大", value: 76 },
+        { label: "100W+", value: 100 }
       ]
     },
     funnel: [
@@ -50,7 +132,7 @@ export const caseStudies = [
     ],
     gallery: [
       {
-        src: "/assets/cases/community-user-profile.jpg",
+        src: "/assets/cases/community-profile.jpg",
         title: "核心用户画像",
         caption: "围绕社区团购高潜人群定义触达对象。"
       },
@@ -60,94 +142,32 @@ export const caseStudies = [
         caption: "按意向度制定不同消息触达策略。"
       },
       {
-        src: "/assets/cases/community-conversion-path.jpg",
+        src: "/assets/cases/community-flow.jpg",
         title: "用户转化路径",
         caption: "把引流、承接、裂变与下单动作串成闭环。"
       },
       {
-        src: "/assets/cases/community-growth-dashboard.jpg",
-        title: "活动结果截图",
-        caption: "用于展示覆盖用户数与增长结果。"
+        src: "/assets/cases/community-result.jpg",
+        title: "裂变活动效果",
+        caption: "展示覆盖用户数、增长结果与成本表现。"
+      },
+      {
+        src: "/assets/cases/community-material.jpg",
+        title: "裂变物料",
+        caption: "用于新用户推荐和活动传播的核心素材。"
       }
     ]
   },
   {
-    slug: "kos-private-domain",
-    title: "5个月搭建520人KOS团长生态，推动单场GMV峰值120W+",
-    shortTitle: "团长 / 私域运营",
-    category: "私域运营",
-    company: "美团团买买",
-    period: "团长生态搭建阶段",
-    summary:
-      "围绕团长与区域负责人建立分层运营机制，通过激励、内容、榜单和私域触达提升团长活跃度与成交效率。",
-    heroImage: "/assets/cases/kos-gmv-table.jpg",
-    accent: "#16a34a",
-    metrics: [
-      { value: "520人", label: "KOS生态规模" },
-      { value: "120W+", label: "单场GMV峰值" },
-      { value: "2000+", label: "老客分层样本" },
-      { value: "90%", label: "核心社群完成度" }
-    ],
-    problem:
-      "团长生态早期高度依赖一线个人经验，活跃度、成交节奏和用户维护方式不稳定。需要把团长从“松散渠道”运营成可管理、可激励、可复制的私域销售网络。",
-    strategy:
-      "以 KOS 生态为核心，按团长能力和用户价值分层；高潜团长重点赋能，普通团长用榜单与物料促活，流失团长用召回话术重新激活。",
-    actions: [
-      "建立区域负责人和核心团长社群，提供活动节奏、商品卖点、赚钱攻略和用户省钱攻略。",
-      "针对成长、成熟、流失客户设计客服话术、短信召回话术和差异化触达策略。",
-      "设置团长冲锋奖、区域销售战报、实时播报等机制，强化竞争感和即时反馈。",
-      "沉淀小助手数据、激活率排名和 GMV 表现，帮助团队识别标杆团长并复制打法。"
-    ],
-    methods: ["RFM分层", "KOS生态", "团长激励", "私域成交SOP", "标杆复制"],
-    result:
-      "5个月内 KOS 生态扩展至520人，单场 GMV 峰值突破120W；核心团长社群完成度约90%，用户粘性和运营可控性明显提升。",
-    review:
-      "团长运营的关键不是单次推品，而是把人、货、场与激励机制稳定连接。后续可继续用数据看板识别高潜团长，并为不同层级提供差异化权益。",
-    chart: {
-      type: "growth",
-      title: "团长生态扩张模型",
-      points: [
-        { label: "种子团长", value: 12 },
-        { label: "区域试点", value: 28 },
-        { label: "标杆复制", value: 55 },
-        { label: "战报激励", value: 78 },
-        { label: "520人生态", value: 100 }
-      ]
-    },
-    funnel: [
-      { label: "团长招募", value: 100 },
-      { label: "社群沉淀", value: 82 },
-      { label: "激励参与", value: 61 },
-      { label: "成交贡献", value: 43 }
-    ],
-    gallery: [
-      {
-        src: "/assets/cases/kos-gmv-table.jpg",
-        title: "GMV表现表",
-        caption: "用于复盘区域与团长销售表现。"
-      },
-      {
-        src: "/assets/cases/kos-activation-table.jpg",
-        title: "激活率排名",
-        caption: "用数据识别可复制的标杆。"
-      },
-      {
-        src: "/assets/cases/kos-incentive-poster.jpg",
-        title: "团长激励物料",
-        caption: "把目标、奖励和荣誉感可视化。"
-      }
-    ]
-  },
-  {
-    slug: "campaign-supply-strategy",
-    title: "3天打穿618爆品活动链路，GMV提升60%",
-    shortTitle: "爆品 / 供给策略",
+    slug: "campaign-marketing",
+    title: "活动营销项目｜3天完成1个月GMV目标的618战役",
+    shortTitle: "活动营销项目",
     category: "活动营销",
     company: "滴滴橙心优选",
     period: "618年中盛典",
     summary:
-      "围绕爆品、促销、渠道和服务保障设计活动战役，在三天内完成一个月级别的 GMV 目标，并形成跨部门活动 SOP。",
-    heroImage: "/assets/cases/campaign-plan-map.jpg",
+      "围绕爆品、促销、渠道和履约保障设计活动战役，在三天内完成一个月级别的GMV目标，并形成跨部门活动SOP。",
+    heroImage: "/assets/cases/campaign-map.jpg",
     accent: "#f97316",
     metrics: [
       { value: "60%", label: "GMV实际提升" },
@@ -163,13 +183,13 @@ export const caseStudies = [
       "制定618活动脑图、活动流程、促销方案和全天时段节奏，明确各部门交付物。",
       "围绕低价爆品、生鲜爆款和限时优惠设计商品组合，并输出用户省钱攻略、团长赚钱攻略和秒杀玩法。",
       "同步推进朋友圈倒计时海报、BD拜访话术、社群战报、区域销售播报和常见问题解答。",
-      "活动后复盘库存、页面 bug、物流延迟等风险，把问题转化为下一轮活动预案。"
+      "活动后复盘库存、页面bug、物流延迟等风险，把问题转化为下一轮活动预案。"
     ],
     methods: ["AARRR", "转化漏斗", "爆品策略", "跨部门项目管理", "活动复盘"],
     result:
-      "活动目标为 GMV 提升50%、B端参与3W+、C端参与70W+、ROI大于1.5；最终 GMV 提升60%，B端参与3.3W，C端参与75W，ROI为1.3。",
+      "活动目标为GMV提升50%、B端参与3W+、C端参与70W+、ROI大于1.5；最终GMV提升60%，B端参与3.3W，C端参与75W，ROI为1.3。",
     review:
-      "活动成功来自爆品和促销策略，但复盘暴露了库存、页面和履约风险。后续需要提前准备备用活动页，建立库存补充机制，并与物流方建立更紧密的保障协作。",
+      "活动成功来自爆品和促销策略，也依赖实时战报和跨部门协同。复盘暴露了库存、页面和履约风险，后续需要提前准备备用活动页、库存补充机制和物流保障方案。",
     chart: {
       type: "growth",
       title: "618活动结果对比",
@@ -189,7 +209,7 @@ export const caseStudies = [
     ],
     gallery: [
       {
-        src: "/assets/cases/campaign-plan-map.jpg",
+        src: "/assets/cases/campaign-map.jpg",
         title: "618活动脑图",
         caption: "把目标、渠道、商品与物料拆成执行模块。"
       },
@@ -199,12 +219,17 @@ export const caseStudies = [
         caption: "按时间段安排预热、互动、秒杀和复盘。"
       },
       {
-        src: "/assets/cases/campaign-result-review.jpg",
+        src: "/assets/cases/campaign-plan.jpg",
+        title: "促销方案",
+        caption: "围绕重点商品配置优惠、资源与参与机制。"
+      },
+      {
+        src: "/assets/cases/campaign-result.jpg",
         title: "目标与结果",
         caption: "GMV、参与人数和ROI复盘。"
       },
       {
-        src: "/assets/cases/campaign-retro.jpg",
+        src: "/assets/cases/campaign-review.jpg",
         title: "复盘沉淀",
         caption: "记录成功动作、异常问题和下次改进方向。"
       }
@@ -213,9 +238,9 @@ export const caseStudies = [
 ];
 
 export const featuredCaseSlugs = [
+  "tiny-achievement-app",
   "community-growth",
-  "kos-private-domain",
-  "campaign-supply-strategy"
+  "campaign-marketing"
 ];
 
 export function getCaseBySlug(slug) {

@@ -39,7 +39,7 @@ export default function HomePage() {
 
       <section className="section-block">
         <SectionHeader eyebrow="Featured Work" title="3个重点项目入口">
-          从冷启动增长、团长生态到爆品活动，把运营动作组织成可以复用的业务增长模型。
+          从小成就 APP 的产品验证，到社群裂变和618活动营销，把项目经历拆成可阅读的商业案例。
         </SectionHeader>
         <div className="case-grid">
           {featuredCases.map((item) => (
