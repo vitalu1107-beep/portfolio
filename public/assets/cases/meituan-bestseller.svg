@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1012" role="img" aria-labelledby="title desc">
+  <title id="title">美团团买买爆品增长飞轮</title>
+  <desc id="desc">展示独家爆品、KOS种草、直播矩阵和GMV结果。</desc>
+  <rect width="1800" height="1012" fill="#fffdf7"/>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.4" fill="#2b7fd8" opacity=".18"/>
+    </pattern>
+  </defs>
+  <rect width="1800" height="1012" fill="url(#dots)"/>
+  <text x="130" y="148" fill="#2b7fd8" font-family="Arial, sans-serif" font-size="44" font-weight="900">爆品策略：KOS种草 + 直播矩阵联动</text>
+  <text x="130" y="204" fill="#4a4a5a" font-family="Arial, sans-serif" font-size="24">从供给里筛出可讲、可卖、可复购的独家爆品，再用内容和直播放大转化。</text>
+  <g transform="translate(230 310)" font-family="Arial, sans-serif">
+    <circle cx="660" cy="270" r="230" fill="#fff8d9" stroke="#f4d758" stroke-width="5"/>
+    <circle cx="660" cy="270" r="118" fill="#2b7fd8"/>
+    <text x="660" y="255" text-anchor="middle" fill="#fff" font-size="34" font-weight="900">爆品</text>
+    <text x="660" y="302" text-anchor="middle" fill="#fff" font-size="34" font-weight="900">增长飞轮</text>
+    <rect x="0" y="52" width="300" height="106" rx="28" fill="#fff" stroke="#c5ddf6"/>
+    <text x="150" y="98" text-anchor="middle" fill="#2b7fd8" font-size="28" font-weight="900">30+独家爆品</text>
+    <text x="150" y="132" text-anchor="middle" fill="#4a4a5a" font-size="20">供给侧筛选</text>
+    <rect x="1020" y="52" width="300" height="106" rx="28" fill="#fff" stroke="#c5ddf6"/>
+    <text x="1170" y="98" text-anchor="middle" fill="#2b7fd8" font-size="28" font-weight="900">KOS种草</text>
+    <text x="1170" y="132" text-anchor="middle" fill="#4a4a5a" font-size="20">内容侧放大</text>
+    <rect x="0" y="390" width="300" height="106" rx="28" fill="#fff" stroke="#c5ddf6"/>
+    <text x="150" y="436" text-anchor="middle" fill="#2b7fd8" font-size="28" font-weight="900">主题场景</text>
+    <text x="150" y="470" text-anchor="middle" fill="#4a4a5a" font-size="20">早C晚A</text>
+    <rect x="1020" y="390" width="300" height="106" rx="28" fill="#fff" stroke="#c5ddf6"/>
+    <text x="1170" y="436" text-anchor="middle" fill="#2b7fd8" font-size="28" font-weight="900">直播矩阵</text>
+    <text x="1170" y="470" text-anchor="middle" fill="#4a4a5a" font-size="20">成交承接</text>
+    <path d="M318 105 C420 85 500 114 555 168" fill="none" stroke="#2b7fd8" stroke-width="7" stroke-dasharray="18 14"/>
+    <path d="M765 168 C830 105 925 84 1004 105" fill="none" stroke="#2b7fd8" stroke-width="7" stroke-dasharray="18 14"/>
+    <path d="M1004 443 C905 465 820 428 765 372" fill="none" stroke="#2b7fd8" stroke-width="7" stroke-dasharray="18 14"/>
+    <path d="M555 372 C480 438 400 462 318 443" fill="none" stroke="#2b7fd8" stroke-width="7" stroke-dasharray="18 14"/>
+  </g>
+  <g transform="translate(226 814)" font-family="Arial, sans-serif">
+    <rect width="1348" height="86" rx="24" fill="white" stroke="#c5ddf6"/>
+    <text x="150" y="54" fill="#1a1a2e" font-size="30" font-weight="900">GMV占比65%</text>
+    <text x="460" y="54" fill="#1a1a2e" font-size="30" font-weight="900">客单价+55%</text>
+    <text x="780" y="54" fill="#1a1a2e" font-size="30" font-weight="900">连带销售+33%</text>
+    <text x="1118" y="54" fill="#e84a5f" font-size="30" font-weight="900">单场120万</text>
+  </g>
+</svg>

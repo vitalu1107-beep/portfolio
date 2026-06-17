@@ -1672,7 +1672,7 @@ main {
 .canvas-stage {
   position: relative;
   min-width: 1680px;
-  min-height: 1060px;
+  min-height: 1500px;
   padding: 90px 90px 140px;
   zoom: var(--canvas-zoom, 1);
 }
@@ -1932,6 +1932,11 @@ main {
 .project-node-3 {
   left: 1190px;
   top: 800px;
+}
+
+.project-node-4 {
+  left: 330px;
+  top: 1240px;
 }
 
 .project-index {

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1012" role="img" aria-labelledby="title desc">
+  <title id="title">美团团买买 KOS 生态建设项目</title>
+  <desc id="desc">展示 KOS 达人增长、星火计划培训体系和 GMV 结果。</desc>
+  <rect width="1800" height="1012" fill="#fffdf7"/>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.4" fill="#2b7fd8" opacity=".18"/>
+    </pattern>
+    <linearGradient id="soft" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e8f5ff"/>
+      <stop offset="1" stop-color="#fff5ce"/>
+    </linearGradient>
+  </defs>
+  <rect width="1800" height="1012" fill="url(#dots)"/>
+  <rect x="110" y="90" width="1580" height="832" rx="36" fill="white" stroke="#b8d6f5" stroke-width="3" stroke-dasharray="10 10"/>
+  <text x="158" y="174" fill="#2b7fd8" font-family="Arial, sans-serif" font-size="42" font-weight="800">小红书 KOS 生态建设</text>
+  <text x="158" y="230" fill="#4a4a5a" font-family="Arial, sans-serif" font-size="24">用内容、选品、流量训练体系，把达人从松散合作变成可持续带货网络。</text>
+  <g transform="translate(158 302)">
+    <rect width="320" height="170" rx="24" fill="url(#soft)" stroke="#c4ddf6"/>
+    <text x="34" y="70" fill="#1a1a2e" font-family="Arial, sans-serif" font-size="58" font-weight="900">520人</text>
+    <text x="34" y="118" fill="#4a4a5a" font-family="Arial, sans-serif" font-size="24">5个月 KOS 达人规模</text>
+  </g>
+  <g transform="translate(528 302)">
+    <rect width="320" height="170" rx="24" fill="#fff8d9" stroke="#f2d65f"/>
+    <text x="34" y="70" fill="#1a1a2e" font-family="Arial, sans-serif" font-size="58" font-weight="900">+300%</text>
+    <text x="34" y="118" fill="#4a4a5a" font-family="Arial, sans-serif" font-size="24">达人规模增长</text>
+  </g>
+  <g transform="translate(898 302)">
+    <rect width="320" height="170" rx="24" fill="#eef8f2" stroke="#a9dfbf"/>
+    <text x="34" y="70" fill="#1a1a2e" font-family="Arial, sans-serif" font-size="58" font-weight="900">28万</text>
+    <text x="34" y="118" fill="#4a4a5a" font-family="Arial, sans-serif" font-size="24">头部KOS月均GMV</text>
+  </g>
+  <g transform="translate(1268 302)">
+    <rect width="320" height="170" rx="24" fill="#fff1f3" stroke="#ffc1cc"/>
+    <text x="34" y="70" fill="#1a1a2e" font-family="Arial, sans-serif" font-size="58" font-weight="900">3.4倍</text>
+    <text x="34" y="118" fill="#4a4a5a" font-family="Arial, sans-serif" font-size="24">对比行业均值</text>
+  </g>
+  <g transform="translate(250 600)" font-family="Arial, sans-serif">
+    <rect x="0" y="0" width="230" height="92" rx="46" fill="#2b7fd8"/>
+    <text x="115" y="58" text-anchor="middle" fill="#fff" font-size="27" font-weight="800">内容训练</text>
+    <path d="M245 46 H375" stroke="#9dc9f4" stroke-width="6" stroke-dasharray="14 12"/>
+    <rect x="390" y="0" width="230" height="92" rx="46" fill="#f4d758"/>
+    <text x="505" y="58" text-anchor="middle" fill="#1a1a2e" font-size="27" font-weight="800">选品方法</text>
+    <path d="M635 46 H765" stroke="#9dc9f4" stroke-width="6" stroke-dasharray="14 12"/>
+    <rect x="780" y="0" width="230" height="92" rx="46" fill="#16a34a"/>
+    <text x="895" y="58" text-anchor="middle" fill="#fff" font-size="27" font-weight="800">流量承接</text>
+    <path d="M1025 46 H1155" stroke="#9dc9f4" stroke-width="6" stroke-dasharray="14 12"/>
+    <rect x="1170" y="0" width="230" height="92" rx="46" fill="#e84a5f"/>
+    <text x="1285" y="58" text-anchor="middle" fill="#fff" font-size="27" font-weight="800">GMV放大</text>
+  </g>
+  <rect x="282" y="760" width="1236" height="74" rx="20" fill="#f7fbff" stroke="#d5e9fb"/>
+  <text x="900" y="808" text-anchor="middle" fill="#2b7fd8" font-family="Arial, sans-serif" font-size="27" font-weight="800">星火计划 = 内容 × 选品 × 流量，解决达人不会卖、不会选、不会持续产出的核心问题</text>
+</svg>

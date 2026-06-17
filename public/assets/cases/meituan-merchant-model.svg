@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1012" role="img" aria-labelledby="title desc">
+  <title id="title">美团团买买商家招募三维模型</title>
+  <desc id="desc">展示品牌力、商品力、运营力三维评估模型和供给结果。</desc>
+  <rect width="1800" height="1012" fill="#fffdf7"/>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.4" fill="#2b7fd8" opacity=".18"/>
+    </pattern>
+  </defs>
+  <rect width="1800" height="1012" fill="url(#dots)"/>
+  <text x="128" y="150" fill="#2b7fd8" font-family="Arial, sans-serif" font-size="44" font-weight="900">商家招募：品牌力 × 商品力 × 运营力</text>
+  <text x="128" y="204" fill="#4a4a5a" font-family="Arial, sans-serif" font-size="24">把招商从“找商家”升级为“筛供给”：先判断商家是否值得引入，再设计运营承接方式。</text>
+  <g transform="translate(168 310)" font-family="Arial, sans-serif">
+    <circle cx="310" cy="236" r="205" fill="#e8f4ff" stroke="#2b7fd8" stroke-width="5"/>
+    <circle cx="510" cy="236" r="205" fill="#fff3bf" stroke="#f4d758" stroke-width="5" opacity=".9"/>
+    <circle cx="410" cy="414" r="205" fill="#e8f8ef" stroke="#16a34a" stroke-width="5" opacity=".9"/>
+    <text x="230" y="220" fill="#2b7fd8" font-size="34" font-weight="900">品牌力</text>
+    <text x="475" y="220" fill="#9c7a00" font-size="34" font-weight="900">商品力</text>
+    <text x="330" y="520" fill="#13823d" font-size="34" font-weight="900">运营力</text>
+    <text x="410" y="346" text-anchor="middle" fill="#1a1a2e" font-size="38" font-weight="900">优质供给</text>
+  </g>
+  <g transform="translate(930 306)" font-family="Arial, sans-serif">
+    <rect width="650" height="450" rx="28" fill="white" stroke="#c5ddf6" stroke-width="3"/>
+    <text x="42" y="64" fill="#2b7fd8" font-size="30" font-weight="900">供给结果</text>
+    <g transform="translate(42 112)">
+      <rect width="260" height="108" rx="20" fill="#f7fbff" stroke="#d7eafa"/>
+      <text x="26" y="52" fill="#1a1a2e" font-size="42" font-weight="900">5家+</text>
+      <text x="26" y="84" fill="#4a4a5a" font-size="21">KA品牌</text>
+    </g>
+    <g transform="translate(342 112)">
+      <rect width="260" height="108" rx="20" fill="#fff8d9" stroke="#f2d65f"/>
+      <text x="26" y="52" fill="#1a1a2e" font-size="42" font-weight="900">78家</text>
+      <text x="26" y="84" fill="#4a4a5a" font-size="21">长尾品牌</text>
+    </g>
+    <g transform="translate(42 254)">
+      <rect width="260" height="108" rx="20" fill="#eef8f2" stroke="#a9dfbf"/>
+      <text x="26" y="52" fill="#1a1a2e" font-size="42" font-weight="900">2000+</text>
+      <text x="26" y="84" fill="#4a4a5a" font-size="21">SKU商品库</text>
+    </g>
+    <g transform="translate(342 254)">
+      <rect width="260" height="108" rx="20" fill="#fff1f3" stroke="#ffc1cc"/>
+      <text x="26" y="52" fill="#1a1a2e" font-size="42" font-weight="900">82%</text>
+      <text x="26" y="84" fill="#4a4a5a" font-size="21">商品动销率</text>
+    </g>
+  </g>
+  <rect x="206" y="820" width="1388" height="76" rx="22" fill="#fff" stroke="#c5ddf6"/>
+  <text x="900" y="868" text-anchor="middle" fill="#2b7fd8" font-family="Arial, sans-serif" font-size="28" font-weight="900">重点区域供给覆盖率从 65% 提升至 90%</text>
+</svg>

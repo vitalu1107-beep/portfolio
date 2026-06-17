@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1012" role="img" aria-labelledby="title desc">
+  <title id="title">美团团买买商家分层运营模型</title>
+  <desc id="desc">展示 S/A/B/C 四级分层和对应资源包。</desc>
+  <rect width="1800" height="1012" fill="#fffdf7"/>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.4" fill="#2b7fd8" opacity=".18"/>
+    </pattern>
+  </defs>
+  <rect width="1800" height="1012" fill="url(#dots)"/>
+  <text x="130" y="148" fill="#2b7fd8" font-family="Arial, sans-serif" font-size="44" font-weight="900">商家分层运营：S / A / B / C 四级资源包</text>
+  <text x="130" y="204" fill="#4a4a5a" font-family="Arial, sans-serif" font-size="24">不同商家不是给同一套动作，而是根据贡献和潜力配置差异化资源。</text>
+  <g transform="translate(150 296)" font-family="Arial, sans-serif">
+    <rect x="0" y="0" width="1460" height="96" rx="24" fill="#2b7fd8"/>
+    <text x="44" y="61" fill="#fff" font-size="32" font-weight="900">S级商家</text>
+    <text x="360" y="61" fill="#fff" font-size="28" font-weight="800">1v1运营 + 流量倾斜</text>
+    <text x="1220" y="61" fill="#fff" font-size="38" font-weight="900">GMV 58%</text>
+    <rect x="0" y="126" width="1180" height="88" rx="22" fill="#fff8d9" stroke="#f4d758"/>
+    <text x="44" y="181" fill="#1a1a2e" font-size="30" font-weight="900">A级商家</text>
+    <text x="360" y="181" fill="#4a4a5a" font-size="26" font-weight="800">爆品联合营销</text>
+    <rect x="0" y="244" width="890" height="88" rx="22" fill="#eef8f2" stroke="#16a34a"/>
+    <text x="44" y="299" fill="#1a1a2e" font-size="30" font-weight="900">B级商家</text>
+    <text x="360" y="299" fill="#4a4a5a" font-size="26" font-weight="800">标准化SOP工具</text>
+    <rect x="0" y="362" width="650" height="88" rx="22" fill="#fff1f3" stroke="#e84a5f"/>
+    <text x="44" y="417" fill="#1a1a2e" font-size="30" font-weight="900">C级商家</text>
+    <text x="360" y="417" fill="#4a4a5a" font-size="26" font-weight="800">基础运营承接</text>
+  </g>
+  <g transform="translate(340 806)" font-family="Arial, sans-serif">
+    <rect width="1120" height="82" rx="24" fill="white" stroke="#c5ddf6"/>
+    <text x="560" y="52" text-anchor="middle" fill="#2b7fd8" font-size="30" font-weight="900">S级商家GMV贡献占比：30% → 58%</text>
+  </g>
+</svg>

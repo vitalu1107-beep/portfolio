@@ -92,6 +92,84 @@ export const caseStudies = [
     ]
   },
   {
+    slug: "meituan-supply-growth",
+    title: "美团团买买｜5个月搭建KOS与供给增长体系，单场GMV峰值破120万",
+    shortTitle: "美团团买买",
+    category: "供给运营",
+    company: "美团团买买",
+    period: "2024.07 - 2024.12",
+    summary:
+      "围绕私域电商供给和达人带货生态，从KOS达人建设、商家招募、商家分层到爆品运营，搭建一套可持续放大GMV的供给增长体系。",
+    heroImage: "/assets/cases/meituan-kos-growth.svg",
+    accent: "#f9b000",
+    metrics: [
+      { value: "520人", label: "KOS达人规模" },
+      { value: "+300%", label: "达人增长" },
+      { value: "2000+", label: "SKU商品库" },
+      { value: "120万", label: "单场GMV峰值" }
+    ],
+    problem:
+      "团买买作为美团私域电商生态下的社区团购工具，需要同时解决供给丰富度、达人带货能力和商家运营效率问题。早期如果只依赖零散招商和单次活动，很难稳定形成可复用的GMV增长模型。",
+    strategy:
+      "把增长拆成“达人生态 - 商家供给 - 分层运营 - 爆品放大 - 渠道补给”五个模块：先用KOS训练体系提升内容和转化能力，再通过商家三维评估模型补齐优质供给，最后用爆品和直播矩阵放大成交。",
+    actions: [
+      "主导小红书KOS生态建设，设计「星火计划」培训体系，把内容、选品、流量拆成可训练模块，5个月拓展KOS达人至520人。",
+      "搭建「品牌力×商品力×运营力」三维评估模型，引入KA品牌5家+长尾品牌78家，构建2000+SKU商品库。",
+      "建立S/A/B/C四级商家分层模型，为S级商家配置1v1运营与流量倾斜，为A级商家配置爆品联合营销，为B/C级商家提供标准化SOP工具。",
+      "打造30+独家爆品，通过KOS种草和直播矩阵联动放大成交，并设计「早C晚A」等主题场景提升客单价和连带销售。",
+      "通过3场行业峰会和小红书内容种草同步拓展商家渠道，线下签约品牌47家，线上获取商机线索420条。"
+    ],
+    methods: ["供给分层", "KOS达人运营", "爆品策略", "商家生命周期", "渠道运营"],
+    result:
+      "5个月内KOS达人拓展至520人，增长300%；头部KOS月均GMV达28万，为行业均值3.4倍。供给侧引入KA品牌5家+长尾品牌78家，构建2000+SKU商品库，重点区域供给覆盖率提升至90%，动销率82%。爆品GMV占比65%，客单价提升55%，连带销售率提升33%，单场活动峰值GMV破120万。",
+    review:
+      "这段经历的核心不是单点招商或活动执行，而是把私域电商的供给、达人和成交链路拆成可运营的系统。后续如果继续深化，可以把KOS成长等级、商家生命周期和爆品预测模型进一步产品化，让供给增长从经验驱动走向模型驱动。",
+    chart: {
+      type: "growth",
+      title: "供给增长体系搭建路径",
+      points: [
+        { label: "KOS建设", value: 32 },
+        { label: "商家招募", value: 52 },
+        { label: "分层运营", value: 68 },
+        { label: "爆品放大", value: 86 },
+        { label: "GMV峰值", value: 100 }
+      ]
+    },
+    funnel: [
+      { label: "商家线索", value: 100 },
+      { label: "评估入库", value: 82 },
+      { label: "重点供给", value: 65 },
+      { label: "爆品转化", value: 58 }
+    ],
+    gallery: [
+      {
+        src: "/assets/cases/meituan-kos-growth.svg",
+        title: "KOS生态建设",
+        caption: "5个月拓展KOS达人至520人，增长300%，用星火计划训练内容、选品和流量能力。"
+      },
+      {
+        src: "/assets/cases/meituan-merchant-model.svg",
+        title: "商家招募模型",
+        caption: "用品牌力、商品力、运营力三维模型筛选供给，引入KA品牌5家+长尾品牌78家。"
+      },
+      {
+        src: "/assets/cases/meituan-segmentation.svg",
+        title: "商家分层运营",
+        caption: "建立S/A/B/C四级分层和差异化资源包，S级商家GMV贡献占比提升至58%。"
+      },
+      {
+        src: "/assets/cases/meituan-bestseller.svg",
+        title: "爆品增长飞轮",
+        caption: "打造30+独家爆品，通过KOS种草和直播矩阵联动，单场GMV峰值破120万。"
+      },
+      {
+        src: "/assets/cases/meituan-channel.svg",
+        title: "渠道招募结果",
+        caption: "线下3场峰会签约品牌47家，线上小红书内容阅读2300万+，获取商机线索420条。"
+      }
+    ]
+  },
+  {
     slug: "community-growth",
     title: "社群裂变项目｜6个月从0操盘100W+团购私域用户增长",
     shortTitle: "社群裂变项目",
@@ -249,6 +327,7 @@ export const caseStudies = [
 
 export const featuredCaseSlugs = [
   "tiny-achievement-app",
+  "meituan-supply-growth",
   "community-growth",
   "campaign-marketing"
 ];

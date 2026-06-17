@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1012" role="img" aria-labelledby="title desc">
+  <title id="title">美团团买买渠道招募结果</title>
+  <desc id="desc">展示线下展会和小红书内容招募渠道。</desc>
+  <rect width="1800" height="1012" fill="#fffdf7"/>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.4" fill="#2b7fd8" opacity=".18"/>
+    </pattern>
+  </defs>
+  <rect width="1800" height="1012" fill="url(#dots)"/>
+  <text x="128" y="150" fill="#2b7fd8" font-family="Arial, sans-serif" font-size="44" font-weight="900">渠道运营：线下签约 + 线上种草双引擎</text>
+  <text x="128" y="204" fill="#4a4a5a" font-family="Arial, sans-serif" font-size="24">一边用行业峰会获取确定性商家，一边用小红书内容获取更大范围的商机线索。</text>
+  <g transform="translate(160 304)" font-family="Arial, sans-serif">
+    <rect width="690" height="440" rx="32" fill="white" stroke="#c5ddf6" stroke-width="3"/>
+    <text x="50" y="74" fill="#2b7fd8" font-size="34" font-weight="900">线下展会</text>
+    <text x="50" y="132" fill="#4a4a5a" font-size="24">3场行业峰会，集中触达高意向品牌</text>
+    <rect x="50" y="190" width="260" height="128" rx="24" fill="#fff8d9" stroke="#f4d758"/>
+    <text x="82" y="250" fill="#1a1a2e" font-size="46" font-weight="900">47家</text>
+    <text x="82" y="288" fill="#4a4a5a" font-size="22">签约品牌</text>
+    <rect x="360" y="190" width="260" height="128" rx="24" fill="#eef8f2" stroke="#16a34a"/>
+    <text x="392" y="250" fill="#1a1a2e" font-size="46" font-weight="900">68%</text>
+    <text x="392" y="288" fill="#4a4a5a" font-size="22">后续转化率</text>
+  </g>
+  <g transform="translate(950 304)" font-family="Arial, sans-serif">
+    <rect width="690" height="440" rx="32" fill="white" stroke="#c5ddf6" stroke-width="3"/>
+    <text x="50" y="74" fill="#2b7fd8" font-size="34" font-weight="900">线上招募</text>
+    <text x="50" y="132" fill="#4a4a5a" font-size="24">通过小红书内容种草，扩大商家线索池</text>
+    <rect x="50" y="190" width="260" height="128" rx="24" fill="#fff1f3" stroke="#ffc1cc"/>
+    <text x="82" y="250" fill="#1a1a2e" font-size="46" font-weight="900">2300万+</text>
+    <text x="82" y="288" fill="#4a4a5a" font-size="22">内容阅读量</text>
+    <rect x="360" y="190" width="260" height="128" rx="24" fill="#e8f4ff" stroke="#2b7fd8"/>
+    <text x="392" y="250" fill="#1a1a2e" font-size="46" font-weight="900">420条</text>
+    <text x="392" y="288" fill="#4a4a5a" font-size="22">商机线索</text>
+  </g>
+  <rect x="336" y="812" width="1128" height="82" rx="24" fill="white" stroke="#c5ddf6"/>
+  <text x="900" y="864" text-anchor="middle" fill="#2b7fd8" font-family="Arial, sans-serif" font-size="30" font-weight="900">渠道不是单纯拉新，而是为供给池持续补充高潜商家</text>
+</svg>

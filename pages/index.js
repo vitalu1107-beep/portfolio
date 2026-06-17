@@ -6,6 +6,8 @@ import { caseStudies } from "../data/cases";
 import { profile } from "../data/profile";
 import { publicPath } from "../lib/paths";
 
+const layerColors = ["red", "blue", "yellow", "green"];
+
 const layers = [
   { href: "#personal-info", label: "个人信息", color: "blue" },
   { href: "#timeline", label: "经历时间线", color: "blue" },
@@ -13,7 +15,7 @@ const layers = [
   ...caseStudies.map((item, index) => ({
     href: `#project-${item.slug}`,
     label: item.shortTitle,
-    color: index === 0 ? "red" : index === 1 ? "blue" : "yellow"
+    color: layerColors[index % layerColors.length]
   })),
   { href: "#contact", label: "联系方式", color: "green" }
 ];
