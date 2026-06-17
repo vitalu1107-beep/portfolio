@@ -86,6 +86,7 @@ export default function HomePage() {
   const dragRef = useRef(null);
   const [positions, setPositions] = useState({});
   const [zoomIndex, setZoomIndex] = useState(6);
+  const [visibleContact, setVisibleContact] = useState(null);
   const zoom = zoomSteps[zoomIndex];
 
   function getNodeStyle(id) {
@@ -139,6 +140,10 @@ export default function HomePage() {
       onPointerUp: handlePointerUp,
       onPointerCancel: handlePointerUp
     };
+  }
+
+  function toggleContact(type) {
+    setVisibleContact((current) => (current === type ? null : type));
   }
 
   function zoomOut() {
@@ -213,7 +218,7 @@ export default function HomePage() {
 
             <figure className="profile-polaroid draggable-node" {...bindDrag("profile")}>
               <img src={publicPath("/assets/profile-luqian.jpg")} alt="卢倩个人照片" />
-              <figcaption>用户增长 · 私域运营 · 项目操盘</figcaption>
+              <figcaption>AI产品运营 · 增长策略</figcaption>
             </figure>
 
             <section
@@ -224,18 +229,47 @@ export default function HomePage() {
               <div className="card-pin yellow" />
               <div className="avatar-mark">LQ</div>
               <h1>{profile.name}</h1>
-              <p>用户增长 / 私域电商 / 产品验证</p>
-              <div className="os-tags">
+              <p>{profile.headline}</p>
+              <div className="os-tags os-tags-compact">
                 {profile.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-              <div className="contact-inline">
-                <a href={`mailto:${profile.email}`}>Email</a>
+              <div className="identity-proof-list">
+                <span>小成就APP：AI产品0→1上线｜LLM辅助开发</span>
+                <span>滴滴：2个月新增20W+用户｜3个月GMV 300W+</span>
+                <span>美团：KOS生态520人｜单场GMV峰值120W+</span>
+              </div>
+              <div className="contact-inline contact-reveal">
+                <button
+                  type="button"
+                  onClick={() => toggleContact("email")}
+                  aria-expanded={visibleContact === "email"}
+                  aria-controls="identity-contact-value"
+                >
+                  邮箱
+                </button>
+                <button
+                  type="button"
+                  onClick={() => toggleContact("phone")}
+                  aria-expanded={visibleContact === "phone"}
+                  aria-controls="identity-contact-value"
+                >
+                  电话
+                </button>
                 <a href={publicPath(profile.resumeUrl)} download>
                   下载简历
                 </a>
               </div>
+              {visibleContact && (
+                <div className="contact-popover" id="identity-contact-value">
+                  {visibleContact === "email" ? (
+                    <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                  ) : (
+                    <a href={`tel:${profile.phone}`}>{profile.phone}</a>
+                  )}
+                </div>
+              )}
             </section>
 
             <section
@@ -316,9 +350,9 @@ export default function HomePage() {
             >
               <div className="card-pin green" />
               <h2>联系我</h2>
-              <p>求职方向：用户运营、增长运营、私域运营。</p>
+              <p>求职方向：AI产品运营、用户增长、私域增长。</p>
               <a href={`mailto:${profile.email}`}>{profile.email}</a>
-              <b>微信：{profile.wechat}</b>
+              <a href={`tel:${profile.phone}`}>电话：{profile.phone}</a>
             </section>
           </div>
 

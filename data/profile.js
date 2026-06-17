@@ -1,14 +1,15 @@
 export const profile = {
   name: "卢倩",
-  role: "用户运营 / 增长运营 / 私域电商运营",
-  headline: "把用户增长、产品验证与私域成交做成可复用的业务模型",
+  role: "AI产品运营 / 用户增长 / 私域增长",
+  headline: "AI产品运营｜用户增长 & 私域增长｜0→1验证驱动",
   summary:
     "5年+电商与内容行业运营经验，曾在滴滴、网易等平台负责用户增长、内容运营、私域成交与项目落地。擅长从业务模型出发拆解增长路径，用数据分层、MVP验证和跨团队执行推动结果。",
   location: "中国",
-  email: "your-email@example.com",
+  email: "luqian110708@163.com",
+  phone: "15676727875",
   wechat: "your-wechat-id",
   resumeUrl: "/resume/luqian-resume.pdf",
-  tags: ["用户增长", "私域运营", "数据分析", "项目管理"],
+  tags: ["AI产品运营转型", "AI产品实践", "LLM辅助开发", "AI驱动增长方法"],
   highlights: [
     {
       label: "用户增长",

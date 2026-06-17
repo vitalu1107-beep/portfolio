@@ -1706,13 +1706,13 @@ main {
 .zone-intro {
   left: 76px;
   top: 126px;
-  width: 600px;
-  height: 640px;
+  width: 650px;
+  height: 700px;
   background: rgba(255, 248, 217, 0.28);
 }
 
 .zone-system {
-  left: 720px;
+  left: 740px;
   top: 126px;
   width: 1040px;
   height: 640px;
@@ -1809,7 +1809,7 @@ main {
 .identity-card {
   left: 360px;
   top: 170px;
-  width: 286px;
+  width: 336px;
 }
 
 .avatar-mark {
@@ -1842,6 +1842,12 @@ main {
   font-size: 14px;
 }
 
+.identity-card p {
+  color: #1f3154;
+  font-weight: 850;
+  line-height: 1.55;
+}
+
 .os-tags,
 .capability-pills,
 .contact-inline {
@@ -1853,6 +1859,7 @@ main {
 
 .os-tags span,
 .capability-pills span,
+.contact-inline button,
 .contact-inline a,
 .canvas-project-copy a {
   border: 1px solid rgba(43, 127, 216, 0.22);
@@ -1862,6 +1869,52 @@ main {
   color: var(--blue);
   font-size: 12px;
   font-weight: 800;
+}
+
+.contact-inline button {
+  appearance: none;
+  font-family: inherit;
+}
+
+.os-tags-compact span {
+  border-color: rgba(38, 166, 91, 0.24);
+  background: rgba(38, 166, 91, 0.07);
+  color: #16824a;
+}
+
+.identity-proof-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.identity-proof-list span {
+  border-left: 3px solid var(--yellow);
+  padding-left: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 820;
+  line-height: 1.5;
+}
+
+.contact-reveal {
+  align-items: center;
+}
+
+.contact-popover {
+  margin-top: 10px;
+  border: 1px solid rgba(43, 127, 216, 0.18);
+  border-radius: 12px;
+  background: rgba(247, 251, 255, 0.96);
+  padding: 10px 12px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.contact-popover a {
+  color: inherit;
 }
 
 .timeline-card {
@@ -1915,8 +1968,8 @@ main {
 
 .sticky-note {
   left: 360px;
-  top: 455px;
-  width: 286px;
+  top: 560px;
+  width: 336px;
   border: 2px dashed rgba(244, 215, 88, 0.82);
   padding: 20px;
 }
@@ -2126,7 +2179,7 @@ main {
 }
 
 .line-a { left: 260px; top: 315px; width: 90px; }
-.line-b { left: 646px; top: 310px; width: 118px; }
+.line-b { left: 696px; top: 310px; width: 68px; }
 .line-c { left: 1248px; top: 470px; width: 106px; transform: rotate(34deg); border-color: rgba(244, 215, 88, 0.58); }
 .line-d { left: 1720px; top: 410px; width: 96px; transform: rotate(-14deg); }
 
