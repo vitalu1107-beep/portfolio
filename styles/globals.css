@@ -987,7 +987,7 @@ main {
 .mini-map h2 {
   margin: 0 0 16px;
   color: var(--blue);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 900;
 }
 
@@ -1001,11 +1001,12 @@ main {
   grid-template-columns: 14px minmax(0, 1fr) 18px;
   align-items: center;
   gap: 10px;
-  min-height: 42px;
+  min-height: 36px;
   border-radius: 10px;
   padding: 0 10px;
   color: var(--muted);
-  font-weight: 760;
+  font-size: 14px;
+  font-weight: 720;
 }
 
 .layer-list a:hover,
@@ -1096,6 +1097,7 @@ main {
   min-width: 1680px;
   min-height: 1060px;
   padding: 90px 90px 140px;
+  zoom: var(--canvas-zoom, 1);
 }
 
 .canvas-card,
@@ -1106,6 +1108,24 @@ main {
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 18px 46px rgba(43, 127, 216, 0.11);
+}
+
+.draggable-node {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  will-change: transform;
+}
+
+.draggable-node a,
+.draggable-node button {
+  cursor: pointer;
+}
+
+.draggable-node.is-dragging {
+  z-index: 20;
+  cursor: grabbing;
+  box-shadow: 0 26px 70px rgba(43, 127, 216, 0.22);
 }
 
 .canvas-card {
@@ -1426,32 +1446,46 @@ main {
 .line-c { left: 630px; top: 590px; width: 250px; transform: rotate(44deg); border-color: rgba(244, 215, 88, 0.58); }
 .line-d { left: 1180px; top: 610px; width: 170px; transform: rotate(-17deg); }
 
-.os-bottom-dock {
+.zoom-controls {
   position: fixed;
-  left: calc(286px + (100vw - 286px) / 2);
+  right: 26px;
   bottom: 22px;
   z-index: 6;
   display: flex;
-  gap: 6px;
-  transform: translateX(-50%);
-  border: 1px solid rgba(43, 127, 216, 0.16);
-  border-radius: 999px;
+  align-items: center;
+  gap: 12px;
+  border: 2px dashed rgba(43, 127, 216, 0.22);
+  border-radius: 18px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 12px 34px rgba(43, 127, 216, 0.12);
-  padding: 7px;
+  padding: 10px 14px;
 }
 
-.os-bottom-dock a,
-.os-bottom-dock span {
+.zoom-controls button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 0;
   border-radius: 999px;
-  padding: 10px 18px;
-  color: var(--muted);
+  background: rgba(43, 127, 216, 0.08);
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 20px;
   font-weight: 900;
 }
 
-.os-bottom-dock span {
+.zoom-controls button:hover {
   background: var(--blue);
   color: #fff;
+}
+
+.zoom-controls span {
+  min-width: 48px;
+  color: var(--blue);
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 900;
 }
 
 @media (max-width: 960px) {
@@ -1496,13 +1530,14 @@ main {
 
   .canvas-helper,
   .os-line,
-  .os-bottom-dock {
+  .zoom-controls {
     display: none;
   }
 
   .canvas-stage {
     min-width: 0;
     min-height: 0;
+    zoom: 1;
     display: grid;
     gap: 16px;
     padding: 18px;
