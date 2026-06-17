@@ -9,6 +9,7 @@ import { publicPath } from "../lib/paths";
 const layerColors = ["red", "blue", "yellow", "green"];
 
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
+const canvasSize = { width: 2480, height: 1560 };
 
 const projectBriefs = {
   "tiny-achievement-app": "7天跑通从问题定义到上线验证的产品闭环。",
@@ -106,6 +107,15 @@ export default function HomePage() {
   const [zoomIndex, setZoomIndex] = useState(6);
   const [visibleContact, setVisibleContact] = useState(null);
   const zoom = zoomSteps[zoomIndex];
+  const scaledCanvasStyle = {
+    width: `${canvasSize.width * zoom}px`,
+    height: `${canvasSize.height * zoom}px`
+  };
+  const canvasStageStyle = {
+    width: `${canvasSize.width}px`,
+    height: `${canvasSize.height}px`,
+    transform: `scale(${zoom})`
+  };
 
   function getNodeStyle(id) {
     const position = positions[id] || { x: 0, y: 0 };
@@ -215,19 +225,20 @@ export default function HomePage() {
             Scroll 浏览 · Drag 移动卡片 · 右下角缩放
           </div>
 
-          <div className="canvas-stage" style={{ "--canvas-zoom": zoom }}>
-            <div className="canvas-zone zone-intro">
-              <span>01 个人定位</span>
-            </div>
-            <div className="canvas-zone zone-system">
-              <span>02 方法与经历</span>
-            </div>
-            <div className="canvas-zone zone-projects">
-              <span>03 项目证据</span>
-            </div>
-            <div className="canvas-zone zone-contact">
-              <span>04 联系方式</span>
-            </div>
+          <div className="canvas-stage-shell" style={scaledCanvasStyle}>
+            <div className="canvas-stage" style={canvasStageStyle}>
+              <div className="canvas-zone zone-intro">
+                <span>01 个人定位</span>
+              </div>
+              <div className="canvas-zone zone-system">
+                <span>02 方法与经历</span>
+              </div>
+              <div className="canvas-zone zone-projects">
+                <span>03 项目证据</span>
+              </div>
+              <div className="canvas-zone zone-contact">
+                <span>04 联系方式</span>
+              </div>
 
             <div className="os-line line-a" />
             <div className="os-line line-b" />
@@ -381,14 +392,25 @@ export default function HomePage() {
               <a href={`mailto:${profile.email}`}>{profile.email}</a>
               <a href={`tel:${profile.phone}`}>电话：{profile.phone}</a>
             </section>
+            </div>
           </div>
 
           <div className="zoom-controls" aria-label="画布缩放控制">
-            <button type="button" onClick={zoomOut} aria-label="缩小画布">
+            <button
+              type="button"
+              onClick={zoomOut}
+              aria-label="缩小画布"
+              disabled={zoomIndex === 0}
+            >
               -
             </button>
             <span>{Math.round(zoom * 100)}%</span>
-            <button type="button" onClick={zoomIn} aria-label="放大画布">
+            <button
+              type="button"
+              onClick={zoomIn}
+              aria-label="放大画布"
+              disabled={zoomIndex === zoomSteps.length - 1}
+            >
               +
             </button>
           </div>

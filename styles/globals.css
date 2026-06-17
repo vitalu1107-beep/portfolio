@@ -1672,13 +1672,16 @@ main {
   font-size: 13px;
 }
 
+.canvas-stage-shell {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+
 .canvas-stage {
   position: relative;
-  min-width: 2240px;
-  min-height: 1560px;
   padding: 96px 96px 150px;
   transform-origin: top left;
-  zoom: var(--canvas-zoom, 1);
 }
 
 .canvas-zone {
@@ -2272,6 +2275,16 @@ main {
   color: #fff;
 }
 
+.zoom-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.zoom-controls button:disabled:hover {
+  background: rgba(43, 127, 216, 0.08);
+  color: var(--blue);
+}
+
 .zoom-controls span {
   min-width: 48px;
   color: var(--blue);
@@ -2326,10 +2339,17 @@ main {
     display: none;
   }
 
+  .canvas-stage-shell {
+    width: auto !important;
+    height: auto !important;
+  }
+
   .canvas-stage {
+    width: auto !important;
+    height: auto !important;
     min-width: 0;
     min-height: 0;
-    zoom: 1;
+    transform: none !important;
     display: grid;
     gap: 16px;
     padding: 18px;
