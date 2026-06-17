@@ -8,6 +8,22 @@ import { publicPath } from "../lib/paths";
 
 const layerColors = ["red", "blue", "yellow", "green"];
 
+const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
+
+const projectBriefs = {
+  "tiny-achievement-app": "7天跑通从问题定义到上线验证的产品闭环。",
+  "meituan-supply-growth": "搭建KOS、商家供给和爆品成交增长体系。",
+  "community-growth": "冷启动同城私域流量池，把裂变活动复制成模型。",
+  "campaign-marketing": "用爆品、渠道和战报节奏拉升活动GMV。"
+};
+
+const methodBriefs = {
+  假设驱动: "先定义问题和验证指标",
+  最小验证: "先跑通一个可用闭环",
+  分层运营: "按价值匹配资源和动作",
+  结果复盘: "把项目沉淀成下一次SOP"
+};
+
 const layers = [
   { href: "#personal-info", label: "个人信息", color: "blue" },
   { href: "#timeline", label: "经历时间线", color: "blue" },
@@ -19,6 +35,17 @@ const layers = [
   })),
   { href: "#contact", label: "联系方式", color: "green" }
 ];
+
+function parseExperience(item) {
+  const [meta, summary = ""] = item.split("：");
+  const [period, company = "", role = ""] = meta.split("｜");
+
+  return {
+    period,
+    title: [company, role].filter(Boolean).join(" · "),
+    summary
+  };
+}
 
 function ProjectNode({ item, index, dragProps }) {
   return (
@@ -33,7 +60,7 @@ function ProjectNode({ item, index, dragProps }) {
       <div className="canvas-project-copy">
         <span>{item.category}</span>
         <h3>{item.shortTitle}</h3>
-        <p>{item.summary}</p>
+        <p>{projectBriefs[item.slug] || item.summary}</p>
         <div className="canvas-project-metrics">
           {item.metrics.slice(0, 2).map((metric) => (
             <b key={`${item.slug}-${metric.label}`}>
@@ -55,12 +82,10 @@ function ProjectNode({ item, index, dragProps }) {
   );
 }
 
-const zoomSteps = [0.72, 0.85, 1, 1.15, 1.3];
-
 export default function HomePage() {
   const dragRef = useRef(null);
   const [positions, setPositions] = useState({});
-  const [zoomIndex, setZoomIndex] = useState(2);
+  const [zoomIndex, setZoomIndex] = useState(6);
   const zoom = zoomSteps[zoomIndex];
 
   function getNodeStyle(id) {
@@ -168,6 +193,19 @@ export default function HomePage() {
           </div>
 
           <div className="canvas-stage" style={{ "--canvas-zoom": zoom }}>
+            <div className="canvas-zone zone-intro">
+              <span>01 个人定位</span>
+            </div>
+            <div className="canvas-zone zone-system">
+              <span>02 方法与经历</span>
+            </div>
+            <div className="canvas-zone zone-projects">
+              <span>03 项目证据</span>
+            </div>
+            <div className="canvas-zone zone-contact">
+              <span>04 联系方式</span>
+            </div>
+
             <div className="os-line line-a" />
             <div className="os-line line-b" />
             <div className="os-line line-c" />
@@ -186,7 +224,7 @@ export default function HomePage() {
               <div className="card-pin yellow" />
               <div className="avatar-mark">LQ</div>
               <h1>{profile.name}</h1>
-              <p>{profile.headline}</p>
+              <p>用户增长 / 私域电商 / 产品验证</p>
               <div className="os-tags">
                 {profile.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
@@ -208,24 +246,29 @@ export default function HomePage() {
               <div className="card-pin blue" />
               <h2>经历时间线</h2>
               <div className="timeline-mini">
-                {profile.experience.map((item, index) => (
-                  <article key={item}>
-                    <span>0{index + 1}</span>
-                    <p>{item}</p>
-                  </article>
-                ))}
+                {profile.experience.map((item, index) => {
+                  const experience = parseExperience(item);
+
+                  return (
+                    <article key={item}>
+                      <span>0{index + 1}</span>
+                      <p>
+                        <b>{experience.period}</b>
+                        {experience.title}
+                      </p>
+                    </article>
+                  );
+                })}
               </div>
             </section>
 
             <section className="sticky-note note-yellow draggable-node" {...bindDrag("story")}>
               <b>核心叙事</b>
-              <p>
-                我擅长把业务问题拆成用户路径、运营动作和数据指标，再用小步验证把经验沉淀成可复用模型。
-              </p>
+              <p>拆路径、配动作、看数据，把经验沉淀成可复用模型。</p>
             </section>
 
             <section className="quote-card draggable-node" {...bindDrag("quote")}>
-              <p>找到用户会行动的理由，然后让路径变短。</p>
+              <p>让用户愿意行动，再让路径变短。</p>
               <span>Growth note</span>
             </section>
 
@@ -236,10 +279,13 @@ export default function HomePage() {
             >
               <div className="card-pin yellow" />
               <h2>技能 & 能力</h2>
-              <div className="capability-pills">
-                {profile.capabilityMap.flatMap((block) =>
-                  block.items.slice(0, 2).map((item) => <span key={item}>{item}</span>)
-                )}
+              <div className="capability-list-mini">
+                {profile.capabilityMap.map((block) => (
+                  <article key={block.group}>
+                    <b>{block.group}</b>
+                    <span>{block.items.slice(0, 2).join(" · ")}</span>
+                  </article>
+                ))}
               </div>
             </section>
 
@@ -249,7 +295,7 @@ export default function HomePage() {
               {profile.methods.map((method) => (
                 <article key={method.title}>
                   <b>{method.title}</b>
-                  <p>{method.text}</p>
+                  <p>{methodBriefs[method.title] || method.text}</p>
                 </article>
               ))}
             </section>
@@ -270,7 +316,7 @@ export default function HomePage() {
             >
               <div className="card-pin green" />
               <h2>联系我</h2>
-              <p>求职方向：用户运营、增长运营、私域运营、社区电商/本地生活运营。</p>
+              <p>求职方向：用户运营、增长运营、私域运营。</p>
               <a href={`mailto:${profile.email}`}>{profile.email}</a>
               <b>微信：{profile.wechat}</b>
             </section>
