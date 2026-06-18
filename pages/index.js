@@ -247,7 +247,6 @@ export default function HomePage() {
 
             <figure className="profile-polaroid draggable-node" {...bindDrag("profile")}>
               <img src={publicPath("/assets/profile-luqian.jpg")} alt="卢倩个人照片" />
-              <figcaption>AI产品运营转型</figcaption>
             </figure>
 
             <section
@@ -258,8 +257,12 @@ export default function HomePage() {
               <div className="card-pin yellow" />
               <div className="identity-header">
                 <div className="identity-title-block">
-                  <span>{profile.name}</span>
-                  <h1>AI产品运营｜增长策略｜0→1验证</h1>
+                  <div className="avatar-mark">LQ</div>
+                  <div>
+                    <h1>{profile.name}</h1>
+                    <p>AI产品运营转型｜增长策略</p>
+                    <span>0→1验证驱动</span>
+                  </div>
                 </div>
                 <div className="identity-actions">
                   <button
@@ -283,8 +286,10 @@ export default function HomePage() {
                   </a>
                 </div>
               </div>
+              <div className="identity-divider" />
+              <p className="identity-note">1 person + AI = 1 growth team</p>
               <p className="identity-headline">
-                从用户增长、私域运营到 AI 产品实践，擅长把业务问题拆成可验证的产品/运营闭环。
+                把业务问题拆成可验证的产品 / 运营闭环。
               </p>
               <div className="identity-metric-grid">
                 {identityMetrics.map((metric) => (
