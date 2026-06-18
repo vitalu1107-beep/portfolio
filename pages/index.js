@@ -27,19 +27,19 @@ const methodBriefs = {
 
 const identityMetrics = [
   {
-    label: "小成就APP",
+    label: "AI产品验证",
     value: "0→1上线",
-    detail: "AI产品实践 / LLM辅助开发"
+    detail: "小成就APP / LLM辅助开发"
   },
   {
-    label: "滴滴",
+    label: "用户增长",
     value: "20W+新增",
-    detail: "3个月GMV 300W+"
+    detail: "滴滴 / 3个月GMV 300W+"
   },
   {
-    label: "美团",
-    value: "520人生态",
-    detail: "单场GMV峰值120W+"
+    label: "生态运营",
+    value: "520人KOS",
+    detail: "美团 / 单场GMV峰值120W+"
   }
 ];
 
@@ -256,19 +256,36 @@ export default function HomePage() {
               {...bindDrag("personal-info")}
             >
               <div className="card-pin yellow" />
-              <div className="identity-topline">
-                <div className="avatar-mark">LQ</div>
-                <div>
-                  <span>AI Product Operations</span>
-                  <h1>{profile.name}</h1>
+              <div className="identity-header">
+                <div className="identity-title-block">
+                  <span>{profile.name}</span>
+                  <h1>AI产品运营｜增长策略｜0→1验证</h1>
+                </div>
+                <div className="identity-actions">
+                  <button
+                    type="button"
+                    onClick={() => toggleContact("email")}
+                    aria-expanded={visibleContact === "email"}
+                    aria-controls="identity-contact-value"
+                  >
+                    邮箱
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => toggleContact("phone")}
+                    aria-expanded={visibleContact === "phone"}
+                    aria-controls="identity-contact-value"
+                  >
+                    电话
+                  </button>
+                  <a href={publicPath(profile.resumeUrl)} download>
+                    简历
+                  </a>
                 </div>
               </div>
-              <p className="identity-headline">{profile.headline}</p>
-              <div className="os-tags os-tags-compact" aria-label="核心能力标签">
-                {profile.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
-              </div>
+              <p className="identity-headline">
+                从用户增长、私域运营到 AI 产品实践，擅长把业务问题拆成可验证的产品/运营闭环。
+              </p>
               <div className="identity-metric-grid">
                 {identityMetrics.map((metric) => (
                   <article key={metric.label}>
@@ -277,27 +294,6 @@ export default function HomePage() {
                     <small>{metric.detail}</small>
                   </article>
                 ))}
-              </div>
-              <div className="contact-inline contact-reveal">
-                <button
-                  type="button"
-                  onClick={() => toggleContact("email")}
-                  aria-expanded={visibleContact === "email"}
-                  aria-controls="identity-contact-value"
-                >
-                  邮箱
-                </button>
-                <button
-                  type="button"
-                  onClick={() => toggleContact("phone")}
-                  aria-expanded={visibleContact === "phone"}
-                  aria-controls="identity-contact-value"
-                >
-                  电话
-                </button>
-                <a href={publicPath(profile.resumeUrl)} download>
-                  下载简历
-                </a>
               </div>
               {visibleContact && (
                 <div className="contact-popover" id="identity-contact-value">
@@ -334,16 +330,6 @@ export default function HomePage() {
               </div>
             </section>
 
-            <section className="sticky-note note-yellow draggable-node" {...bindDrag("story")}>
-              <b>方法线索</b>
-              <p>问题定义 → MVP验证 → 数据复盘 → 规模化运营。</p>
-            </section>
-
-            <section className="quote-card draggable-node" {...bindDrag("quote")}>
-              <p>从AI工具到业务结果：先验证，再放大。</p>
-              <span>AI product ops note</span>
-            </section>
-
             <section
               className="canvas-card capability-card draggable-node"
               id="capabilities"
@@ -370,6 +356,7 @@ export default function HomePage() {
                   <p>{methodBriefs[method.title] || method.text}</p>
                 </article>
               ))}
+              <div className="method-flow">问题定义 → MVP验证 → 数据复盘 → 规模化运营</div>
             </section>
 
             {caseStudies.map((item, index) => (
