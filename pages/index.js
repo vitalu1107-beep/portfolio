@@ -68,7 +68,11 @@ function ProjectNode({ item, index, dragProps }) {
     <section
       className={`canvas-card project-node-card project-node-${index + 1} project-card-${item.slug} draggable-node`}
       id={`project-${item.slug}`}
-      style={{ ...style, "--project-accent": item.accent }}
+      style={{
+        ...style,
+        "--project-accent": item.accent,
+        "--project-ink": card.ink
+      }}
       {...eventProps}
     >
       <div className="card-pin" />

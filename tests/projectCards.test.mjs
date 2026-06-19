@@ -19,4 +19,8 @@ test("project cards expose ordered presentation metadata", () => {
     cards.map(({ cover }) => cover),
     ["product-validation", "supply-flywheel", "growth-funnel", "campaign-map"]
   );
+  assert.deepEqual(
+    cards.map(({ ink }) => ink),
+    ["#0b6b34", "#7a5200", "#174f9c", "#9a3412"]
+  );
 });

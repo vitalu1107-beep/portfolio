@@ -2232,7 +2232,7 @@ main {
   border-radius: 999px;
   background: color-mix(in srgb, var(--project-accent) 14%, white);
   padding: 4px 9px;
-  color: var(--project-accent);
+  color: var(--project-ink);
   font-size: 11px;
   font-weight: 900;
 }
@@ -2253,7 +2253,7 @@ main {
 }
 
 .project-owner-label {
-  background: var(--project-accent);
+  background: var(--project-ink);
   padding: 7px 9px;
   color: #fff;
   font-size: 12px;
@@ -2264,7 +2264,7 @@ main {
   border: 1px solid color-mix(in srgb, var(--project-accent) 16%, transparent);
   background: color-mix(in srgb, var(--project-accent) 9%, white);
   padding: 6px 8px;
-  color: var(--project-accent);
+  color: var(--project-ink);
   font-size: 11px;
   font-weight: 800;
 }
@@ -2307,7 +2307,7 @@ main {
 }
 
 .project-cover-heading span {
-  color: #202033;
+  color: var(--project-ink);
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 0;
@@ -2316,7 +2316,7 @@ main {
 .project-cover-heading strong {
   border-left: 2px solid var(--cover-accent);
   padding-left: 8px;
-  color: var(--cover-accent);
+  color: var(--project-ink);
   font-size: 17px;
   line-height: 1;
 }
@@ -2538,7 +2538,7 @@ main {
 
 .project-cover-funnel li:nth-child(4) {
   width: 31%;
-  background: var(--cover-accent);
+  background: var(--project-ink);
   color: #fff;
 }
 
@@ -2578,7 +2578,7 @@ main {
   height: 48px;
   border: 3px solid color-mix(in srgb, var(--cover-accent) 22%, #fff);
   border-radius: 50%;
-  background: var(--cover-accent);
+  background: var(--project-ink);
   color: #fff;
   font-size: 10px;
   line-height: 1;
@@ -2645,7 +2645,7 @@ main {
 }
 
 .canvas-project-metrics b {
-  color: var(--project-accent);
+  color: var(--project-ink);
   font-size: 18px;
   line-height: 1.1;
 }
@@ -2665,7 +2665,7 @@ main {
 .project-node-card .canvas-project-copy a {
   border-color: color-mix(in srgb, var(--project-accent) 24%, transparent);
   background: color-mix(in srgb, var(--project-accent) 8%, white);
-  color: var(--project-accent);
+  color: var(--project-ink);
 }
 
 .contact-card {
