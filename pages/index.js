@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import AssetImage from "../components/AssetImage";
+import ProjectCover from "../components/ProjectCover";
 import { caseStudies } from "../data/cases";
 import { profile } from "../data/profile";
 import { projectCards } from "../data/projectCards.mjs";
@@ -73,16 +73,14 @@ function ProjectNode({ item, index, dragProps }) {
     >
       <div className="card-pin" />
       <div className="project-index">0{index + 1}</div>
+      <div className="project-label-row">
+        <span className="project-owner-label">{card.owner}</span>
+        <span className="project-type-label">{card.project}</span>
+      </div>
       <div className="canvas-project-media">
-        <AssetImage src={item.heroImage} alt={item.shortTitle} className="canvas-project-image" />
-        <div className="project-model-strip" aria-label={`${item.shortTitle}核心模型`}>
-          {(card?.steps || item.methods.slice(0, 4)).map((step) => (
-            <span key={step}>{step}</span>
-          ))}
-        </div>
+        <ProjectCover variant={card.cover} accent={item.accent} title={card.project} />
       </div>
       <div className="canvas-project-copy">
-        <span>{card?.type || item.category}</span>
         <h3>{card?.headline || item.shortTitle}</h3>
         <p>{card?.copy || item.summary}</p>
         <div className="canvas-project-metrics">
