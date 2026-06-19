@@ -7,12 +7,12 @@ export const caseStudies = [
     company: "个人产品实践",
     period: "2026 产品实战复盘",
     summary:
-      "围绕“人不缺目标，缺的是持续行动的正反馈”这一洞察，用7天完成从问题定义、低保真原型、PWA搭建到真实使用验证的闭环。",
+      "围绕“人不缺目标，缺的是持续行动的正反馈”这一洞察，用AI辅助完成问题定义、低保真原型、PWA搭建到真实使用验证的闭环。",
     heroImage: "/assets/cases/app-hero.jpg",
     accent: "#16a34a",
     metrics: [
       { value: "7天", label: "从想法到上线" },
-      { value: "3-5条", label: "日均记录" },
+      { value: "LLM", label: "辅助开发" },
       { value: "第3天", label: "出现主动打开" },
       { value: "MVP", label: "最小验证闭环" }
     ],
@@ -258,10 +258,10 @@ export const caseStudies = [
     heroImage: "/assets/cases/campaign-map.jpg",
     accent: "#f97316",
     metrics: [
+      { value: "3天", label: "完成月度GMV目标" },
       { value: "60%", label: "GMV实际提升" },
       { value: "3.3W", label: "B端参与人数" },
-      { value: "75W", label: "C端参与人数" },
-      { value: "1.3", label: "ROI" }
+      { value: "75W", label: "C端参与人数" }
     ],
     problem:
       "618活动既要短期拉升销售，又要提升品牌认知和用户粘性。活动链路涉及商品、页面、BD、社群、物流和售后，任何环节掉链都会影响成交。",
@@ -275,9 +275,9 @@ export const caseStudies = [
     ],
     methods: ["AARRR", "转化漏斗", "爆品策略", "跨部门项目管理", "活动复盘"],
     result:
-      "活动目标为GMV提升50%、B端参与3W+、C端参与70W+、ROI大于1.5；最终GMV提升60%，B端参与3.3W，C端参与75W，ROI为1.3。",
+      "3天完成一个月级别GMV目标；最终GMV提升60%，B端参与3.3W，C端参与75W。ROI为1.3，低于原目标，因此在复盘中重点沉淀了库存、页面和履约风险预案。",
     review:
-      "活动成功来自爆品和促销策略，也依赖实时战报和跨部门协同。复盘暴露了库存、页面和履约风险，后续需要提前准备备用活动页、库存补充机制和物流保障方案。",
+      "活动成功来自爆品和促销策略，也依赖实时战报和跨部门协同。ROI未达原目标说明活动放量之外仍需控制资源效率，后续需要提前准备备用活动页、库存补充机制和物流保障方案。",
     chart: {
       type: "growth",
       title: "618活动结果对比",

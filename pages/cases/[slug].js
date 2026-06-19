@@ -8,6 +8,7 @@ import { publicPath } from "../../lib/paths";
 
 const caseNav = [
   { href: "#overview", label: "项目概览" },
+  { href: "#model", label: "核心模型" },
   { href: "#problem", label: "背景问题" },
   { href: "#strategy", label: "策略判断" },
   { href: "#actions", label: "执行路径" },
@@ -15,6 +16,37 @@ const caseNav = [
   { href: "#review", label: "复盘沉淀" },
   { href: "#gallery", label: "证据链" }
 ];
+
+const caseBlueprints = {
+  "tiny-achievement-app": {
+    eyebrow: "Product Validation Map",
+    title: "小成就 APP 的 0→1 验证路径",
+    summary: "这个项目不是功能练习，而是用 AI 辅助开发验证一个真实行为假设：低压力记录能否形成持续正反馈。",
+    nodes: ["痛点洞察", "功能减法", "PWA上线", "行为验证"],
+    proof: "核心证据：第3天出现主动打开，说明产品有初步自驱信号。"
+  },
+  "meituan-supply-growth": {
+    eyebrow: "Supply Growth Flywheel",
+    title: "团买买的供给增长飞轮",
+    summary: "把达人训练、商家供给、爆品运营和GMV放大串成一套系统，而不是依赖单次招商或活动。",
+    nodes: ["KOS训练", "商家评估", "爆品池", "直播种草", "GMV放大"],
+    proof: "核心证据：KOS生态520人，单场GMV峰值120万。"
+  },
+  "community-growth": {
+    eyebrow: "Private Traffic Funnel",
+    title: "社群裂变的低成本获客漏斗",
+    summary: "把线下信任、社群承接、裂变传播和下单转化串成冷启动增长漏斗。",
+    nodes: ["线下触达", "社群沉淀", "裂变传播", "下单转化", "复盘复制"],
+    proof: "核心证据：C端增量100W+，单粉成本约1元。"
+  },
+  "campaign-marketing": {
+    eyebrow: "Campaign War Map",
+    title: "618活动的战役执行地图",
+    summary: "用目标拆解、爆品组合、渠道分发和风险预案组织一次跨部门活动战役。",
+    nodes: ["目标拆解", "爆品组合", "渠道分发", "实时战报", "风险预案"],
+    proof: "核心证据：3天完成月度GMV目标，GMV实际提升60%。"
+  }
+};
 
 function findVisual(item, keywords, fallbackIndex = 0) {
   const gallery = item.gallery || [];
@@ -38,6 +70,30 @@ function EvidenceFigure({ visual, badge }) {
         <small>{visual.caption}</small>
       </figcaption>
     </figure>
+  );
+}
+
+function CaseModelPanel({ item }) {
+  const model = caseBlueprints[item.slug];
+  if (!model) return null;
+
+  return (
+    <section className="case-model-panel" id="model">
+      <div className="case-model-copy">
+        <span className="case-section-label">{model.eyebrow}</span>
+        <h2>{model.title}</h2>
+        <p>{model.summary}</p>
+        <b>{model.proof}</b>
+      </div>
+      <div className="case-model-map" aria-label={`${item.shortTitle}核心模型`}>
+        {model.nodes.map((node, index) => (
+          <div className="case-model-node" key={node}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{node}</strong>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -108,6 +164,8 @@ export default function CaseDetailPage({ item }) {
               </div>
             ))}
           </section>
+
+          <CaseModelPanel item={item} />
 
           <div className="case-report-layout">
             <aside className="case-toc" aria-label="案例目录">

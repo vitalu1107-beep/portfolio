@@ -11,11 +11,47 @@ const layerColors = ["red", "blue", "yellow", "green"];
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const canvasSize = { width: 2480, height: 1560 };
 
-const projectBriefs = {
-  "tiny-achievement-app": "7天跑通从问题定义到上线验证的产品闭环。",
-  "meituan-supply-growth": "搭建KOS、商家供给和爆品成交增长体系。",
-  "community-growth": "冷启动同城私域流量池，把裂变活动复制成模型。",
-  "campaign-marketing": "用爆品、渠道和战报节奏拉升活动GMV。"
+const projectCards = {
+  "tiny-achievement-app": {
+    type: "AI产品验证",
+    headline: "用7天验证一个可上线的AI辅助产品闭环",
+    copy: "从用户洞察、MVP、PWA上线到行为信号，验证“正反馈记录”是否成立。",
+    steps: ["洞察", "MVP", "上线", "验证"],
+    proofs: [
+      { value: "0→1", label: "PWA上线" },
+      { value: "第3天", label: "主动打开" }
+    ]
+  },
+  "meituan-supply-growth": {
+    type: "供给生态",
+    headline: "把KOS达人、商家供给与爆品池串成GMV系统",
+    copy: "从达人训练到供给分层，搭建可持续放大的供给增长飞轮。",
+    steps: ["KOS", "商家", "爆品", "GMV"],
+    proofs: [
+      { value: "520人", label: "KOS生态" },
+      { value: "120万", label: "单场GMV峰值" }
+    ]
+  },
+  "community-growth": {
+    type: "增长漏斗",
+    headline: "用社群裂变跑通同城私域低成本获客模型",
+    copy: "把线下信任、社群承接、裂变传播和复盘复制串成用户增长漏斗。",
+    steps: ["触达", "沉淀", "裂变", "转化"],
+    proofs: [
+      { value: "100W+", label: "C端增量" },
+      { value: "1元", label: "单粉成本" }
+    ]
+  },
+  "campaign-marketing": {
+    type: "战役操盘",
+    headline: "用爆品、渠道和战报节奏完成618月度GMV目标",
+    copy: "把目标拆解、活动节奏、跨部门协作和风险预案组织成一张作战地图。",
+    steps: ["目标", "爆品", "渠道", "复盘"],
+    proofs: [
+      { value: "3天", label: "完成月度目标" },
+      { value: "60%", label: "GMV提升" }
+    ]
+  }
 };
 
 const methodBriefs = {
@@ -67,21 +103,32 @@ function parseExperience(item) {
 }
 
 function ProjectNode({ item, index, dragProps }) {
+  const card = projectCards[item.slug];
+  const { style, ...eventProps } = dragProps;
+
   return (
     <section
-      className={`canvas-card project-node-card project-node-${index + 1} draggable-node`}
+      className={`canvas-card project-node-card project-node-${index + 1} project-card-${item.slug} draggable-node`}
       id={`project-${item.slug}`}
-      {...dragProps}
+      style={{ ...style, "--project-accent": item.accent }}
+      {...eventProps}
     >
-      <div className="card-pin red" />
+      <div className="card-pin" />
       <div className="project-index">0{index + 1}</div>
-      <AssetImage src={item.heroImage} alt={item.shortTitle} className="canvas-project-image" />
+      <div className="canvas-project-media">
+        <AssetImage src={item.heroImage} alt={item.shortTitle} className="canvas-project-image" />
+        <div className="project-model-strip" aria-label={`${item.shortTitle}核心模型`}>
+          {(card?.steps || item.methods.slice(0, 4)).map((step) => (
+            <span key={step}>{step}</span>
+          ))}
+        </div>
+      </div>
       <div className="canvas-project-copy">
-        <span>{item.category}</span>
-        <h3>{item.shortTitle}</h3>
-        <p>{projectBriefs[item.slug] || item.summary}</p>
+        <span>{card?.type || item.category}</span>
+        <h3>{card?.headline || item.shortTitle}</h3>
+        <p>{card?.copy || item.summary}</p>
         <div className="canvas-project-metrics">
-          {item.metrics.slice(0, 2).map((metric) => (
+          {(card?.proofs || item.metrics.slice(0, 2)).map((metric) => (
             <b key={`${item.slug}-${metric.label}`}>
               {metric.value}
               <small>{metric.label}</small>
