@@ -102,7 +102,9 @@ function ProjectNode({ item, index, dragProps }) {
 }
 
 export default function HomePage() {
+  const canvasRef = useRef(null);
   const dragRef = useRef(null);
+  const panRef = useRef(null);
   const [positions, setPositions] = useState({});
   const [zoomIndex, setZoomIndex] = useState(6);
   const [visibleContact, setVisibleContact] = useState(null);
@@ -158,6 +160,42 @@ export default function HomePage() {
     event.currentTarget.releasePointerCapture(drag.pointerId);
     event.currentTarget.classList.remove("is-dragging");
     dragRef.current = null;
+  }
+
+  function handleCanvasPointerDown(event) {
+    if (
+      event.button !== 0 ||
+      event.target.closest(".draggable-node, .canvas-toolbar, .zoom-controls, a, button")
+    ) {
+      return;
+    }
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    panRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      scrollLeft: canvas.scrollLeft,
+      scrollTop: canvas.scrollTop
+    };
+    event.currentTarget.setPointerCapture(event.pointerId);
+    event.currentTarget.classList.add("is-panning");
+  }
+
+  function handleCanvasPointerMove(event) {
+    const pan = panRef.current;
+    const canvas = canvasRef.current;
+    if (!pan || !canvas) return;
+    canvas.scrollLeft = pan.scrollLeft - (event.clientX - pan.startX);
+    canvas.scrollTop = pan.scrollTop - (event.clientY - pan.startY);
+  }
+
+  function handleCanvasPointerUp(event) {
+    const pan = panRef.current;
+    if (!pan) return;
+    event.currentTarget.releasePointerCapture(pan.pointerId);
+    event.currentTarget.classList.remove("is-panning");
+    panRef.current = null;
   }
 
   function bindDrag(id) {
@@ -220,26 +258,18 @@ export default function HomePage() {
           </div>
         </aside>
 
-        <section className="os-canvas" aria-label="卢倩个人OS画布">
-          <div className="canvas-helper">
-            Scroll 浏览 · Drag 移动卡片 · 右下角缩放
-          </div>
+        <section
+          className="os-canvas"
+          aria-label="卢倩个人OS画布"
+          ref={canvasRef}
+          onPointerDown={handleCanvasPointerDown}
+          onPointerMove={handleCanvasPointerMove}
+          onPointerUp={handleCanvasPointerUp}
+          onPointerCancel={handleCanvasPointerUp}
+        >
 
           <div className="canvas-stage-shell" style={scaledCanvasStyle}>
             <div className="canvas-stage" style={canvasStageStyle}>
-              <div className="canvas-zone zone-intro">
-                <span>01 个人定位</span>
-              </div>
-              <div className="canvas-zone zone-system">
-                <span>02 方法与经历</span>
-              </div>
-              <div className="canvas-zone zone-projects">
-                <span>03 项目证据</span>
-              </div>
-              <div className="canvas-zone zone-contact">
-                <span>04 联系方式</span>
-              </div>
-
             <div className="os-line line-a" />
             <div className="os-line line-b" />
             <div className="os-line line-c" />
@@ -317,18 +347,22 @@ export default function HomePage() {
               {...bindDrag("timeline")}
             >
               <div className="card-pin blue" />
-              <h2>经历时间线</h2>
+              <h2>
+                <span>📍</span>
+                经历时间线
+              </h2>
               <div className="timeline-mini">
                 {profile.experience.map((item, index) => {
                   const experience = parseExperience(item);
 
                   return (
                     <article key={item}>
-                      <span>0{index + 1}</span>
-                      <p>
-                        <b>{experience.period}</b>
-                        {experience.title}
-                      </p>
+                      <i />
+                      <div>
+                        <span>{experience.period}</span>
+                        <b>{experience.title}</b>
+                        {experience.summary && <small>{experience.summary}</small>}
+                      </div>
                     </article>
                   );
                 })}
@@ -405,6 +439,20 @@ export default function HomePage() {
             >
               +
             </button>
+          </div>
+
+          <div className="canvas-toolbar" aria-label="画布操作提示">
+            <span>Scroll</span>
+            <em>缩放</em>
+            <b>·</b>
+            <span>Drag</span>
+            <em>移动画布</em>
+            <b>·</b>
+            <span className="toolbar-icon">⌗</span>
+            <em>拖拽卡片</em>
+            <b>·</b>
+            <span>Double</span>
+            <em>双击修改</em>
           </div>
         </section>
       </main>
