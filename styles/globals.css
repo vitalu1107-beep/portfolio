@@ -1775,6 +1775,23 @@ main {
   transform-origin: top left;
 }
 
+.canvas-connections {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 2480px;
+  height: 1560px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.canvas-connections path {
+  fill: none;
+  stroke-width: 2px;
+  stroke-dasharray: 8 8;
+  stroke-linecap: round;
+}
+
 .canvas-card,
 .profile-polaroid {
   position: absolute;
@@ -2681,19 +2698,6 @@ main {
   color: var(--blue);
 }
 
-.os-line {
-  position: absolute;
-  z-index: 0;
-  border-top: 2px dashed rgba(43, 127, 216, 0.28);
-  transform-origin: left center;
-  pointer-events: none;
-}
-
-.line-a { left: 356px; top: 335px; width: 36px; }
-.line-b { left: 880px; top: 320px; width: 74px; }
-.line-c { left: 1380px; top: 470px; width: 116px; transform: rotate(34deg); border-color: rgba(244, 215, 88, 0.58); }
-.line-d { left: 1880px; top: 410px; width: 120px; transform: rotate(-14deg); }
-
 .zoom-controls {
   position: fixed;
   right: 26px;
@@ -2829,7 +2833,7 @@ main {
   }
 
   .canvas-toolbar,
-  .os-line,
+  .canvas-connections,
   .zoom-controls {
     display: none;
   }

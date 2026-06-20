@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import CanvasConnections from "../components/CanvasConnections";
 import ProjectCover from "../components/ProjectCover";
 import { caseStudies } from "../data/cases";
 import { profile } from "../data/profile";
@@ -11,6 +12,47 @@ const layerColors = ["red", "blue", "yellow", "green"];
 
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const canvasSize = { width: 2480, height: 1560 };
+const canvasNodes = {
+  profile: { left: 126, top: 214, width: 210, height: 282 },
+  "personal-info": { left: 370, top: 170, width: 510, height: 390 },
+  timeline: { left: 950, top: 170, width: 430, height: 540 },
+  capabilities: { left: 1490, top: 500, width: 390, height: 240 },
+  contact: { left: 1995, top: 170, width: 310, height: 220 }
+};
+const canvasConnections = [
+  {
+    id: "profile-personal-info",
+    from: "profile",
+    fromSide: "right",
+    to: "personal-info",
+    toSide: "left",
+    color: "#2b7fd8"
+  },
+  {
+    id: "personal-info-timeline",
+    from: "personal-info",
+    fromSide: "right",
+    to: "timeline",
+    toSide: "left",
+    color: "#2b7fd8"
+  },
+  {
+    id: "timeline-capabilities",
+    from: "timeline",
+    fromSide: "bottom",
+    to: "capabilities",
+    toSide: "top",
+    color: "#f4d758"
+  },
+  {
+    id: "capabilities-contact",
+    from: "capabilities",
+    fromSide: "right",
+    to: "contact",
+    toSide: "left",
+    color: "#16a34a"
+  }
+];
 
 const methodBriefs = {
   假设驱动: "先定义问题和验证指标",
@@ -277,10 +319,13 @@ export default function HomePage() {
 
           <div className="canvas-stage-shell" style={scaledCanvasStyle}>
             <div className="canvas-stage" style={canvasStageStyle}>
-            <div className="os-line line-a" />
-            <div className="os-line line-b" />
-            <div className="os-line line-c" />
-            <div className="os-line line-d" />
+            <CanvasConnections
+              connections={canvasConnections}
+              nodes={canvasNodes}
+              positions={positions}
+              width={canvasSize.width}
+              height={canvasSize.height}
+            />
 
             <figure className="profile-polaroid draggable-node" {...bindDrag("profile")}>
               <img src={publicPath("/assets/profile-luqian.jpg")} alt="卢倩个人照片" />
