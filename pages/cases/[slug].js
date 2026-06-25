@@ -4,6 +4,7 @@ import { GrowthLine, FunnelChart } from "../../components/Charts";
 import AssetImage from "../../components/AssetImage";
 import { caseStudies, getCaseBySlug } from "../../data/cases";
 import { profile } from "../../data/profile";
+import { findVisualBySrc, selectEvidenceStrip } from "../../lib/casePresentation.mjs";
 import { publicPath } from "../../lib/paths";
 
 const caseNav = [
@@ -20,10 +21,10 @@ const caseNav = [
 const caseBlueprints = {
   "tiny-achievement-app": {
     eyebrow: "Product Validation Map",
-    title: "小成就 APP 的 0→1 验证路径",
-    summary: "这个项目不是功能练习，而是用 AI 辅助开发验证一个真实行为假设：低压力记录能否形成持续正反馈。",
-    nodes: ["痛点洞察", "功能减法", "PWA上线", "行为验证"],
-    proof: "核心证据：第3天出现主动打开，说明产品有初步自驱信号。"
+    title: "小成就 APP 的 0→1 交付路径",
+    summary: "以“低压力记录能否降低行动阻力”为核心假设，独立完成需求定义、MVP取舍、AI辅助开发、PWA部署与首轮个人自测。",
+    nodes: ["行为假设", "MVP取舍", "PWA交付", "首轮自测"],
+    proof: "交付证据可核验；使用信号来自N=1个人连续自测，不外推为多用户结论。"
   },
   "meituan-supply-growth": {
     eyebrow: "Supply Growth Flywheel",
@@ -62,7 +63,11 @@ function EvidenceFigure({ visual, badge }) {
   return (
     <figure className="case-evidence-figure">
       <div className="case-evidence-frame">
-        <AssetImage src={visual.src} alt={visual.title} className="case-evidence-image" />
+        <AssetImage
+          src={visual.src}
+          alt={visual.title}
+          className={`case-evidence-image${visual.kind === "product-screen" ? " is-product-screen" : ""}`}
+        />
       </div>
       <figcaption>
         <span>{badge}</span>
@@ -97,14 +102,68 @@ function CaseModelPanel({ item }) {
   );
 }
 
+function CaseValidationPanel({ statuses, timeline }) {
+  if (!statuses?.length && !timeline?.length) return null;
+
+  return (
+    <div className="case-validation-area">
+      {statuses?.length > 0 && (
+        <div className="case-validation-grid" aria-label="验证结论分层">
+          {statuses.map((item) => (
+            <article key={item.status}>
+              <span>{item.status}</span>
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+              <small>{item.evidence}</small>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {timeline?.length > 0 && (
+        <div className="case-development-timeline">
+          <div>
+            <span className="case-section-label">Repository Evidence</span>
+            <h3>开发与部署记录</h3>
+            <p>公开提交记录对应产品从原型、V2迭代到PWA能力完善的过程。</p>
+          </div>
+          <ol>
+            {timeline.map((milestone) => (
+              <li key={`${milestone.date}-${milestone.title}`}>
+                <time>{milestone.date}</time>
+                <div>
+                  <strong>{milestone.title}</strong>
+                  <p>{milestone.detail}</p>
+                  <a href={milestone.href} target="_blank" rel="noreferrer">
+                    查看提交记录
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function CaseDetailPage({ item }) {
   const pageTitle = `${item.shortTitle} | 卢倩作品集`;
   const gallery = item.gallery || [];
-  const problemVisual = gallery[0];
-  const strategyVisual = findVisual(item, ["流程", "原型", "路径", "方案", "活动节奏"], 1);
-  const resultVisual = findVisual(item, ["结果", "效果", "看板", "目标"], 3);
-  const reviewVisual = gallery[gallery.length - 1];
-  const evidenceStrip = gallery.slice(0, 5);
+  const problemVisual =
+    findVisualBySrc(gallery, item.sectionVisuals?.problem) || gallery[0];
+  const strategyVisual =
+    findVisualBySrc(gallery, item.sectionVisuals?.strategy) ||
+    findVisual(item, ["流程", "原型", "路径", "方案", "活动节奏"], 1);
+  const resultVisual =
+    findVisualBySrc(gallery, item.sectionVisuals?.result) ||
+    findVisual(item, ["结果", "效果", "看板", "目标"], 3);
+  const reviewVisual =
+    findVisualBySrc(gallery, item.sectionVisuals?.review) || gallery[gallery.length - 1];
+  const executionVisuals = (item.executionVisuals || [])
+    .map((src) => findVisualBySrc(gallery, src))
+    .filter(Boolean);
+  const evidenceStrip = selectEvidenceStrip(gallery, item.evidenceStrip);
 
   return (
     <>
@@ -146,7 +205,7 @@ export default function CaseDetailPage({ item }) {
                 </div>
                 <div>
                   <dt>我的角色</dt>
-                  <dd>{item.category} / 项目操盘</dd>
+                  <dd>{item.role || `${item.category} / 项目操盘`}</dd>
                 </div>
                 <div>
                   <dt>核心方法</dt>
@@ -173,7 +232,7 @@ export default function CaseDetailPage({ item }) {
               <nav>
                 {caseNav.map((nav) => (
                   <a href={nav.href} key={nav.href}>
-                    {nav.label}
+                    {item.validationStatus && nav.href === "#results" ? "验证结果" : nav.label}
                   </a>
                 ))}
               </nav>
@@ -186,11 +245,17 @@ export default function CaseDetailPage({ item }) {
                   <h2>背景问题</h2>
                   <p>{item.problem}</p>
                 </div>
-                <EvidenceFigure visual={problemVisual} badge="问题证据" />
+                <EvidenceFigure
+                  visual={problemVisual}
+                  badge={item.sectionEvidenceLabels?.problem || "问题证据"}
+                />
               </section>
 
               <section className="case-story-panel case-story-panel-reverse" id="strategy">
-                <EvidenceFigure visual={strategyVisual} badge="策略证据" />
+                <EvidenceFigure
+                  visual={strategyVisual}
+                  badge={item.sectionEvidenceLabels?.strategy || "策略证据"}
+                />
                 <div className="case-story-copy">
                   <span className="case-section-label">02 / Strategy</span>
                   <h2>我的策略判断</h2>
@@ -210,11 +275,12 @@ export default function CaseDetailPage({ item }) {
                 <div className="case-board-head">
                   <span className="case-section-label">03 / Execution</span>
                   <h2>执行路径</h2>
-                  <p>把动作和产出物放在同一张板上，招聘方可以直接看到每一步对应的交付。</p>
+                  <p>{item.executionIntro || "将关键动作与对应产出放在同一条执行路径中。"}</p>
                 </div>
                 <div className="case-action-board">
                   {item.actions.map((action, index) => {
-                    const visual = gallery[index + 1] || gallery[index] || gallery[0];
+                    const visual =
+                      executionVisuals[index] || gallery[index + 1] || gallery[index] || gallery[0];
 
                     return (
                       <article key={action}>
@@ -222,7 +288,7 @@ export default function CaseDetailPage({ item }) {
                           <AssetImage
                             src={visual.src}
                             alt={visual.title}
-                            className="case-action-image"
+                            className={`case-action-image${visual.kind === "product-screen" ? " is-product-screen" : ""}`}
                           />
                         )}
                         <div>
@@ -238,16 +304,28 @@ export default function CaseDetailPage({ item }) {
               <section className="case-panel case-results-panel" id="results">
                 <div className="case-result-top">
                   <div>
-                    <span className="case-section-label">04 / Data</span>
-                    <h2>数据结果</h2>
+                    <span className="case-section-label">
+                      {item.validationStatus ? "04 / Validation" : "04 / Data"}
+                    </span>
+                    <h2>{item.validationStatus ? "验证结果与证据" : "数据结果"}</h2>
                     <p>{item.result}</p>
                   </div>
-                  <EvidenceFigure visual={resultVisual} badge="结果证据" />
+                  <EvidenceFigure
+                    visual={resultVisual}
+                    badge={item.sectionEvidenceLabels?.result || "结果证据"}
+                  />
                 </div>
-                <div className="case-chart-grid">
-                  <GrowthLine data={item.chart.points} title={item.chart.title} />
-                  <FunnelChart data={item.funnel} />
-                </div>
+                {item.validationStatus ? (
+                  <CaseValidationPanel
+                    statuses={item.validationStatus}
+                    timeline={item.developmentTimeline}
+                  />
+                ) : (
+                  <div className="case-chart-grid">
+                    <GrowthLine data={item.chart.points} title={item.chart.title} />
+                    <FunnelChart data={item.funnel} />
+                  </div>
+                )}
               </section>
 
               <section className="case-story-panel case-review-panel" id="review">
@@ -256,7 +334,10 @@ export default function CaseDetailPage({ item }) {
                   <h2>复盘总结</h2>
                   <p>{item.review}</p>
                 </div>
-                <EvidenceFigure visual={reviewVisual} badge="复盘证据" />
+                <EvidenceFigure
+                  visual={reviewVisual}
+                  badge={item.sectionEvidenceLabels?.review || "复盘证据"}
+                />
               </section>
 
               <section className="case-panel case-gallery-panel" id="gallery">
@@ -266,7 +347,11 @@ export default function CaseDetailPage({ item }) {
                 <div className="case-evidence-strip">
                   {evidenceStrip.map((visual, index) => (
                     <figure key={visual.src}>
-                      <AssetImage src={visual.src} alt={visual.title} className="case-strip-image" />
+                      <AssetImage
+                        src={visual.src}
+                        alt={visual.title}
+                        className={`case-strip-image${visual.kind === "product-screen" ? " is-product-screen" : ""}`}
+                      />
                       <figcaption>
                         <span>{String(index + 1).padStart(2, "0")}</span>
                         <strong>{visual.title}</strong>
