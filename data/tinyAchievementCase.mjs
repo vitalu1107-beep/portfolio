@@ -8,6 +8,22 @@ export const tinyAchievementCase = {
   period: "2026.01.31 - 2026.02.15",
   summary:
     "围绕“如何让行动记录更少压力、更有正反馈”这一问题，独立完成需求定义、MVP取舍、AI辅助开发、PWA部署与首轮个人自测，并持续迭代为可安装、支持离线的产品。",
+  hero: {
+    layout: "narrative-product",
+    index: "01",
+    label: "小成就 APP · SMALL WINS",
+    title: "从行为假设到可安装产品的0→1实践",
+    summary:
+      "用最小产品闭环验证“低压力记录能否增强完成感”，独立完成原型、AI辅助开发、部署与首轮自测。",
+    visual: "/assets/cases/app-real-record.png",
+    validationNote:
+      "已验证产品交付与核心路径；使用反馈来自个人自测，不外推为多用户留存结论。",
+    metrics: [
+      { value: "7天", label: "首轮MVP" },
+      { value: "5个", label: "核心功能模块" },
+      { value: "PWA", label: "可安装 · 可离线" }
+    ]
+  },
   heroImage: "/assets/cases/app-hero.jpg",
   accent: "#16a34a",
   metrics: [
@@ -147,11 +163,11 @@ export const tinyAchievementCase = {
   ],
   externalLinks: [
     {
-      label: "打开网页版",
+      label: "体验产品",
       href: "https://vitalu1107-beep.github.io/xiaochengji-pwa/"
     },
     {
-      label: "查看仓库",
+      label: "查看代码",
       href: "https://github.com/vitalu1107-beep/xiaochengji-pwa"
     }
   ]

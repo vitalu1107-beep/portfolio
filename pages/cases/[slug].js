@@ -147,6 +147,52 @@ function CaseValidationPanel({ statuses, timeline }) {
   );
 }
 
+function NarrativeProductHero({ item }) {
+  const hero = item.hero;
+
+  return (
+    <header className="case-report-hero case-report-hero-narrative" id="overview">
+      <aside className="case-hero-index" aria-label="案例编号">
+        <strong>{hero.index}</strong>
+        <span>Independent<br />AI Product<br />Case Study</span>
+        <time>{item.period}</time>
+      </aside>
+
+      <div className="case-narrative-copy">
+        <div className="case-kicker">{hero.label}</div>
+        <h1>{hero.title}</h1>
+        <p className="case-narrative-lead">{hero.summary}</p>
+
+        <div className="case-hero-proof-grid" aria-label="项目核心成果">
+          {hero.metrics.map((metric) => (
+            <div key={`${metric.value}-${metric.label}`}>
+              <strong>{metric.value}</strong>
+              <span>{metric.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <p className="case-validation-note">{hero.validationNote}</p>
+
+        <div className="case-link-row case-narrative-links">
+          {item.externalLinks.map((link) => (
+            <a href={link.href} target="_blank" rel="noreferrer" key={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <figure className="case-product-phone">
+        <div>
+          <AssetImage src={hero.visual} alt="小成就 APP 记录页面" loading="eager" />
+        </div>
+        <figcaption>真实产品界面 · 记录页</figcaption>
+      </figure>
+    </header>
+  );
+}
+
 export default function CaseDetailPage({ item }) {
   const pageTitle = `${item.shortTitle} | 卢倩作品集`;
   const gallery = item.gallery || [];
@@ -164,6 +210,7 @@ export default function CaseDetailPage({ item }) {
     .map((src) => findVisualBySrc(gallery, src))
     .filter(Boolean);
   const evidenceStrip = selectEvidenceStrip(gallery, item.evidenceStrip);
+  const hasNarrativeProductHero = item.hero?.layout === "narrative-product";
 
   return (
     <>
@@ -180,49 +227,55 @@ export default function CaseDetailPage({ item }) {
         <img className="case-avatar" src={publicPath("/assets/profile-luqian.jpg")} alt={profile.name} />
 
         <article className="case-report">
-          <header className="case-report-hero" id="overview">
-            <div className="case-hero-copy">
-              <div className="case-kicker">{item.company} · {item.category}</div>
-              <h1>{item.title}</h1>
-              <p>{item.summary}</p>
-              {item.externalLinks && (
-                <div className="case-link-row">
-                  {item.externalLinks.map((link) => (
-                    <a href={link.href} target="_blank" rel="noreferrer" key={link.href}>
-                      {link.label}
-                    </a>
-                  ))}
+          {hasNarrativeProductHero ? (
+            <NarrativeProductHero item={item} />
+          ) : (
+            <>
+              <header className="case-report-hero" id="overview">
+                <div className="case-hero-copy">
+                  <div className="case-kicker">{item.company} · {item.category}</div>
+                  <h1>{item.title}</h1>
+                  <p>{item.summary}</p>
+                  {item.externalLinks && (
+                    <div className="case-link-row">
+                      {item.externalLinks.map((link) => (
+                        <a href={link.href} target="_blank" rel="noreferrer" key={link.href}>
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
 
-            <aside className="case-snapshot" aria-label="项目摘要">
-              <span>Case Snapshot</span>
-              <dl>
-                <div>
-                  <dt>项目阶段</dt>
-                  <dd>{item.period}</dd>
-                </div>
-                <div>
-                  <dt>我的角色</dt>
-                  <dd>{item.role || `${item.category} / 项目操盘`}</dd>
-                </div>
-                <div>
-                  <dt>核心方法</dt>
-                  <dd>{item.methods.slice(0, 3).join(" · ")}</dd>
-                </div>
-              </dl>
-            </aside>
-          </header>
+                <aside className="case-snapshot" aria-label="项目摘要">
+                  <span>Case Snapshot</span>
+                  <dl>
+                    <div>
+                      <dt>项目阶段</dt>
+                      <dd>{item.period}</dd>
+                    </div>
+                    <div>
+                      <dt>我的角色</dt>
+                      <dd>{item.role || `${item.category} / 项目操盘`}</dd>
+                    </div>
+                    <div>
+                      <dt>核心方法</dt>
+                      <dd>{item.methods.slice(0, 3).join(" · ")}</dd>
+                    </div>
+                  </dl>
+                </aside>
+              </header>
 
-          <section className="case-metric-strip" aria-label="关键结果">
-            {item.metrics.map((metric) => (
-              <div className="case-metric" key={`${metric.value}-${metric.label}`}>
-                <strong>{metric.value}</strong>
-                <span>{metric.label}</span>
-              </div>
-            ))}
-          </section>
+              <section className="case-metric-strip" aria-label="关键结果">
+                {item.metrics.map((metric) => (
+                  <div className="case-metric" key={`${metric.value}-${metric.label}`}>
+                    <strong>{metric.value}</strong>
+                    <span>{metric.label}</span>
+                  </div>
+                ))}
+              </section>
+            </>
+          )}
 
           <CaseModelPanel item={item} />
 
