@@ -1,10 +1,12 @@
 import { tinyAchievementCase } from "./tinyAchievementCase.mjs";
+import { businessCaseHeroes } from "./businessCaseHeroes.mjs";
 
 export const caseStudies = [
   tinyAchievementCase,
   {
     slug: "meituan-supply-growth",
-    title: "美团团买买｜5个月搭建KOS与供给增长体系，单场GMV峰值破120万",
+    hero: businessCaseHeroes["meituan-supply-growth"],
+    title: "美团团买买｜从KOS达人生态到供给增长飞轮的体系化搭建",
     shortTitle: "美团团买买",
     category: "供给运营",
     company: "美团团买买",
@@ -82,7 +84,8 @@ export const caseStudies = [
   },
   {
     slug: "community-growth",
-    title: "社群裂变项目｜6个月从0操盘100W+团购私域用户增长",
+    hero: businessCaseHeroes["community-growth"],
+    title: "滴滴橙心优选｜从城市冷启动到100W+用户的私域增长实践",
     shortTitle: "社群裂变项目",
     category: "用户增长",
     company: "滴滴橙心优选",
@@ -159,7 +162,8 @@ export const caseStudies = [
   },
   {
     slug: "campaign-marketing",
-    title: "活动营销项目｜3天完成1个月GMV目标的618战役",
+    hero: businessCaseHeroes["campaign-marketing"],
+    title: "滴滴橙心优选｜从目标拆解到跨部门协同的618增长战役",
     shortTitle: "活动营销项目",
     category: "活动营销",
     company: "滴滴橙心优选",

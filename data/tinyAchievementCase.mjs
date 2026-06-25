@@ -10,12 +10,16 @@ export const tinyAchievementCase = {
     "围绕“如何让行动记录更少压力、更有正反馈”这一问题，独立完成需求定义、MVP取舍、AI辅助开发、PWA部署与首轮个人自测，并持续迭代为可安装、支持离线的产品。",
   hero: {
     layout: "narrative-product",
+    visualStyle: "phone",
     index: "01",
+    meta: ["Independent AI Product", "Case Study"],
     label: "小成就 APP · SMALL WINS",
     title: "从行为假设到可安装产品的0→1实践",
     summary:
       "用最小产品闭环验证“低压力记录能否增强完成感”，独立完成原型、AI辅助开发、部署与首轮自测。",
     visual: "/assets/cases/app-real-record.png",
+    visualAlt: "小成就 APP 记录页面",
+    visualCaption: "真实产品界面 · 记录页",
     validationNote:
       "已验证产品交付与核心路径；使用反馈来自个人自测，不外推为多用户留存结论。",
     metrics: [

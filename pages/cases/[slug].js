@@ -147,15 +147,24 @@ function CaseValidationPanel({ statuses, timeline }) {
   );
 }
 
-function NarrativeProductHero({ item }) {
+function NarrativeCaseHero({ item }) {
   const hero = item.hero;
+  const actions = hero.actions || item.externalLinks || [];
+  const visualStyle = hero.visualStyle || "board";
 
   return (
-    <header className="case-report-hero case-report-hero-narrative" id="overview">
+    <header
+      className={`case-report-hero case-report-hero-narrative case-report-hero-${visualStyle}`}
+      id="overview"
+    >
       <aside className="case-hero-index" aria-label="案例编号">
         <strong>{hero.index}</strong>
-        <span>Independent<br />AI Product<br />Case Study</span>
-        <time>{item.period}</time>
+        <span className="case-hero-meta">
+          {(hero.meta || ["Business Case", "Study"]).map((line) => (
+            <b key={line}>{line}</b>
+          ))}
+        </span>
+        <time>{hero.period || item.period}</time>
       </aside>
 
       <div className="case-narrative-copy">
@@ -174,20 +183,27 @@ function NarrativeProductHero({ item }) {
 
         <p className="case-validation-note">{hero.validationNote}</p>
 
-        <div className="case-link-row case-narrative-links">
-          {item.externalLinks.map((link) => (
-            <a href={link.href} target="_blank" rel="noreferrer" key={link.href}>
-              {link.label}
-            </a>
-          ))}
-        </div>
+        {actions.length > 0 && (
+          <div className="case-link-row case-narrative-links">
+            {actions.map((link) => (
+              <a
+                href={link.href}
+                target={link.href.startsWith("#") ? undefined : "_blank"}
+                rel={link.href.startsWith("#") ? undefined : "noreferrer"}
+                key={link.href}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
-      <figure className="case-product-phone">
+      <figure className={`case-hero-visual case-hero-visual-${visualStyle}`}>
         <div>
-          <AssetImage src={hero.visual} alt="小成就 APP 记录页面" loading="eager" />
+          <AssetImage src={hero.visual} alt={hero.visualAlt || item.shortTitle} loading="eager" />
         </div>
-        <figcaption>真实产品界面 · 记录页</figcaption>
+        <figcaption>{hero.visualCaption || "项目证据"}</figcaption>
       </figure>
     </header>
   );
@@ -210,7 +226,7 @@ export default function CaseDetailPage({ item }) {
     .map((src) => findVisualBySrc(gallery, src))
     .filter(Boolean);
   const evidenceStrip = selectEvidenceStrip(gallery, item.evidenceStrip);
-  const hasNarrativeProductHero = item.hero?.layout === "narrative-product";
+  const hasNarrativeCaseHero = Boolean(item.hero?.layout?.startsWith("narrative"));
 
   return (
     <>
@@ -227,8 +243,8 @@ export default function CaseDetailPage({ item }) {
         <img className="case-avatar" src={publicPath("/assets/profile-luqian.jpg")} alt={profile.name} />
 
         <article className="case-report">
-          {hasNarrativeProductHero ? (
-            <NarrativeProductHero item={item} />
+          {hasNarrativeCaseHero ? (
+            <NarrativeCaseHero item={item} />
           ) : (
             <>
               <header className="case-report-hero" id="overview">
