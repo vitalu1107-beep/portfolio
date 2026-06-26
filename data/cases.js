@@ -92,6 +92,7 @@ export const caseStudies = [
     company: "滴滴橙心优选",
     role: "用户增长运营｜新城冷启动、社群裂变与ROI复盘",
     period: "社区团购新城拓展阶段",
+    hideModel: true,
     summary:
       "在新城市冷启动阶段，通过线下BD、线下团长和线上社群三方联动，快速建立本地私域流量池，并把裂变活动复制成可持续获客模型。",
     heroImage: "/assets/cases/community-profile.jpg",
@@ -105,7 +106,7 @@ export const caseStudies = [
     problem:
       "头部社区团购业务进入浙江新城市，属于典型新城市冷启动：线下小B信任基础薄弱，线上C端私域池接近从0开始。项目目标不是单次拉群，而是在C端目标70W、B端目标3W的压力下，同时搭建可触达、可转化、可复盘的本地用户增长漏斗。",
     strategy:
-      "把增长链路拆成“线下BD获客 - 团长信任承接 - 线上社群沉淀 - 标签分层触达 - 裂变传播放大 - 活动复盘复制”六段，用标准化话术、物料和用户标签把一次拉新活动变成可复用的同城私域增长模型。",
+      "按PPT里的项目流程，把增长链路拆成“核心用户沉淀 - 裂变前期准备 - 裂变中动作 - 品牌影响力营销 - 活动复盘”五段，用线下BD获客、团长信任承接、标签分层和线上社群运营三方联动，把一次拉新活动变成可复用的同城私域增长模型。",
     actions: [
       "为线下BD和团长准备引流话术、操作视频和协作流程，让一线团队能稳定获取种子用户。",
       "建立客户意向度标签体系，对不同意向用户制定差异化消息触达策略。",
@@ -135,18 +136,18 @@ export const caseStudies = [
       { label: "下单转化", value: 31 }
     ],
     executionIntro:
-      "把PPT里的执行产出重新拆成四个阶段：先用线下BD和团长建立信任，再用社群话术与标签分层承接用户，随后用推荐礼、好评素材和品牌背书放大裂变，最后用复盘文档沉淀可复制打法。",
+      "按照PPT原始流程呈现为五段：先沉淀核心用户，再完成社群话术和标签准备，接着用推荐礼与好评素材推动裂变，然后用明星宣发和滴滴App曝光放大声量，最后用复盘文档沉淀可复制打法。",
     sectionVisuals: {
       problem: "/assets/cases/community-background-targets.png",
       strategy: "/assets/cases/community-user-tagging.png",
       result: "/assets/cases/community-result.jpg",
-      review: "/assets/cases/community-key-user-report.png"
+      review: "/assets/cases/community-review-summary.svg"
     },
     sectionEvidenceLabels: {
       problem: "目标证据",
       strategy: "分层证据",
       result: "增长结果",
-      review: "复盘证据"
+      review: "复盘框架"
     },
     conversionEvidence: [
       {
@@ -155,35 +156,41 @@ export const caseStudies = [
         caption: "把不同意向度用户分层，并匹配差异化触达策略，避免社群只做统一群发。"
       },
       {
-        src: "/assets/cases/community-flow.jpg",
+        src: "/assets/cases/community-conversion-loop.svg",
         title: "用户转化路径",
-        caption: "把线下触达、社群承接、裂变参与与下单转化串成可复盘的增长漏斗。"
+        caption: "将PPT中的路径截图重绘为更清晰的用户转化闭环：触达、入群、分层、裂变、成交与复盘。"
       }
     ],
     executionMatrix: [
       {
         stage: "核心用户沉淀期",
-        goal: "先建立线下信任，把0用户基础转化为第一批可触达种子用户。",
-        deliverables: ["线下BD引流话术*1", "线下引流操作视频*1", "线上社群话术*1"],
+        goal: "先用线下BD与团长沟通建立信任，把0用户基础转化为第一批可触达种子用户。",
+        deliverables: ["线下BD引流话术*1", "线下引流操作视频*1"],
         visual: "/assets/cases/community-bd-script.png"
       },
       {
         stage: "裂变前期准备",
-        goal: "把用户按意向度分层，并准备能驱动转介绍的激励和信任素材。",
-        deliverables: ["用户标签体系标注*1", "新用户推荐礼品表*1", "客户好评素材*20"],
-        visual: "/assets/cases/community-reward-list.jpg"
+        goal: "用线上社群话术承接新进用户，并通过标签体系标注意向度，为后续分层触达做准备。",
+        deliverables: ["线上社群话术*1", "用户标签体系标注*1"],
+        visual: "/assets/cases/community-user-tagging.png"
       },
       {
-        stage: "裂变中放大",
-        goal: "用平台品牌背书和外部宣发增强用户加入社群与分享的理由。",
-        deliverables: ["明星宣发视频*1", "滴滴打车App宣传*1", "品牌影响力营销"],
+        stage: "裂变中动作",
+        goal: "用新人推荐礼和客户好评素材降低转介绍门槛，让用户有明确理由邀请新用户进群。",
+        deliverables: ["新用户推荐礼品表*1", "客户好评素材*20"],
         visual: "/assets/cases/community-didi-app-promo.jpg"
       },
       {
-        stage: "活动复盘",
-        goal: "把有效物料、成本结构和转化路径沉淀为下一轮可复制打法。",
-        deliverables: ["活动复盘文档*1", "成本与ROI复盘", "社群团队扩招经验"],
+        stage: "品牌影响力营销",
+        goal: "用明星宣发与滴滴App宣传增强活动可信度，补足新城市冷启动阶段的品牌信任。",
+        deliverables: ["明星宣发视频*1", "滴滴打车App宣传*1"],
         visual: "/assets/cases/community-brand-poster.png"
+      },
+      {
+        stage: "活动复盘",
+        goal: "把渠道效率、话术物料、用户承接和成本ROI沉淀为下一轮冷启动可复制SOP。",
+        deliverables: ["活动复盘文档*1"],
+        visual: "/assets/cases/community-review-summary.svg"
       }
     ],
     resultHighlights: [
@@ -212,17 +219,7 @@ export const caseStudies = [
       {
         src: "/assets/cases/community-result.jpg",
         title: "C端与B端增长数据",
-        caption: "复盘核心增长结果、成本和目标完成度。"
-      },
-      {
-        src: "/assets/cases/community-star-campaign.png",
-        title: "明星宣发与品牌背书",
-        caption: "用平台级宣发增强活动可信度和用户参与动机。"
-      },
-      {
-        src: "/assets/cases/community-key-user-report.png",
-        title: "标杆用户报道激励",
-        caption: "通过标杆用户故事强化团长和用户侧参与感。"
+        caption: "只保留一张原始结果证据，避免同一数据表在结果区重复出现。"
       }
     ],
     gallery: [
@@ -258,34 +255,44 @@ export const caseStudies = [
       },
       {
         src: "/assets/cases/community-reward-list.jpg",
-        title: "推荐礼品与裂变准备",
-        caption: "用推荐礼、好评素材和标签分层提升转介绍动机。"
+        title: "小助手激活率数据",
+        caption: "用于活动复盘，观察区长责任制与销配一体小助手的覆盖用户数和激活率。"
       },
       {
         src: "/assets/cases/community-material.jpg",
-        title: "裂变物料",
-        caption: "用于新用户推荐和活动传播的核心素材。"
+        title: "裂变红包物料",
+        caption: "用于新用户推荐和活动传播的现金激励素材。"
       },
       {
         src: "/assets/cases/community-didi-app-promo.jpg",
-        title: "滴滴App宣传",
-        caption: "借助平台入口和品牌背书放大活动触达。"
+        title: "新用户推荐礼品表",
+        caption: "用于裂变中动作阶段，向用户展示邀请新人后的现金奖励和低价商品。"
       },
       {
         src: "/assets/cases/community-star-campaign.png",
-        title: "明星宣发素材",
-        caption: "通过外部宣发强化活动可信度。"
+        title: "客户好评素材",
+        caption: "沉淀标杆用户和销售冠军故事，作为社群传播与信任背书素材。"
       },
       {
         src: "/assets/cases/community-key-user-report.png",
         title: "标杆用户报道",
         caption: "用标杆用户故事提升团长和用户的参与感。"
+      },
+      {
+        src: "/assets/cases/community-conversion-loop.svg",
+        title: "用户转化路径重绘",
+        caption: "将PPT中的用户路径重绘成更清晰的触达、分层、裂变、成交闭环。"
+      },
+      {
+        src: "/assets/cases/community-review-summary.svg",
+        title: "活动复盘框架",
+        caption: "把渠道、话术、物料、承接和成本复盘沉淀为可复制SOP。"
       }
     ],
     evidenceStrip: [
       "/assets/cases/community-background-targets.png",
       "/assets/cases/community-user-tagging.png",
-      "/assets/cases/community-flow.jpg",
+      "/assets/cases/community-conversion-loop.svg",
       "/assets/cases/community-bd-script.png",
       "/assets/cases/community-result.jpg"
     ]

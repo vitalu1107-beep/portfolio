@@ -1,0 +1,73 @@
+<svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">用户转化路径重绘</title>
+  <desc id="desc">线下触达、团长承接、社群沉淀、标签分层、裂变参与、下单复购的用户转化闭环。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f5f9ff"/>
+      <stop offset="1" stop-color="#fffaf0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#2563eb" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <rect width="960" height="540" rx="34" fill="url(#bg)"/>
+  <g opacity=".22" fill="#2563eb">
+    <circle cx="68" cy="64" r="3"/>
+    <circle cx="138" cy="64" r="3"/>
+    <circle cx="208" cy="64" r="3"/>
+    <circle cx="278" cy="64" r="3"/>
+    <circle cx="348" cy="64" r="3"/>
+    <circle cx="418" cy="64" r="3"/>
+    <circle cx="488" cy="64" r="3"/>
+    <circle cx="558" cy="64" r="3"/>
+    <circle cx="628" cy="64" r="3"/>
+    <circle cx="698" cy="64" r="3"/>
+    <circle cx="768" cy="64" r="3"/>
+    <circle cx="838" cy="64" r="3"/>
+  </g>
+  <text x="72" y="84" fill="#2563eb" font-family="Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="2">USER CONVERSION LOOP</text>
+  <text x="72" y="126" fill="#111827" font-family="Arial, sans-serif" font-size="34" font-weight="900">从进入社群到复购的转化闭环</text>
+  <g transform="translate(76 190)" filter="url(#shadow)">
+    <path d="M88 82H764" stroke="#b9d2ff" stroke-width="8" stroke-linecap="round" stroke-dasharray="18 16"/>
+    <g font-family="Arial, sans-serif">
+      <g transform="translate(0 0)">
+        <rect width="148" height="164" rx="24" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+        <circle cx="38" cy="38" r="20" fill="#e0edff"/>
+        <text x="38" y="45" text-anchor="middle" fill="#2563eb" font-size="16" font-weight="900">01</text>
+        <text x="28" y="88" fill="#111827" font-size="22" font-weight="900">线下触达</text>
+        <text x="28" y="122" fill="#5b6476" font-size="16" font-weight="700">BD / 团长</text>
+      </g>
+      <g transform="translate(164 0)">
+        <rect width="148" height="164" rx="24" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+        <circle cx="38" cy="38" r="20" fill="#e0edff"/>
+        <text x="38" y="45" text-anchor="middle" fill="#2563eb" font-size="16" font-weight="900">02</text>
+        <text x="28" y="88" fill="#111827" font-size="22" font-weight="900">社群承接</text>
+        <text x="28" y="122" fill="#5b6476" font-size="16" font-weight="700">入群 / 话术</text>
+      </g>
+      <g transform="translate(328 0)">
+        <rect width="148" height="164" rx="24" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+        <circle cx="38" cy="38" r="20" fill="#e0edff"/>
+        <text x="38" y="45" text-anchor="middle" fill="#2563eb" font-size="16" font-weight="900">03</text>
+        <text x="28" y="88" fill="#111827" font-size="22" font-weight="900">标签分层</text>
+        <text x="28" y="122" fill="#5b6476" font-size="16" font-weight="700">意向度识别</text>
+      </g>
+      <g transform="translate(492 0)">
+        <rect width="148" height="164" rx="24" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+        <circle cx="38" cy="38" r="20" fill="#e0edff"/>
+        <text x="38" y="45" text-anchor="middle" fill="#2563eb" font-size="16" font-weight="900">04</text>
+        <text x="28" y="88" fill="#111827" font-size="22" font-weight="900">裂变参与</text>
+        <text x="28" y="122" fill="#5b6476" font-size="16" font-weight="700">推荐礼 / 好评</text>
+      </g>
+      <g transform="translate(656 0)">
+        <rect width="148" height="164" rx="24" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+        <circle cx="38" cy="38" r="20" fill="#e0edff"/>
+        <text x="38" y="45" text-anchor="middle" fill="#2563eb" font-size="16" font-weight="900">05</text>
+        <text x="28" y="88" fill="#111827" font-size="22" font-weight="900">下单复购</text>
+        <text x="28" y="122" fill="#5b6476" font-size="16" font-weight="700">成交 / 复盘</text>
+      </g>
+    </g>
+  </g>
+  <path d="M760 404c-106 62-279 58-389-2" fill="none" stroke="#facc15" stroke-width="6" stroke-linecap="round" stroke-dasharray="18 14"/>
+  <path d="M375 403l30-4-15 26" fill="none" stroke="#facc15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="304" y="470" fill="#5b6476" font-family="Arial, sans-serif" font-size="22" font-weight="800">用活动复盘反向优化下一轮触达与裂变</text>
+</svg>

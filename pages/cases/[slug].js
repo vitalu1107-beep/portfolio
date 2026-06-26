@@ -80,7 +80,7 @@ function EvidenceFigure({ visual, badge }) {
 
 function CaseModelPanel({ item }) {
   const model = caseBlueprints[item.slug];
-  if (!model) return null;
+  if (!model || item.hideModel) return null;
 
   return (
     <section className="case-model-panel" id="model">
@@ -287,6 +287,7 @@ function NarrativeCaseHero({ item }) {
 export default function CaseDetailPage({ item }) {
   const pageTitle = `${item.shortTitle} | 卢倩作品集`;
   const gallery = item.gallery || [];
+  const visibleCaseNav = caseNav.filter((nav) => !(item.hideModel && nav.href === "#model"));
   const problemVisual =
     findVisualBySrc(gallery, item.sectionVisuals?.problem) || gallery[0];
   const strategyVisual =
@@ -368,13 +369,13 @@ export default function CaseDetailPage({ item }) {
             </>
           )}
 
-          <CaseModelPanel item={item} />
+          {!item.hideModel && <CaseModelPanel item={item} />}
 
           <div className="case-report-layout">
             <aside className="case-toc" aria-label="案例目录">
               <b>{item.shortTitle}</b>
               <nav>
-                {caseNav.map((nav) => (
+                {visibleCaseNav.map((nav) => (
                   <a href={nav.href} key={nav.href}>
                     {item.validationStatus && nav.href === "#results" ? "验证结果" : nav.label}
                   </a>
@@ -452,7 +453,7 @@ export default function CaseDetailPage({ item }) {
               </section>
 
               <section className="case-panel case-results-panel" id="results">
-                <div className="case-result-top">
+                <div className={`case-result-top${item.resultHighlights ? " is-summary-only" : ""}`}>
                   <div>
                     <span className="case-section-label">
                       {item.validationStatus ? "04 / Validation" : "04 / Data"}
@@ -460,10 +461,12 @@ export default function CaseDetailPage({ item }) {
                     <h2>{item.validationStatus ? "验证结果与证据" : "数据结果"}</h2>
                     <p>{item.result}</p>
                   </div>
-                  <EvidenceFigure
-                    visual={resultVisual}
-                    badge={item.sectionEvidenceLabels?.result || "结果证据"}
-                  />
+                  {!item.resultHighlights && (
+                    <EvidenceFigure
+                      visual={resultVisual}
+                      badge={item.sectionEvidenceLabels?.result || "结果证据"}
+                    />
+                  )}
                 </div>
                 {item.resultHighlights ? (
                   <CaseResultHighlights

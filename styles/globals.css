@@ -1526,22 +1526,35 @@ main {
 
 .case-execution-matrix {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
   margin-top: 26px;
 }
 
 .case-execution-matrix article {
+  position: relative;
   display: grid;
-  grid-template-rows: 230px 1fr;
+  grid-template-rows: 158px 1fr;
   overflow: hidden;
   border: 1px solid rgba(26, 26, 46, 0.11);
-  border-radius: 16px;
+  border-radius: 18px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(249, 252, 255, 0.92)),
     radial-gradient(color-mix(in srgb, var(--case-accent) 13%, transparent) 1px, transparent 1px);
   background-size: auto, 18px 18px;
   box-shadow: 0 14px 34px rgba(26, 26, 46, 0.07);
+}
+
+.case-execution-matrix article:not(:last-child)::after {
+  position: absolute;
+  top: 72px;
+  right: -13px;
+  z-index: 2;
+  width: 22px;
+  height: 2px;
+  background: color-mix(in srgb, var(--case-accent) 42%, #d7e6ff);
+  box-shadow: 8px 0 0 color-mix(in srgb, var(--case-accent) 42%, #d7e6ff);
+  content: "";
 }
 
 .case-execution-visual {
@@ -1562,8 +1575,8 @@ main {
 .case-execution-copy {
   display: grid;
   align-content: start;
-  gap: 12px;
-  padding: 18px;
+  gap: 10px;
+  padding: 16px;
 }
 
 .case-execution-copy > span {
@@ -1582,14 +1595,14 @@ main {
 .case-execution-copy h3 {
   margin: 0;
   color: var(--text);
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1.25;
 }
 
 .case-execution-copy p {
   margin: 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.7;
 }
 
@@ -1617,6 +1630,11 @@ main {
   grid-template-columns: minmax(320px, 0.88fr) minmax(0, 1.12fr);
   gap: 26px;
   align-items: center;
+}
+
+.case-result-top.is-summary-only {
+  grid-template-columns: minmax(0, 0.84fr);
+  gap: 0;
 }
 
 .case-result-top .case-evidence-frame {
@@ -1676,12 +1694,13 @@ main {
 
 .case-result-evidence-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+  gap: 0;
 }
 
 .case-result-evidence-grid .case-evidence-frame {
-  min-height: 220px;
+  min-height: 300px;
 }
 
 .case-validation-area {

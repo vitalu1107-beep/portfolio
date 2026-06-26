@@ -44,7 +44,7 @@ export const businessCaseHeroes = {
       { value: "1元", label: "单粉成本" }
     ],
     actions: [
-      { label: "查看增长漏斗", href: "#model" },
+      { label: "查看分层路径", href: "#strategy" },
       { label: "查看执行路径", href: "#actions" }
     ]
   },
