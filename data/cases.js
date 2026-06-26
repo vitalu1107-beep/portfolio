@@ -103,9 +103,9 @@ export const caseStudies = [
       { value: "1:5", label: "ROI" }
     ],
     problem:
-      "头部社区团购业务进入浙江新城市，B端与C端用户基础几乎从零开始。业务既需要建立线下信任，也需要沉淀可触达、可转化的同城私域用户池。",
+      "头部社区团购业务进入浙江新城市，属于典型新城市冷启动：线下小B信任基础薄弱，线上C端私域池接近从0开始。项目目标不是单次拉群，而是在C端目标70W、B端目标3W的压力下，同时搭建可触达、可转化、可复盘的本地用户增长漏斗。",
     strategy:
-      "把增长链路拆成“线下信任获取 - 用户标签分层 - 社群裂变承接 - 品牌背书放大 - 活动复盘复制”五段，用标准化话术和物料提升一线执行效率。",
+      "把增长链路拆成“线下BD获客 - 团长信任承接 - 线上社群沉淀 - 标签分层触达 - 裂变传播放大 - 活动复盘复制”六段，用标准化话术、物料和用户标签把一次拉新活动变成可复用的同城私域增长模型。",
     actions: [
       "为线下BD和团长准备引流话术、操作视频和协作流程，让一线团队能稳定获取种子用户。",
       "建立客户意向度标签体系，对不同意向用户制定差异化消息触达策略。",
@@ -114,7 +114,7 @@ export const caseStudies = [
     ],
     methods: ["AARRR", "社群裂变", "用户标签分层", "线下BD协同", "ROI复盘"],
     result:
-      "C端用户增量突破100W+，B端用户增量5W+；C端目标70W超额完成143%，B端目标3W超额完成60%；单个用户成本约1元，仅为同行约1/5。",
+      "C端用户增量突破100W+，B端用户增量5W+；C端目标70W超额完成143%，B端目标3W超额完成60%。单个用户成本约1元，仅为同行约1/5，并跑出ROI 1:5的成本效率。",
     review:
       "增长不是单点活动，而是渠道、话术、物料、承接、复盘的系统工程。后续重点应继续提升分层触达精度，并把低成本裂变与高价值用户运营结合。",
     chart: {
@@ -134,11 +134,107 @@ export const caseStudies = [
       { label: "裂变参与", value: 52 },
       { label: "下单转化", value: 31 }
     ],
+    executionIntro:
+      "把PPT里的执行产出重新拆成四个阶段：先用线下BD和团长建立信任，再用社群话术与标签分层承接用户，随后用推荐礼、好评素材和品牌背书放大裂变，最后用复盘文档沉淀可复制打法。",
+    sectionVisuals: {
+      problem: "/assets/cases/community-background-targets.png",
+      strategy: "/assets/cases/community-user-tagging.png",
+      result: "/assets/cases/community-result.jpg",
+      review: "/assets/cases/community-key-user-report.png"
+    },
+    sectionEvidenceLabels: {
+      problem: "目标证据",
+      strategy: "分层证据",
+      result: "增长结果",
+      review: "复盘证据"
+    },
+    conversionEvidence: [
+      {
+        src: "/assets/cases/community-user-tagging.png",
+        title: "客户意向度标签分层",
+        caption: "把不同意向度用户分层，并匹配差异化触达策略，避免社群只做统一群发。"
+      },
+      {
+        src: "/assets/cases/community-flow.jpg",
+        title: "用户转化路径",
+        caption: "把线下触达、社群承接、裂变参与与下单转化串成可复盘的增长漏斗。"
+      }
+    ],
+    executionMatrix: [
+      {
+        stage: "核心用户沉淀期",
+        goal: "先建立线下信任，把0用户基础转化为第一批可触达种子用户。",
+        deliverables: ["线下BD引流话术*1", "线下引流操作视频*1", "线上社群话术*1"],
+        visual: "/assets/cases/community-bd-script.png"
+      },
+      {
+        stage: "裂变前期准备",
+        goal: "把用户按意向度分层，并准备能驱动转介绍的激励和信任素材。",
+        deliverables: ["用户标签体系标注*1", "新用户推荐礼品表*1", "客户好评素材*20"],
+        visual: "/assets/cases/community-reward-list.jpg"
+      },
+      {
+        stage: "裂变中放大",
+        goal: "用平台品牌背书和外部宣发增强用户加入社群与分享的理由。",
+        deliverables: ["明星宣发视频*1", "滴滴打车App宣传*1", "品牌影响力营销"],
+        visual: "/assets/cases/community-didi-app-promo.jpg"
+      },
+      {
+        stage: "活动复盘",
+        goal: "把有效物料、成本结构和转化路径沉淀为下一轮可复制打法。",
+        deliverables: ["活动复盘文档*1", "成本与ROI复盘", "社群团队扩招经验"],
+        visual: "/assets/cases/community-brand-poster.png"
+      }
+    ],
+    resultHighlights: [
+      {
+        value: "100W+",
+        label: "C端用户增量",
+        detail: "C端目标70W，最终超额完成143%，形成可持续触达的同城私域用户池。"
+      },
+      {
+        value: "5W+",
+        label: "B端用户增量",
+        detail: "B端目标3W，最终超额完成60%，为后续供给和社群履约提供基础。"
+      },
+      {
+        value: "1元",
+        label: "单粉成本",
+        detail: "单个用户成本约1元，仅为同行约1/5，证明裂变链路具备成本优势。"
+      },
+      {
+        value: "1:5",
+        label: "ROI",
+        detail: "粉丝月贡献金额约5.4元，结合获客成本跑出ROI 1:5的转化效率。"
+      }
+    ],
+    resultEvidence: [
+      {
+        src: "/assets/cases/community-result.jpg",
+        title: "C端与B端增长数据",
+        caption: "复盘核心增长结果、成本和目标完成度。"
+      },
+      {
+        src: "/assets/cases/community-star-campaign.png",
+        title: "明星宣发与品牌背书",
+        caption: "用平台级宣发增强活动可信度和用户参与动机。"
+      },
+      {
+        src: "/assets/cases/community-key-user-report.png",
+        title: "标杆用户报道激励",
+        caption: "通过标杆用户故事强化团长和用户侧参与感。"
+      }
+    ],
     gallery: [
       {
         src: "/assets/cases/community-profile.jpg",
         title: "核心用户画像",
         caption: "围绕社区团购高潜人群定义触达对象。"
+      },
+      {
+        src: "/assets/cases/community-background-targets.png",
+        title: "背景目标与资源现状",
+        caption: "新城市冷启动阶段，C端目标70W、B端目标3W，需要同步搭建私域用户池。"
       },
       {
         src: "/assets/cases/community-segmentation.jpg",
@@ -156,10 +252,42 @@ export const caseStudies = [
         caption: "展示覆盖用户数、增长结果与成本表现。"
       },
       {
+        src: "/assets/cases/community-bd-script.png",
+        title: "BD与社群话术沉淀",
+        caption: "将线下引流和线上社群话术标准化，提升一线团队执行稳定性。"
+      },
+      {
+        src: "/assets/cases/community-reward-list.jpg",
+        title: "推荐礼品与裂变准备",
+        caption: "用推荐礼、好评素材和标签分层提升转介绍动机。"
+      },
+      {
         src: "/assets/cases/community-material.jpg",
         title: "裂变物料",
         caption: "用于新用户推荐和活动传播的核心素材。"
+      },
+      {
+        src: "/assets/cases/community-didi-app-promo.jpg",
+        title: "滴滴App宣传",
+        caption: "借助平台入口和品牌背书放大活动触达。"
+      },
+      {
+        src: "/assets/cases/community-star-campaign.png",
+        title: "明星宣发素材",
+        caption: "通过外部宣发强化活动可信度。"
+      },
+      {
+        src: "/assets/cases/community-key-user-report.png",
+        title: "标杆用户报道",
+        caption: "用标杆用户故事提升团长和用户的参与感。"
       }
+    ],
+    evidenceStrip: [
+      "/assets/cases/community-background-targets.png",
+      "/assets/cases/community-user-tagging.png",
+      "/assets/cases/community-flow.jpg",
+      "/assets/cases/community-bd-script.png",
+      "/assets/cases/community-result.jpg"
     ]
   },
   {

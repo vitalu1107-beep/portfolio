@@ -36,8 +36,8 @@ const caseBlueprints = {
   "community-growth": {
     eyebrow: "Private Traffic Funnel",
     title: "社群裂变的低成本获客漏斗",
-    summary: "把线下信任、社群承接、裂变传播和下单转化串成冷启动增长漏斗。",
-    nodes: ["线下触达", "社群沉淀", "裂变传播", "下单转化", "复盘复制"],
+    summary: "把线下BD、团长信任、社群承接、标签分层、裂变传播和复盘复制串成冷启动增长漏斗。",
+    nodes: ["BD获客", "团长承接", "社群沉淀", "标签分层", "裂变放大", "复盘复制"],
     proof: "核心证据：C端增量100W+，单粉成本约1元。"
   },
   "campaign-marketing": {
@@ -141,6 +141,76 @@ function CaseValidationPanel({ statuses, timeline }) {
               </li>
             ))}
           </ol>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CaseConversionEvidencePanel({ items }) {
+  if (!items?.length) return null;
+
+  return (
+    <section className="case-panel case-conversion-evidence">
+      <div className="case-board-head">
+        <span className="case-section-label">02B / Segmentation</span>
+        <h2>分层触达与转化路径</h2>
+        <p>把PPT中的标签分层和用户转化路径放回案例中，补上从“用户进入社群”到“被持续触达、参与裂变和下单”的中间链路。</p>
+      </div>
+      <div className="case-conversion-grid">
+        {items.map((visual) => (
+          <EvidenceFigure visual={visual} badge="路径证据" key={visual.src} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function CaseExecutionMatrix({ stages }) {
+  if (!stages?.length) return null;
+
+  return (
+    <div className="case-execution-matrix">
+      {stages.map((stage, index) => (
+        <article key={stage.stage}>
+          <div className="case-execution-visual">
+            <AssetImage src={stage.visual} alt={stage.stage} />
+          </div>
+          <div className="case-execution-copy">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{stage.stage}</h3>
+            <p>{stage.goal}</p>
+            <ul>
+              {stage.deliverables.map((deliverable) => (
+                <li key={deliverable}>{deliverable}</li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function CaseResultHighlights({ highlights, evidence }) {
+  if (!highlights?.length) return null;
+
+  return (
+    <div className="case-result-evidence-area">
+      <div className="case-result-highlight-grid" aria-label="增长结果拆解">
+        {highlights.map((item) => (
+          <article key={`${item.value}-${item.label}`}>
+            <span>{item.label}</span>
+            <strong>{item.value}</strong>
+            <p>{item.detail}</p>
+          </article>
+        ))}
+      </div>
+      {evidence?.length > 0 && (
+        <div className="case-result-evidence-grid">
+          {evidence.map((visual) => (
+            <EvidenceFigure visual={visual} badge="结果证据" key={visual.src} />
+          ))}
         </div>
       )}
     </div>
@@ -345,34 +415,40 @@ export default function CaseDetailPage({ item }) {
                 </div>
               </section>
 
+              <CaseConversionEvidencePanel items={item.conversionEvidence} />
+
               <section className="case-panel case-execution-panel" id="actions">
                 <div className="case-board-head">
                   <span className="case-section-label">03 / Execution</span>
                   <h2>执行路径</h2>
                   <p>{item.executionIntro || "将关键动作与对应产出放在同一条执行路径中。"}</p>
                 </div>
-                <div className="case-action-board">
-                  {item.actions.map((action, index) => {
-                    const visual =
-                      executionVisuals[index] || gallery[index + 1] || gallery[index] || gallery[0];
+                {item.executionMatrix ? (
+                  <CaseExecutionMatrix stages={item.executionMatrix} />
+                ) : (
+                  <div className="case-action-board">
+                    {item.actions.map((action, index) => {
+                      const visual =
+                        executionVisuals[index] || gallery[index + 1] || gallery[index] || gallery[0];
 
-                    return (
-                      <article key={action}>
-                        {visual && (
-                          <AssetImage
-                            src={visual.src}
-                            alt={visual.title}
-                            className={`case-action-image${visual.kind === "product-screen" ? " is-product-screen" : ""}`}
-                          />
-                        )}
-                        <div>
-                          <span>{String(index + 1).padStart(2, "0")}</span>
-                          <p>{action}</p>
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
+                      return (
+                        <article key={action}>
+                          {visual && (
+                            <AssetImage
+                              src={visual.src}
+                              alt={visual.title}
+                              className={`case-action-image${visual.kind === "product-screen" ? " is-product-screen" : ""}`}
+                            />
+                          )}
+                          <div>
+                            <span>{String(index + 1).padStart(2, "0")}</span>
+                            <p>{action}</p>
+                          </div>
+                        </article>
+                      );
+                    })}
+                  </div>
+                )}
               </section>
 
               <section className="case-panel case-results-panel" id="results">
@@ -389,7 +465,12 @@ export default function CaseDetailPage({ item }) {
                     badge={item.sectionEvidenceLabels?.result || "结果证据"}
                   />
                 </div>
-                {item.validationStatus ? (
+                {item.resultHighlights ? (
+                  <CaseResultHighlights
+                    highlights={item.resultHighlights}
+                    evidence={item.resultEvidence}
+                  />
+                ) : item.validationStatus ? (
                   <CaseValidationPanel
                     statuses={item.validationStatus}
                     timeline={item.developmentTimeline}
