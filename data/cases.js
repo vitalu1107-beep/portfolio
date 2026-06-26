@@ -10,6 +10,7 @@ export const caseStudies = [
     shortTitle: "美团团买买",
     category: "供给运营",
     company: "美团团买买",
+    role: "商家及供给运营｜KOS生态建设、商家分层与爆品运营",
     period: "2024.07 - 2024.12",
     summary:
       "围绕私域电商供给和达人带货生态，从KOS达人建设、商家招募、商家分层到爆品运营，搭建一套可持续放大GMV的供给增长体系。",
@@ -89,6 +90,7 @@ export const caseStudies = [
     shortTitle: "社群裂变项目",
     category: "用户增长",
     company: "滴滴橙心优选",
+    role: "用户增长运营｜新城冷启动、社群裂变与ROI复盘",
     period: "社区团购新城拓展阶段",
     summary:
       "在新城市冷启动阶段，通过线下BD、线下团长和线上社群三方联动，快速建立本地私域流量池，并把裂变活动复制成可持续获客模型。",
@@ -167,6 +169,7 @@ export const caseStudies = [
     shortTitle: "活动营销项目",
     category: "活动营销",
     company: "滴滴橙心优选",
+    role: "活动运营｜目标拆解、爆品促销与跨部门协同",
     period: "618年中盛典",
     summary:
       "围绕爆品、促销、渠道和履约保障设计活动战役，在三天内完成一个月级别的GMV目标，并形成跨部门活动SOP。",

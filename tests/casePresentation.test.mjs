@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
+import { caseStudies } from "../data/cases.js";
 import { findVisualBySrc, selectEvidenceStrip } from "../lib/casePresentation.mjs";
 
 const gallery = [
@@ -23,4 +25,21 @@ test("selectEvidenceStrip follows explicit evidence order", () => {
 
 test("selectEvidenceStrip falls back to the first five gallery items", () => {
   assert.deepEqual(selectEvidenceStrip(gallery), gallery);
+});
+
+test("all case studies expose the candidate role clearly", () => {
+  assert.equal(caseStudies.length, 4);
+
+  for (const item of caseStudies) {
+    assert.equal(typeof item.role, "string", `${item.shortTitle} should define a role`);
+    assert.ok(item.role.length >= 8, `${item.shortTitle} role should be specific`);
+    assert.doesNotMatch(item.role, /项目操盘$/, `${item.shortTitle} should not use fallback role copy`);
+  }
+});
+
+test("narrative case hero renders the role block", () => {
+  const source = readFileSync(new URL("../pages/cases/[slug].js", import.meta.url), "utf8");
+
+  assert.match(source, /case-hero-role/);
+  assert.match(source, /我的角色/);
 });

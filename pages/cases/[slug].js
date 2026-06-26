@@ -172,6 +172,11 @@ function NarrativeCaseHero({ item }) {
         <h1>{hero.title}</h1>
         <p className="case-narrative-lead">{hero.summary}</p>
 
+        <div className="case-hero-role" aria-label="我的角色">
+          <span>我的角色</span>
+          <strong>{item.role}</strong>
+        </div>
+
         <div className="case-hero-proof-grid" aria-label="项目核心成果">
           {hero.metrics.map((metric) => (
             <div key={`${metric.value}-${metric.label}`}>

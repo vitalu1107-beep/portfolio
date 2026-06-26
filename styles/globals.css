@@ -902,12 +902,46 @@ main {
   line-height: 1.72;
 }
 
+.case-hero-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 680px;
+  margin-top: 24px;
+  border: 1px solid color-mix(in srgb, var(--case-accent) 24%, rgba(183, 210, 247, 0.85));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--case-accent) 8%, rgba(255, 255, 255, 0.92));
+  padding: 9px 14px 9px 10px;
+  color: var(--text);
+  box-shadow: 0 14px 32px rgba(38, 103, 169, 0.08);
+}
+
+.case-hero-role span {
+  flex: 0 0 auto;
+  border: 1px solid color-mix(in srgb, var(--case-accent) 28%, rgba(255, 255, 255, 0.9));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--case-accent) 16%, white);
+  padding: 6px 10px;
+  color: color-mix(in srgb, var(--case-accent) 82%, var(--text));
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 860;
+}
+
+.case-hero-role strong {
+  min-width: 0;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 820;
+}
+
 .case-hero-proof-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   max-width: 680px;
-  margin-top: 34px;
+  margin-top: 28px;
   border-top: 1px solid rgba(26, 26, 46, 0.15);
   padding-top: 20px;
 }
@@ -1974,6 +2008,21 @@ main {
 
   .case-narrative-lead {
     font-size: 16px;
+  }
+
+  .case-hero-role {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    border-radius: 18px;
+  }
+
+  .case-hero-role span {
+    margin-top: 1px;
+  }
+
+  .case-hero-role strong {
+    font-size: 13px;
   }
 
   .case-hero-index {
