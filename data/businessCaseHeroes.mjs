@@ -33,9 +33,9 @@ export const businessCaseHeroes = {
     title: "从城市冷启动到100W+用户的私域增长实践",
     summary:
       "通过线下BD、团长与线上社群三方联动，搭建新城市私域冷启动、裂变传播与低成本获客链路。",
-    visual: "/assets/cases/community-result.jpg",
-    visualAlt: "滴滴橙心优选社群裂变增长结果",
-    visualCaption: "项目证据 · 用户增长与成本结果",
+    visual: "/assets/cases/community-hero-growth-map.svg",
+    visualAlt: "滴滴橙心优选私域增长系统地图",
+    visualCaption: "增长系统地图 · 冷启动到裂变放大",
     validationNote:
       "结果来自6个月项目周期；核心价值在于把一次裂变活动持续迭代为可复制的私域获客模型。",
     metrics: [

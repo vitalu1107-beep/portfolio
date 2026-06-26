@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import test from "node:test";
 
 import { businessCaseHeroes } from "../data/businessCaseHeroes.mjs";
@@ -28,4 +29,17 @@ test("each business hero exposes three high-signal metrics and a board visual", 
 test("campaign hero retains the ROI limitation in its review boundary", () => {
   assert.match(businessCaseHeroes["campaign-marketing"].validationNote, /ROI为1\.3/);
   assert.match(businessCaseHeroes["campaign-marketing"].validationNote, /低于原目标/);
+});
+
+test("community growth hero uses a unique drawn visual instead of the result table", () => {
+  const hero = businessCaseHeroes["community-growth"];
+
+  assert.equal(hero.visual, "/assets/cases/community-hero-growth-map.svg");
+  assert.notEqual(hero.visual, "/assets/cases/community-result.jpg");
+  assert.equal(
+    existsSync(new URL(`../public${hero.visual}`, import.meta.url)),
+    true,
+    "community hero visual should exist"
+  );
+  assert.match(hero.visualCaption, /增长系统地图/);
 });
