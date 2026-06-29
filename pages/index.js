@@ -13,21 +13,12 @@ const layerColors = ["red", "blue", "yellow", "green"];
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const canvasSize = { width: 2480, height: 1560 };
 const canvasNodes = {
-  profile: { left: 126, top: 214, width: 210, height: 282 },
-  "personal-info": { left: 370, top: 170, width: 510, height: 390 },
+  "personal-info": { left: 260, top: 170, width: 510, height: 430 },
   timeline: { left: 950, top: 170, width: 430, height: 540 },
   capabilities: { left: 1490, top: 500, width: 390, height: 240 },
   contact: { left: 1995, top: 170, width: 310, height: 220 }
 };
 const canvasConnections = [
-  {
-    id: "profile-personal-info",
-    from: "profile",
-    fromSide: "right",
-    to: "personal-info",
-    toSide: "left",
-    color: "#2b7fd8"
-  },
   {
     id: "personal-info-timeline",
     from: "personal-info",
@@ -60,24 +51,6 @@ const methodBriefs = {
   分层运营: "按价值匹配资源和动作",
   结果复盘: "把项目沉淀成下一次SOP"
 };
-
-const identityMetrics = [
-  {
-    label: "AI产品验证",
-    value: "0→1上线",
-    detail: "小成就APP / LLM辅助开发"
-  },
-  {
-    label: "用户增长",
-    value: "20W+新增",
-    detail: "滴滴 / 3个月GMV 300W+"
-  },
-  {
-    label: "生态运营",
-    value: "520人KOS",
-    detail: "美团 / 单场GMV峰值120W+"
-  }
-];
 
 const layers = [
   { href: "#personal-info", label: "个人信息", color: "blue" },
@@ -327,25 +300,31 @@ export default function HomePage() {
               height={canvasSize.height}
             />
 
-            <figure className="profile-polaroid draggable-node" {...bindDrag("profile")}>
-              <img src={publicPath("/assets/profile-luqian.jpg")} alt="卢倩个人照片" />
-            </figure>
-
             <section
               className="canvas-card identity-card draggable-node"
               id="personal-info"
               {...bindDrag("personal-info")}
             >
               <div className="card-pin yellow" />
-              <div className="identity-header">
+              <div className="identity-glass-card identity-hero-card">
+                <img
+                  className="identity-avatar-photo"
+                  src={publicPath("/assets/profile-luqian.jpg")}
+                  alt="卢倩头像"
+                />
                 <div className="identity-title-block">
-                  <div className="avatar-mark">LQ</div>
+                  <span className="identity-eyebrow">LU QIAN</span>
                   <div>
-                    <h1>{profile.name}</h1>
-                    <p>AI产品运营转型｜增长策略</p>
-                    <span>0→1验证驱动</span>
+                    <h1>{profile.name} Lu Qian</h1>
+                    <p>AI产品运营｜用户运营</p>
                   </div>
                 </div>
+              </div>
+              <div className="identity-glass-card identity-slogan-card">
+                <span>Slogan</span>
+                <strong>把AI变成增长验证的第二执行力</strong>
+              </div>
+              <div className="identity-glass-card identity-contact-card">
                 <div className="identity-actions">
                   <button
                     type="button"
@@ -363,31 +342,27 @@ export default function HomePage() {
                   >
                     电话
                   </button>
+                  <button
+                    type="button"
+                    onClick={() => toggleContact("wechat")}
+                    aria-expanded={visibleContact === "wechat"}
+                    aria-controls="identity-contact-value"
+                  >
+                    微信
+                  </button>
                   <a href={publicPath(profile.resumeUrl)} download>
                     简历
                   </a>
                 </div>
               </div>
-              <div className="identity-divider" />
-              <p className="identity-note">1 person + AI = 1 growth team</p>
-              <p className="identity-headline">
-                把业务问题拆成可验证的产品 / 运营闭环。
-              </p>
-              <div className="identity-metric-grid">
-                {identityMetrics.map((metric) => (
-                  <article key={metric.label}>
-                    <span>{metric.label}</span>
-                    <strong>{metric.value}</strong>
-                    <small>{metric.detail}</small>
-                  </article>
-                ))}
-              </div>
               {visibleContact && (
                 <div className="contact-popover" id="identity-contact-value">
                   {visibleContact === "email" ? (
-                    <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                    <a href={`mailto:${profile.email}`}>邮箱：{profile.email}</a>
+                  ) : visibleContact === "phone" ? (
+                    <a href={`tel:${profile.phone}`}>电话：{profile.phone}</a>
                   ) : (
-                    <a href={`tel:${profile.phone}`}>{profile.phone}</a>
+                    <span>微信：{profile.wechat}</span>
                   )}
                 </div>
               )}
