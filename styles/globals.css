@@ -2602,7 +2602,9 @@ main {
   left: 260px;
   top: 170px;
   width: 430px;
-  min-height: 520px;
+  min-height: 0;
+  display: grid;
+  gap: 14px;
   overflow: hidden;
   border-color: rgba(43, 127, 216, 0.22);
   background:
@@ -2638,8 +2640,8 @@ main {
   display: flex;
   align-items: center;
   gap: 14px;
-  min-height: 154px;
-  padding: 20px 18px;
+  min-height: 136px;
+  padding: 18px;
 }
 
 .identity-avatar-photo {
@@ -2649,6 +2651,7 @@ main {
   border: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 26px;
   object-fit: cover;
+  object-position: center top;
   box-shadow: 0 12px 28px rgba(31, 49, 84, 0.14);
 }
 
@@ -2684,8 +2687,8 @@ main {
 }
 
 .identity-slogan-card {
-  margin-top: 16px;
-  padding: 32px 22px 34px;
+  margin-top: 0;
+  padding: 24px 22px 26px;
   text-align: center;
 }
 
@@ -2709,8 +2712,8 @@ main {
 }
 
 .identity-contact-card {
-  margin-top: 16px;
-  padding: 24px 16px;
+  margin-top: 0;
+  padding: 20px 16px;
 }
 
 .identity-actions {
@@ -2820,14 +2823,15 @@ main {
 .timeline-card {
   left: 950px;
   top: 170px;
-  width: 430px;
+  width: 400px;
+  padding: 20px 22px 22px;
 }
 
 .timeline-card h2 {
   display: flex;
   align-items: center;
   gap: 7px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   font-size: 20px;
 }
 
@@ -2838,25 +2842,25 @@ main {
 .timeline-mini {
   position: relative;
   display: grid;
-  gap: 14px;
-  margin-top: 12px;
+  gap: 8px;
+  margin-top: 8px;
   padding-left: 0;
 }
 
 .timeline-mini::before {
   content: "";
   position: absolute;
-  left: 9px;
-  top: 16px;
-  bottom: 18px;
+  left: 8px;
+  top: 14px;
+  bottom: 14px;
   border-left: 2px dashed rgba(43, 127, 216, 0.38);
 }
 
 .timeline-mini article {
   position: relative;
   display: grid;
-  grid-template-columns: 28px minmax(0, 1fr);
-  gap: 10px;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 8px;
   align-items: start;
 }
 
@@ -2864,9 +2868,9 @@ main {
   position: relative;
   z-index: 1;
   display: block;
-  width: 12px;
-  height: 12px;
-  margin: 5px 0 0 4px;
+  width: 11px;
+  height: 11px;
+  margin: 4px 0 0 4px;
   border: 2px solid var(--blue);
   border-radius: 50%;
   background: var(--yellow);
@@ -2877,26 +2881,33 @@ main {
   width: max-content;
   border-radius: 999px;
   background: #fff3b0;
-  padding: 2px 8px;
+  padding: 1px 8px;
   color: #b28a00;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 900;
+  line-height: 1.45;
 }
 
 .timeline-mini b {
   display: block;
-  margin-top: 5px;
+  margin-top: 3px;
   color: var(--text);
-  font-size: 12px;
-  line-height: 1.35;
+  font-size: 11px;
+  line-height: 1.25;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .timeline-mini small {
   display: block;
-  margin-top: 3px;
+  margin-top: 2px;
   color: var(--muted);
-  font-size: 10px;
-  line-height: 1.35;
+  font-size: 9px;
+  line-height: 1.25;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .capability-card {

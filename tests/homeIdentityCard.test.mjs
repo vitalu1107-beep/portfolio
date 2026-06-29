@@ -19,9 +19,16 @@ test("home identity card exposes four contact actions", () => {
   });
 });
 
-test("home identity card is narrower and taller than the previous wide card", () => {
-  assert.match(indexSource, /"personal-info": \{ left: 260, top: 170, width: 430, height: 540 \}/);
-  assert.match(styleSource, /\.identity-card\s*\{[\s\S]*width: 430px;[\s\S]*min-height: 520px;/);
+test("home identity card uses a balanced compact card rhythm", () => {
+  assert.match(indexSource, /"personal-info": \{ left: 260, top: 170, width: 430, height: 420 \}/);
+  assert.match(styleSource, /\.identity-card\s*\{[\s\S]*width: 430px;[\s\S]*display: grid;[\s\S]*gap: 14px;/);
+  assert.match(styleSource, /\.identity-avatar-photo\s*\{[\s\S]*object-position: center top;/);
+});
+
+test("timeline uses compact three-line entries", () => {
+  assert.match(indexSource, /timeline: \{ left: 950, top: 170, width: 400, height: 455 \}/);
+  assert.match(styleSource, /\.timeline-mini b\s*\{[\s\S]*white-space: nowrap;[\s\S]*text-overflow: ellipsis;/);
+  assert.match(styleSource, /\.timeline-mini small\s*\{[\s\S]*white-space: nowrap;[\s\S]*text-overflow: ellipsis;/);
 });
 
 test("timeline includes education experience from the resume", () => {
