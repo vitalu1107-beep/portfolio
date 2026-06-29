@@ -26,26 +26,27 @@ test("home identity card uses a balanced compact card rhythm", () => {
 });
 
 test("timeline uses compact three-line entries", () => {
-  assert.match(indexSource, /timeline: \{ left: 950, top: 170, width: 400, height: 455 \}/);
+  assert.match(indexSource, /timeline: \{ left: 950, top: 170, width: 380, height: 455 \}/);
   assert.match(styleSource, /\.timeline-mini b\s*\{[\s\S]*white-space: nowrap;[\s\S]*text-overflow: ellipsis;/);
   assert.match(styleSource, /\.timeline-mini small\s*\{[\s\S]*white-space: nowrap;[\s\S]*text-overflow: ellipsis;/);
 
   profile.experience.forEach((item) => {
-    const [meta, summary = ""] = item.split("：");
-    const [, title = ""] = meta.split("｜");
+    const [, summary = ""] = item.split("：");
 
-    assert.ok(title.length <= 16, `${title} should stay readable on the canvas`);
-    assert.ok(summary.length <= 14, `${summary} should stay readable on the canvas`);
+    assert.ok(summary.length <= 16, `${summary} should stay readable on the canvas`);
   });
+
+  assert.match(profile.experience.join("\n"), /独立产品 - 小成就APP（AI产品 \/ PWA应用）/);
+  assert.match(profile.experience.join("\n"), /美团 - 团买买项目组 - 商家及供给运营/);
 });
 
 test("timeline includes education experience from the resume", () => {
   const timeline = profile.experience.join("\n");
 
-  assert.match(timeline, /广西大学（211硕士）/);
+  assert.match(timeline, /广西大学（211全日制硕士）/);
   assert.match(timeline, /新闻与传播/);
   assert.match(timeline, /2017\.09 - 2019\.06/);
-  assert.match(timeline, /北方民族大学（本科）/);
+  assert.match(timeline, /北方民族大学（统招全日制本科）/);
   assert.match(timeline, /新闻学/);
   assert.match(timeline, /2013\.09 - 2017\.06/);
 });
