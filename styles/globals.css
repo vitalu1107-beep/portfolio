@@ -2601,14 +2601,15 @@ main {
 .identity-card {
   left: 260px;
   top: 170px;
-  width: 510px;
+  width: 430px;
+  min-height: 520px;
   overflow: hidden;
   border-color: rgba(43, 127, 216, 0.22);
   background:
     radial-gradient(circle at 16% 18%, rgba(141, 191, 255, 0.36), transparent 34%),
     radial-gradient(circle at 86% 78%, rgba(126, 224, 169, 0.34), transparent 38%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(240, 247, 255, 0.88));
-  padding: 20px;
+  padding: 18px;
   box-shadow: 0 24px 64px rgba(43, 127, 216, 0.18);
   backdrop-filter: blur(16px);
 }
@@ -2636,17 +2637,17 @@ main {
 .identity-hero-card {
   display: flex;
   align-items: center;
-  gap: 18px;
-  min-height: 138px;
-  padding: 20px 22px;
+  gap: 14px;
+  min-height: 154px;
+  padding: 20px 18px;
 }
 
 .identity-avatar-photo {
   flex: 0 0 auto;
-  width: 92px;
-  height: 92px;
-  border: 2px solid rgba(255, 255, 255, 0.78);
-  border-radius: 28px;
+  width: 86px;
+  height: 86px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 26px;
   object-fit: cover;
   box-shadow: 0 12px 28px rgba(31, 49, 84, 0.14);
 }
@@ -2668,7 +2669,7 @@ main {
 .identity-title-block h1 {
   margin: 0;
   color: #111827;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 900;
   line-height: 1.12;
   letter-spacing: 0;
@@ -2677,14 +2678,14 @@ main {
 .identity-card .identity-title-block p {
   margin-top: 8px;
   color: #1f3154;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 780;
   line-height: 1.35;
 }
 
 .identity-slogan-card {
   margin-top: 16px;
-  padding: 25px 26px 27px;
+  padding: 32px 22px 34px;
   text-align: center;
 }
 
@@ -2702,20 +2703,20 @@ main {
   display: block;
   margin-top: 8px;
   color: #111827;
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 900;
   line-height: 1.32;
 }
 
 .identity-contact-card {
   margin-top: 16px;
-  padding: 18px 20px;
+  padding: 24px 16px;
 }
 
 .identity-actions {
   display: flex;
   justify-content: center;
-  gap: 14px;
+  gap: 10px;
 }
 
 .identity-actions button,
@@ -2723,15 +2724,15 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 66px;
-  height: 66px;
+  width: 60px;
+  height: 60px;
   border: 1px solid rgba(43, 127, 216, 0.18);
   border-radius: 999px;
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(231, 242, 255, 0.9));
   color: #2b7fd8;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 900;
   text-decoration: none;
   box-shadow: 0 10px 20px rgba(43, 127, 216, 0.12);

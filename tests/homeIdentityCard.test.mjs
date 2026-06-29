@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
+import { profile } from "../data/profile.js";
+
 const indexSource = readFileSync(new URL("../pages/index.js", import.meta.url), "utf8");
+const styleSource = readFileSync(new URL("../styles/globals.css", import.meta.url), "utf8");
 
 test("home identity card follows the compact glass-card structure", () => {
   assert.match(indexSource, /identity-glass-card/);
@@ -14,4 +17,20 @@ test("home identity card exposes four contact actions", () => {
   ["邮箱", "电话", "微信", "简历"].forEach((label) => {
     assert.match(indexSource, new RegExp(label));
   });
+});
+
+test("home identity card is narrower and taller than the previous wide card", () => {
+  assert.match(indexSource, /"personal-info": \{ left: 260, top: 170, width: 430, height: 540 \}/);
+  assert.match(styleSource, /\.identity-card\s*\{[\s\S]*width: 430px;[\s\S]*min-height: 520px;/);
+});
+
+test("timeline includes education experience from the resume", () => {
+  const timeline = profile.experience.join("\n");
+
+  assert.match(timeline, /广西大学（211全日制硕士）/);
+  assert.match(timeline, /新闻与传播/);
+  assert.match(timeline, /2017\.09 - 2019\.06/);
+  assert.match(timeline, /北方民族大学（统招全日制本科）/);
+  assert.match(timeline, /新闻学/);
+  assert.match(timeline, /2013\.09 - 2017\.06/);
 });

@@ -13,7 +13,7 @@ const layerColors = ["red", "blue", "yellow", "green"];
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const canvasSize = { width: 2480, height: 1560 };
 const canvasNodes = {
-  "personal-info": { left: 260, top: 170, width: 510, height: 430 },
+  "personal-info": { left: 260, top: 170, width: 430, height: 540 },
   timeline: { left: 950, top: 170, width: 430, height: 540 },
   capabilities: { left: 1490, top: 500, width: 390, height: 240 },
   contact: { left: 1995, top: 170, width: 310, height: 220 }
