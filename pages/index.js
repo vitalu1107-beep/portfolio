@@ -120,12 +120,18 @@ function ProjectNode({ item, index, dragProps }) {
         <span className="project-owner-label">{card.owner}</span>
         <span className="project-type-label">{card.project}</span>
       </div>
+      <p className="project-role-line">我的角色：{card.role}</p>
       <div className="canvas-project-media">
         <ProjectCover variant={card.cover} accent={item.accent} title={card.project} />
       </div>
       <div className="canvas-project-copy">
         <h3>{card?.headline || item.shortTitle}</h3>
         <p>{card?.copy || item.summary}</p>
+        <div className="canvas-project-steps" aria-label={`${card.project}项目路径`}>
+          {card.steps.map((step) => (
+            <span key={`${item.slug}-${step}`}>{step}</span>
+          ))}
+        </div>
         <div className="canvas-project-metrics">
           {(card?.proofs || item.metrics.slice(0, 2)).map((metric) => (
             <b key={`${item.slug}-${metric.label}`}>
@@ -275,14 +281,14 @@ export default function HomePage() {
       </Head>
 
       <main className="os-page">
-        <aside className="os-sidebar" aria-label="画布图层">
+        <aside className="os-sidebar" aria-label="作品集阅读路径">
           <div className="os-brand">
             <span> L </span>
             <strong>LUQIAN Canvas</strong>
           </div>
 
           <nav className="layer-list">
-            <h2>Layers</h2>
+            <h2>阅读路径</h2>
             {layers.map((layer) => (
               <a href={layer.href} key={layer.href}>
                 <i className={layer.color} />
@@ -292,10 +298,13 @@ export default function HomePage() {
             ))}
           </nav>
 
-          <div className="os-create">+ 新建增长实验</div>
+          <div className="os-create reading-cue">
+            <b>3分钟阅读建议</b>
+            <span>先看定位与方法，再进入4个项目案例。</span>
+          </div>
 
           <div className="mini-map">
-            <h2>Minimap</h2>
+            <h2>画布概览</h2>
             <div>
               <span className="mini-card one" />
               <span className="mini-card two" />
@@ -472,6 +481,12 @@ export default function HomePage() {
               </div>
             </section>
 
+            <div className="project-section-label">
+              <span>04 / CASE STUDIES</span>
+              <strong>重点项目案例</strong>
+              <p>统一看项目角色、执行路径与结果数据；点击进入完整案例。</p>
+            </div>
+
             {caseStudies.map((item, index) => (
               <ProjectNode
                 item={item}
@@ -514,8 +529,8 @@ export default function HomePage() {
             <span className="toolbar-icon">⌗</span>
             <em>拖拽卡片</em>
             <b>·</b>
-            <span>Double</span>
-            <em>双击修改</em>
+            <span>Click</span>
+            <em>查看案例</em>
           </div>
         </section>
       </main>

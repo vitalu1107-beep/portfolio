@@ -79,3 +79,13 @@ test("capability card uses compact pill tags with added operation roles", () => 
   assert.match(styleSource, /\.capability-pill-grid\s*\{[\s\S]*flex-wrap: wrap;/);
   assert.match(styleSource, /\.capability-pill\.green\s*\{/);
 });
+
+test("home canvas guides recruiters through a portfolio reading path", () => {
+  assert.match(indexSource, /阅读路径/);
+  assert.match(indexSource, /3分钟阅读建议/);
+  assert.match(indexSource, /重点项目案例/);
+  assert.match(indexSource, /我的角色：\{card\.role\}/);
+  assert.match(indexSource, /查看案例/);
+  assert.doesNotMatch(indexSource, /新建增长实验/);
+  assert.doesNotMatch(indexSource, /双击修改/);
+});
