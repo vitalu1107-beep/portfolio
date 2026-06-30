@@ -2827,15 +2827,19 @@ main {
   padding: 20px 22px 22px;
 }
 
-.timeline-card h2 {
+.canvas-section-heading {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-bottom: 12px;
-  font-size: 20px;
+  gap: 8px;
+  margin: 0 0 14px;
+  color: var(--blue);
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.16;
+  letter-spacing: 0;
 }
 
-.timeline-card h2 span {
+.canvas-section-heading span {
   font-size: 14px;
 }
 
@@ -2912,38 +2916,143 @@ main {
 
 .capability-card {
   left: 1490px;
-  top: 500px;
-  width: 390px;
+  top: 760px;
+  width: 600px;
+  padding: 18px 22px;
 }
 
 .methods-card {
   left: 1490px;
   top: 170px;
-  width: 390px;
+  width: 600px;
+  padding: 28px 30px 30px;
 }
 
-.methods-card article {
-  border-top: 1px dashed rgba(43, 127, 216, 0.18);
-  padding-top: 10px;
-  margin-top: 10px;
-}
-
-.methods-card b {
-  color: var(--blue);
-}
-
-.methods-card p {
+.method-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: rgba(43, 127, 216, 0.88);
+  font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.method-eyebrow i {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 0 8px rgba(244, 215, 88, 0.18);
+}
+
+.method-lead {
+  margin: 0 0 24px !important;
+  color: #1f3154 !important;
+  font-size: 36px !important;
+  font-weight: 900;
+  line-height: 1.16;
+}
+
+.method-process {
+  display: grid;
+  gap: 18px;
+  position: relative;
+}
+
+.method-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  border: 1px solid rgba(43, 127, 216, 0.2);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.68)),
+    radial-gradient(circle at 92% 12%, rgba(43, 127, 216, 0.1), transparent 38%);
+  padding: 18px 20px;
+  box-shadow: 0 12px 30px rgba(31, 49, 84, 0.06);
+}
+
+.method-step span {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid rgba(43, 127, 216, 0.22);
+  border-radius: 14px;
+  background: rgba(43, 127, 216, 0.08);
+  color: var(--blue);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.method-step.step-02 {
+  border-color: rgba(244, 215, 88, 0.58);
+}
+
+.method-step.step-02 span {
+  border-color: rgba(244, 215, 88, 0.72);
+  background: rgba(244, 215, 88, 0.2);
+  color: #b28a00;
+}
+
+.method-step.step-03 {
+  border-color: rgba(22, 163, 74, 0.26);
+}
+
+.method-step.step-03 span {
+  border-color: rgba(22, 163, 74, 0.3);
+  background: rgba(22, 163, 74, 0.08);
+  color: #16a34a;
+}
+
+.method-step b {
+  display: block;
+  color: #1f3154;
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.method-step p {
+  margin-top: 8px;
+  color: rgba(31, 49, 84, 0.72);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.method-tags-compact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.method-tags-compact em {
+  border: 1px solid rgba(43, 127, 216, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 4px 10px;
+  color: rgba(43, 127, 216, 0.76);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 850;
 }
 
 .method-flow {
-  margin-top: 14px;
-  border: 1px dashed rgba(244, 215, 88, 0.72);
-  border-radius: 10px;
-  background: rgba(255, 248, 217, 0.58);
-  padding: 10px 12px;
+  margin-top: 20px;
+  border: 1px solid rgba(43, 127, 216, 0.16);
+  border-radius: 14px;
+  background: rgba(231, 242, 255, 0.48);
+  padding: 14px 16px;
   color: #1f3154;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 850;
   line-height: 1.45;
 }
@@ -3446,19 +3555,6 @@ main {
   border-color: color-mix(in srgb, var(--project-accent) 24%, transparent);
   background: color-mix(in srgb, var(--project-accent) 8%, white);
   color: var(--project-ink);
-}
-
-.contact-card {
-  left: 1995px;
-  top: 170px;
-  width: 310px;
-}
-
-.contact-card a,
-.contact-card b {
-  display: block;
-  margin-top: 10px;
-  color: var(--blue);
 }
 
 .zoom-controls {

@@ -15,8 +15,8 @@ const canvasSize = { width: 2480, height: 1560 };
 const canvasNodes = {
   "personal-info": { left: 260, top: 170, width: 430, height: 420 },
   timeline: { left: 950, top: 170, width: 380, height: 455 },
-  capabilities: { left: 1490, top: 500, width: 390, height: 240 },
-  contact: { left: 1995, top: 170, width: 310, height: 220 }
+  methods: { left: 1490, top: 170, width: 600, height: 560 },
+  capabilities: { left: 1490, top: 760, width: 600, height: 150 }
 };
 const canvasConnections = [
   {
@@ -28,40 +28,54 @@ const canvasConnections = [
     color: "#2b7fd8"
   },
   {
-    id: "timeline-capabilities",
+    id: "timeline-methods",
     from: "timeline",
+    fromSide: "right",
+    to: "methods",
+    toSide: "left",
+    color: "#2b7fd8"
+  },
+  {
+    id: "methods-capabilities",
+    from: "methods",
     fromSide: "bottom",
     to: "capabilities",
     toSide: "top",
     color: "#f4d758"
-  },
-  {
-    id: "capabilities-contact",
-    from: "capabilities",
-    fromSide: "right",
-    to: "contact",
-    toSide: "left",
-    color: "#16a34a"
   }
 ];
 
-const methodBriefs = {
-  假设驱动: "先定义问题和验证指标",
-  最小验证: "先跑通一个可用闭环",
-  分层运营: "按价值匹配资源和动作",
-  结果复盘: "把项目沉淀成下一次SOP"
-};
+const methodSteps = [
+  {
+    number: "01",
+    title: "识别需求，定义任务",
+    text: "从用户洞察与业务场景中，明确 AI 要帮用户完成什么。",
+    tags: ["真实场景", "用户卡点", "成功标准"]
+  },
+  {
+    number: "02",
+    title: "跑通协作，完成任务",
+    text: "让任务引导、AI 输出与人工接管形成可完成的闭环。",
+    tags: ["任务引导", "可用草稿", "人机接力"]
+  },
+  {
+    number: "03",
+    title: "反馈系统，持续进化",
+    text: "把用户反馈与失败样本回写为规则、知识与产品流程。",
+    tags: ["失败样本", "质量阈值", "持续迭代"]
+  }
+];
 
 const layers = [
   { href: "#personal-info", label: "个人信息", color: "blue" },
   { href: "#timeline", label: "经历时间线", color: "blue" },
+  { href: "#methods", label: "我的方法论", color: "yellow" },
   { href: "#capabilities", label: "核心能力", color: "yellow" },
   ...caseStudies.map((item, index) => ({
     href: `#project-${item.slug}`,
     label: item.shortTitle,
     color: layerColors[index % layerColors.length]
-  })),
-  { href: "#contact", label: "联系方式", color: "green" }
+  }))
 ];
 
 function parseExperience(item) {
@@ -374,7 +388,7 @@ export default function HomePage() {
               {...bindDrag("timeline")}
             >
               <div className="card-pin blue" />
-              <h2>
+              <h2 className="canvas-section-heading">
                 <span>📍</span>
                 经历时间线
               </h2>
@@ -413,16 +427,37 @@ export default function HomePage() {
               </div>
             </section>
 
-            <section className="canvas-card methods-card draggable-node" {...bindDrag("methods")}>
+            <section
+              className="canvas-card methods-card draggable-node"
+              id="methods"
+              {...bindDrag("methods")}
+            >
               <div className="card-pin blue" />
-              <h2>我的方法论</h2>
-              {profile.methods.map((method) => (
-                <article key={method.title}>
-                  <b>{method.title}</b>
-                  <p>{methodBriefs[method.title] || method.text}</p>
-                </article>
-              ))}
-              <div className="method-flow">问题定义 → MVP验证 → 数据复盘 → 规模化运营</div>
+              <div className="method-eyebrow">
+                <i />
+                MY WORKING METHOD
+              </div>
+              <h2 className="canvas-section-heading">我的方法论</h2>
+              <p className="method-lead">从用户需求到任务闭环</p>
+              <div className="method-process">
+                {methodSteps.map((step) => (
+                  <article className={`method-step step-${step.number}`} key={step.number}>
+                    <span>{step.number}</span>
+                    <div>
+                      <b>{step.title}</b>
+                      <p>{step.text}</p>
+                      <div className="method-tags-compact">
+                        {step.tags.map((tag) => (
+                          <em key={tag}>{tag}</em>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <div className="method-flow">
+                从用户洞察与业务场景出发，把 AI 能力落到可完成、可验证的任务闭环。
+              </div>
             </section>
 
             {caseStudies.map((item, index) => (
@@ -434,17 +469,6 @@ export default function HomePage() {
               />
             ))}
 
-            <section
-              className="canvas-card contact-card draggable-node"
-              id="contact"
-              {...bindDrag("contact")}
-            >
-              <div className="card-pin green" />
-              <h2>联系我</h2>
-              <p>求职方向：AI产品运营、用户增长、私域增长。</p>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-              <a href={`tel:${profile.phone}`}>电话：{profile.phone}</a>
-            </section>
             </div>
           </div>
 

@@ -50,3 +50,20 @@ test("timeline includes education experience from the resume", () => {
   assert.match(timeline, /新闻学/);
   assert.match(timeline, /2013\.09 - 2017\.06/);
 });
+
+test("home canvas replaces duplicate contact block with a working method system", () => {
+  assert.doesNotMatch(indexSource, /className="canvas-card contact-card/);
+  assert.doesNotMatch(indexSource, /href: "#contact"/);
+  assert.match(indexSource, /id="methods"/);
+  assert.match(indexSource, /我的方法论/);
+  assert.match(indexSource, /从用户需求到任务闭环/);
+  assert.match(indexSource, /识别需求，定义任务/);
+  assert.match(indexSource, /跑通协作，完成任务/);
+  assert.match(indexSource, /反馈系统，持续进化/);
+});
+
+test("timeline and working method headings share one visual type scale", () => {
+  assert.match(styleSource, /\.canvas-section-heading\s*\{/);
+  assert.match(indexSource, /className="canvas-section-heading"[\s\S]*经历时间线/);
+  assert.match(indexSource, /className="canvas-section-heading"[\s\S]*我的方法论/);
+});
