@@ -66,6 +66,16 @@ const methodSteps = [
   }
 ];
 
+const capabilityTags = [
+  { label: "Vibe Coding", tone: "yellow solid" },
+  { label: "内容运营", tone: "blue" },
+  { label: "项目管理", tone: "yellow" },
+  { label: "AI产品运营", tone: "yellow solid" },
+  { label: "Agent Native", tone: "blue" },
+  { label: "用户运营", tone: "green" },
+  { label: "商家运营", tone: "green" }
+];
+
 const layers = [
   { href: "#personal-info", label: "个人信息", color: "blue" },
   { href: "#timeline", label: "经历时间线", color: "blue" },
@@ -416,13 +426,15 @@ export default function HomePage() {
               {...bindDrag("capabilities")}
             >
               <div className="card-pin yellow" />
-              <h2>技能 & 能力</h2>
-              <div className="capability-list-mini">
-                {profile.capabilityMap.map((block) => (
-                  <article key={block.group}>
-                    <b>{block.group}</b>
-                    <span>{block.items.slice(0, 2).join(" · ")}</span>
-                  </article>
+              <h2 className="capability-heading">
+                <span>🛠</span>
+                技能 & 能力
+              </h2>
+              <div className="capability-pill-grid">
+                {capabilityTags.map((tag) => (
+                  <span className={`capability-pill ${tag.tone}`} key={tag.label}>
+                    {tag.label}
+                  </span>
                 ))}
               </div>
             </section>

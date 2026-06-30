@@ -2918,7 +2918,7 @@ main {
   left: 1490px;
   top: 760px;
   width: 600px;
-  padding: 18px 22px;
+  padding: 22px 28px;
 }
 
 .methods-card {
@@ -3057,29 +3057,60 @@ main {
   line-height: 1.45;
 }
 
-.capability-list-mini {
-  display: grid;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.capability-list-mini article {
-  display: grid;
-  grid-template-columns: 88px minmax(0, 1fr);
-  gap: 10px;
+.capability-heading {
+  display: flex;
   align-items: center;
-  border-top: 1px dashed rgba(43, 127, 216, 0.16);
-  padding-top: 10px;
-}
-
-.capability-list-mini b {
+  gap: 8px;
+  margin: 4px 0 16px;
   color: var(--blue);
-  font-size: 12px;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1.16;
 }
 
-.capability-list-mini span {
-  color: var(--muted);
-  font-size: 12px;
+.capability-heading span {
+  font-size: 17px;
+}
+
+.capability-pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+}
+
+.capability-pill {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(43, 127, 216, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 6px 18px;
+  color: rgba(43, 127, 216, 0.78);
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.capability-pill.yellow {
+  border-color: rgba(244, 215, 88, 0.68);
+  background: rgba(255, 248, 217, 0.72);
+  color: #9a7800;
+}
+
+.capability-pill.yellow.solid {
+  border-color: var(--blue);
+  background: #f7d94f;
+  color: #111827;
+  box-shadow: inset 0 -2px 0 rgba(43, 127, 216, 0.16);
+}
+
+.capability-pill.green {
+  border-color: rgba(22, 163, 74, 0.24);
+  background: rgba(236, 253, 245, 0.82);
+  color: #13834a;
 }
 
 .project-node-card {

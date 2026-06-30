@@ -67,3 +67,15 @@ test("timeline and working method headings share one visual type scale", () => {
   assert.match(indexSource, /className="canvas-section-heading"[\s\S]*经历时间线/);
   assert.match(indexSource, /className="canvas-section-heading"[\s\S]*我的方法论/);
 });
+
+test("capability card uses compact pill tags with added operation roles", () => {
+  ["Vibe Coding", "内容运营", "项目管理", "AI产品运营", "Agent Native", "用户运营", "商家运营"].forEach(
+    (label) => {
+      assert.match(indexSource, new RegExp(label));
+    }
+  );
+
+  assert.match(indexSource, /capability-pill-grid/);
+  assert.match(styleSource, /\.capability-pill-grid\s*\{[\s\S]*flex-wrap: wrap;/);
+  assert.match(styleSource, /\.capability-pill\.green\s*\{/);
+});
