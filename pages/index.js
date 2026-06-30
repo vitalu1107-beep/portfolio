@@ -16,8 +16,8 @@ const canvasSize = { width: 2480, height: 1560 };
 const canvasNodes = {
   "personal-info": { left: 260, top: 170, width: 430, height: 420 },
   timeline: { left: 950, top: 170, width: 380, height: 455 },
-  methods: { left: 1490, top: 170, width: 600, height: 560 },
-  capabilities: { left: 1490, top: 760, width: 600, height: 150 }
+  methods: { left: 1490, top: 170, width: 520, height: 455 },
+  capabilities: { left: 1490, top: 650, width: 520, height: 150 }
 };
 const canvasConnections = [
   {
@@ -455,11 +455,10 @@ export default function HomePage() {
               {...bindDrag("methods")}
             >
               <div className="card-pin blue" />
-              <div className="method-eyebrow">
-                <i />
-                MY WORKING METHOD
-              </div>
-              <h2 className="canvas-section-heading">我的方法论</h2>
+              <h2 className="canvas-section-heading">
+                <span>🧭</span>
+                我的方法论
+              </h2>
               <p className="method-lead">从用户需求到任务闭环</p>
               <div className="method-process">
                 {methodSteps.map((step) => (

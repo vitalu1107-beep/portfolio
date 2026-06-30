@@ -66,6 +66,17 @@ test("timeline and working method headings share one visual type scale", () => {
   assert.match(styleSource, /\.canvas-section-heading\s*\{/);
   assert.match(indexSource, /className="canvas-section-heading"[\s\S]*经历时间线/);
   assert.match(indexSource, /className="canvas-section-heading"[\s\S]*我的方法论/);
+  assert.doesNotMatch(indexSource, /MY WORKING METHOD/);
+  assert.match(styleSource, /\.canvas-section-heading\s*\{[\s\S]*font-size: 25px;/);
+});
+
+test("working method card stays compact and does not cover capabilities", () => {
+  assert.match(indexSource, /methods: \{ left: 1490, top: 170, width: 520, height: 455 \}/);
+  assert.match(indexSource, /capabilities: \{ left: 1490, top: 650, width: 520, height: 150 \}/);
+  assert.match(styleSource, /\.methods-card\s*\{[\s\S]*width: 520px;[\s\S]*padding: 22px 24px;/);
+  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*top: 650px;[\s\S]*width: 520px;/);
+  assert.match(styleSource, /\.method-lead\s*\{[\s\S]*font-size: 22px !important;/);
+  assert.match(styleSource, /\.method-step\s*\{[\s\S]*grid-template-columns: 44px minmax\(0, 1fr\);/);
 });
 
 test("capability card uses compact pill tags with added operation roles", () => {
