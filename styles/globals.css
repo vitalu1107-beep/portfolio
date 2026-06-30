@@ -3692,30 +3692,32 @@ main {
 
 .zoom-controls {
   position: fixed;
-  right: 26px;
-  bottom: 22px;
+  top: 20px;
+  right: 22px;
+  bottom: auto;
   z-index: 6;
   display: flex;
   align-items: center;
-  gap: 12px;
-  border: 2px dashed rgba(43, 127, 216, 0.22);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 12px 34px rgba(43, 127, 216, 0.12);
-  padding: 10px 14px;
+  gap: 8px;
+  border: 1px solid rgba(43, 127, 216, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 10px 26px rgba(43, 127, 216, 0.1);
+  padding: 7px 9px;
+  backdrop-filter: blur(14px);
 }
 
 .zoom-controls button {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   place-items: center;
   border: 0;
   border-radius: 999px;
   background: rgba(43, 127, 216, 0.08);
   color: var(--blue);
   cursor: pointer;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 900;
 }
 
@@ -3735,36 +3737,39 @@ main {
 }
 
 .zoom-controls span {
-  min-width: 48px;
+  min-width: 42px;
   color: var(--blue);
   text-align: center;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
   font-weight: 900;
 }
 
 .canvas-toolbar {
   position: fixed;
-  left: 320px;
-  bottom: 22px;
+  top: 20px;
+  left: calc(286px + 24px);
+  bottom: auto;
   z-index: 6;
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 2px dashed rgba(43, 127, 216, 0.22);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 12px 34px rgba(43, 127, 216, 0.1);
-  padding: 10px 14px;
+  border: 1px solid rgba(43, 127, 216, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 10px 26px rgba(43, 127, 216, 0.1);
+  padding: 7px 10px;
   color: var(--subtle);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 760;
+  backdrop-filter: blur(14px);
 }
 
 .canvas-toolbar span {
   border: 1px solid rgba(43, 127, 216, 0.22);
-  border-radius: 6px;
+  border-radius: 999px;
   background: rgba(43, 127, 216, 0.06);
-  padding: 2px 8px;
+  padding: 2px 7px;
   color: var(--blue);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-weight: 900;
@@ -3772,8 +3777,8 @@ main {
 
 .canvas-toolbar .toolbar-icon {
   display: grid;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   place-items: center;
   padding: 0;
 }

@@ -89,3 +89,10 @@ test("home canvas guides recruiters through a portfolio reading path", () => {
   assert.doesNotMatch(indexSource, /新建增长实验/);
   assert.doesNotMatch(indexSource, /双击修改/);
 });
+
+test("home canvas starts zoomed out and keeps controls off the project cards", () => {
+  assert.match(indexSource, /const defaultZoomIndex = 4;/);
+  assert.match(indexSource, /useState\(defaultZoomIndex\)/);
+  assert.match(styleSource, /\.zoom-controls\s*\{[\s\S]*top: 20px;[\s\S]*bottom: auto;/);
+  assert.match(styleSource, /\.canvas-toolbar\s*\{[\s\S]*top: 20px;[\s\S]*bottom: auto;/);
+});

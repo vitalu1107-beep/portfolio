@@ -11,6 +11,7 @@ import { publicPath } from "../lib/paths";
 const layerColors = ["red", "blue", "yellow", "green"];
 
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
+const defaultZoomIndex = 4;
 const canvasSize = { width: 2480, height: 1560 };
 const canvasNodes = {
   "personal-info": { left: 260, top: 170, width: 430, height: 420 },
@@ -158,7 +159,7 @@ export default function HomePage() {
   const dragRef = useRef(null);
   const panRef = useRef(null);
   const [positions, setPositions] = useState({});
-  const [zoomIndex, setZoomIndex] = useState(6);
+  const [zoomIndex, setZoomIndex] = useState(defaultZoomIndex);
   const [visibleContact, setVisibleContact] = useState(null);
   const zoom = zoomSteps[zoomIndex];
   const scaledCanvasStyle = {
