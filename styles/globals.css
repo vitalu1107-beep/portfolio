@@ -3221,14 +3221,14 @@ main {
 
 .project-index {
   position: absolute;
-  top: 17px;
+  top: 22px;
   right: 18px;
   z-index: 1;
   border-radius: 999px;
   background: color-mix(in srgb, var(--project-accent) 14%, white);
-  padding: 5px 10px;
+  padding: 6px 10px;
   color: var(--project-ink);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 900;
   line-height: 1;
 }
@@ -3236,46 +3236,46 @@ main {
 .project-label-row {
   display: flex;
   align-items: center;
-  min-height: 64px;
+  min-height: 78px;
   border-bottom: 1px solid color-mix(in srgb, var(--project-accent) 10%, rgba(31, 49, 84, 0.08));
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--project-accent) 8%, #fff), rgba(255, 255, 255, 0.82));
-  padding: 12px 60px 12px 16px;
+  padding: 18px 64px 16px 18px;
 }
 
 .project-badge-stack {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
 }
 
 .project-badge-stack > div {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 8px;
 }
 
 .project-owner-label,
 .project-type-label {
-  border-radius: 7px;
+  border-radius: 8px;
   line-height: 1;
   white-space: nowrap;
 }
 
 .project-owner-label {
   background: var(--project-ink);
-  padding: 7px 9px;
+  padding: 8px 10px;
   color: #fff;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 900;
 }
 
 .project-type-label {
   border: 1px solid color-mix(in srgb, var(--project-accent) 16%, transparent);
   background: color-mix(in srgb, var(--project-accent) 9%, white);
-  padding: 6px 9px;
+  padding: 7px 10px;
   color: var(--project-ink);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 850;
 }
 
@@ -3284,7 +3284,7 @@ main {
   border-left: 3px solid var(--project-accent);
   padding-left: 9px;
   color: #4f5b73;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 780;
   line-height: 1.35;
   overflow: hidden;
@@ -3301,7 +3301,7 @@ main {
   --cover-accent: var(--project-accent);
   position: relative;
   width: 100%;
-  height: 140px;
+  height: 154px;
   margin: 0;
   overflow: hidden;
   background: color-mix(in srgb, var(--cover-accent) 5%, #fff);
@@ -3320,11 +3320,13 @@ main {
 
 .project-cover-heading {
   position: absolute;
-  top: 13px;
-  left: 15px;
+  top: 16px;
+  right: 18px;
+  left: 18px;
   z-index: 2;
   display: flex;
   align-items: baseline;
+  justify-content: flex-start;
   gap: 9px;
 }
 
@@ -3339,24 +3341,24 @@ main {
   border-left: 2px solid var(--cover-accent);
   padding-left: 8px;
   color: var(--project-ink);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1;
 }
 
 .project-cover-product {
   position: absolute;
-  inset: 50px 15px 13px;
+  inset: 58px 22px 20px;
   z-index: 1;
   display: grid;
-  grid-template-columns: 58px 1fr;
-  gap: 18px;
+  grid-template-columns: 56px 1fr;
+  gap: 22px;
   align-items: center;
 }
 
 .project-cover-phone {
   position: relative;
-  width: 48px;
-  height: 82px;
+  width: 50px;
+  height: 84px;
   border: 2px solid var(--cover-accent);
   border-radius: 10px;
   background: #fff;
@@ -3403,7 +3405,7 @@ main {
 .project-cover-flow li {
   position: relative;
   border-top: 2px solid color-mix(in srgb, var(--cover-accent) 30%, #fff);
-  padding-top: 14px;
+  padding-top: 16px;
   color: #343445;
   font-size: 10px;
   font-weight: 900;
@@ -3437,7 +3439,7 @@ main {
 
 .project-cover-flywheel {
   position: absolute;
-  inset: 48px 50px 7px;
+  inset: 58px 58px 20px;
   z-index: 1;
 }
 
@@ -3500,33 +3502,33 @@ main {
 }
 
 .flywheel-node-talent {
-  top: 2px;
-  left: 15px;
+  top: 0;
+  left: 12px;
 }
 
 .flywheel-node-merchant {
-  top: 2px;
-  right: 15px;
+  top: 0;
+  right: 12px;
 }
 
 .flywheel-node-product {
-  right: 15px;
-  bottom: 2px;
+  right: 12px;
+  bottom: 0;
 }
 
 .flywheel-node-gmv {
-  bottom: 2px;
-  left: 15px;
+  bottom: 0;
+  left: 12px;
 }
 
 .project-cover-funnel {
   position: absolute;
-  inset: 49px 20px 11px;
+  inset: 58px 26px 18px;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -3566,7 +3568,7 @@ main {
 
 .project-cover-campaign {
   position: absolute;
-  inset: 51px 36px 8px;
+  inset: 58px 46px 18px;
   z-index: 1;
 }
 
@@ -3645,13 +3647,13 @@ main {
 
 .canvas-project-copy {
   display: grid;
-  gap: 12px;
-  padding: 18px 18px 16px;
+  gap: 14px;
+  padding: 18px 18px 18px;
 }
 
 .canvas-project-copy h3 {
   display: -webkit-box;
-  min-height: 48px;
+  min-height: 50px;
   margin: 0;
   color: var(--text);
   font-size: 18px;
@@ -3672,7 +3674,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
   margin-top: 0;
 }
 
@@ -3680,7 +3682,7 @@ main {
   border: 1px solid color-mix(in srgb, var(--project-accent) 22%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--project-accent) 7%, white);
-  padding: 5px 9px;
+  padding: 6px 10px;
   color: var(--project-ink);
   font-size: 11px;
   font-weight: 820;
@@ -3689,23 +3691,29 @@ main {
 .canvas-project-metrics {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 12px;
   margin: 0;
-  border-top: 1px dashed color-mix(in srgb, var(--project-accent) 16%, rgba(31, 49, 84, 0.14));
-  padding-top: 12px;
   text-align: center;
 }
 
 .canvas-project-metrics b {
+  display: grid;
+  min-height: 62px;
+  place-items: center;
+  align-content: center;
+  border: 1px solid color-mix(in srgb, var(--project-accent) 18%, rgba(31, 49, 84, 0.1));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--project-accent) 5%, rgba(255, 255, 255, 0.9));
+  padding: 10px 8px;
   color: var(--project-ink);
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 900;
   line-height: 1;
 }
 
 .canvas-project-metrics small {
   display: block;
-  margin-top: 4px;
+  margin-top: 5px;
   color: var(--subtle);
   font-size: 11px;
   font-weight: 760;

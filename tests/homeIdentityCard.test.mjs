@@ -109,12 +109,14 @@ test("home project cards start higher and center their proof controls", () => {
   assert.match(styleSource, /\.project-node-card\s*\{[\s\S]*width: 400px;[\s\S]*min-height: 0;/);
   assert.match(styleSource, /\.project-node-1\s*\{[\s\S]*top: 760px;/);
   assert.match(styleSource, /\.project-node-4\s*\{[\s\S]*top: 760px;/);
-  assert.match(styleSource, /\.project-label-row\s*\{[\s\S]*min-height: 64px;[\s\S]*border-bottom:/);
+  assert.match(styleSource, /\.project-label-row\s*\{[\s\S]*min-height: 78px;[\s\S]*border-bottom:/);
   assert.match(styleSource, /\.project-badge-stack\s*\{[\s\S]*display: grid;/);
+  assert.match(styleSource, /\.project-cover\s*\{[\s\S]*height: 154px;/);
   assert.match(styleSource, /\.canvas-project-copy h3\s*\{[\s\S]*font-size: 18px;[\s\S]*-webkit-line-clamp: 2;/);
   assert.match(styleSource, /\.canvas-project-copy p\s*\{[\s\S]*display: none;/);
   assert.match(styleSource, /\.canvas-project-steps\s*\{[\s\S]*justify-content: center;/);
-  assert.match(styleSource, /\.canvas-project-metrics\s*\{[\s\S]*text-align: center;/);
+  assert.match(styleSource, /\.canvas-project-metrics\s*\{[\s\S]*gap: 12px;[\s\S]*text-align: center;/);
+  assert.match(styleSource, /\.canvas-project-metrics b\s*\{[\s\S]*display: grid;[\s\S]*border-radius: 12px;/);
   assert.match(styleSource, /\.project-link-row\s*\{[\s\S]*justify-content: center;/);
 });
 
