@@ -14,10 +14,10 @@ const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const defaultZoomIndex = 4;
 const canvasSize = { width: 2480, height: 1560 };
 const canvasNodes = {
-  "personal-info": { left: 260, top: 170, width: 430, height: 420 },
-  timeline: { left: 950, top: 170, width: 380, height: 455 },
-  methods: { left: 1490, top: 170, width: 520, height: 455 },
-  capabilities: { left: 1490, top: 650, width: 520, height: 150 }
+  "personal-info": { left: 120, top: 140, width: 390, height: 470 },
+  timeline: { left: 650, top: 140, width: 380, height: 455 },
+  methods: { left: 1120, top: 140, width: 470, height: 455 },
+  capabilities: { left: 1660, top: 140, width: 300, height: 455 }
 };
 const canvasConnections = [
   {
@@ -39,9 +39,9 @@ const canvasConnections = [
   {
     id: "methods-capabilities",
     from: "methods",
-    fromSide: "bottom",
+    fromSide: "right",
     to: "capabilities",
-    toSide: "top",
+    toSide: "left",
     color: "#f4d758"
   }
 ];
@@ -481,12 +481,6 @@ export default function HomePage() {
               </div>
             </section>
 
-            <div className="project-section-label">
-              <span>04 / CASE STUDIES</span>
-              <strong>重点项目案例</strong>
-              <p>统一看项目角色、执行路径与结果数据；点击进入完整案例。</p>
-            </div>
-
             {caseStudies.map((item, index) => (
               <ProjectNode
                 item={item}
@@ -523,11 +517,8 @@ export default function HomePage() {
             <span>Scroll</span>
             <em>缩放</em>
             <b>·</b>
-            <span>Drag</span>
-            <em>移动画布</em>
-            <b>·</b>
-            <span className="toolbar-icon">⌗</span>
-            <em>拖拽卡片</em>
+            <span>Swipe</span>
+            <em>左右滑动</em>
             <b>·</b>
             <span>Click</span>
             <em>查看案例</em>

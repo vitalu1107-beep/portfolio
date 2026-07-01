@@ -2627,12 +2627,12 @@ main {
 }
 
 .identity-card {
-  left: 260px;
-  top: 170px;
-  width: 430px;
-  min-height: 0;
+  left: 120px;
+  top: 140px;
+  width: 390px;
+  min-height: 470px;
   display: grid;
-  gap: 14px;
+  gap: 13px;
   overflow: hidden;
   border-color: rgba(43, 127, 216, 0.22);
   background:
@@ -2849,8 +2849,8 @@ main {
 }
 
 .timeline-card {
-  left: 950px;
-  top: 170px;
+  left: 650px;
+  top: 140px;
   width: 380px;
   padding: 20px 22px 22px;
 }
@@ -2943,18 +2943,19 @@ main {
 }
 
 .capability-card {
-  left: 1490px;
-  top: 650px;
+  left: 1660px;
+  top: 140px;
   z-index: 2;
-  width: 520px;
-  padding: 20px 24px;
+  width: 300px;
+  min-height: 455px;
+  padding: 22px;
 }
 
 .methods-card {
-  left: 1490px;
-  top: 170px;
+  left: 1120px;
+  top: 140px;
   z-index: 1;
-  width: 520px;
+  width: 470px;
   padding: 22px 24px;
 }
 
@@ -3103,20 +3104,21 @@ main {
 }
 
 .capability-pill-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .capability-pill {
   display: inline-flex;
-  min-height: 30px;
+  width: 100%;
+  min-height: 34px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   border: 2px solid rgba(43, 127, 216, 0.24);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.72);
-  padding: 5px 15px;
+  padding: 7px 14px;
   color: rgba(43, 127, 216, 0.78);
   font-size: 13px;
   font-weight: 900;
@@ -3157,22 +3159,22 @@ main {
 
 .project-node-1 {
   left: 120px;
-  top: 980px;
+  top: 760px;
 }
 
 .project-node-2 {
   left: 570px;
-  top: 980px;
+  top: 760px;
 }
 
 .project-node-3 {
   left: 1020px;
-  top: 980px;
+  top: 760px;
 }
 
 .project-node-4 {
   left: 1470px;
-  top: 980px;
+  top: 760px;
 }
 
 .project-section-label {
@@ -3641,6 +3643,7 @@ main {
 .canvas-project-steps {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 6px;
   margin-top: 11px;
 }
@@ -3660,6 +3663,7 @@ main {
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   margin: 12px 0;
+  text-align: center;
 }
 
 .canvas-project-metrics b {
@@ -3677,6 +3681,7 @@ main {
 .project-link-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
 }
 
