@@ -72,11 +72,11 @@ test("timeline and working method headings share one visual type scale", () => {
 
 test("working method card stays compact and does not cover capabilities", () => {
   assert.match(indexSource, /methods: \{ left: 1120, top: 140, width: 470, height: 455 \}/);
-  assert.match(indexSource, /capabilities: \{ left: 1660, top: 140, width: 300, height: 455 \}/);
+  assert.match(indexSource, /capabilities: \{ left: 1660, top: 140, width: 360, height: 350 \}/);
   assert.match(indexSource, /fromSide: "right"[\s\S]*toSide: "left"/);
   assert.match(styleSource, /\.methods-card\s*\{[\s\S]*width: 470px;[\s\S]*padding: 22px 24px;/);
-  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*top: 140px;[\s\S]*width: 300px;[\s\S]*min-height: 455px;/);
-  assert.match(styleSource, /\.method-lead\s*\{[\s\S]*font-size: 22px !important;/);
+  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*top: 140px;[\s\S]*width: 360px;[\s\S]*min-height: 350px;/);
+  assert.match(styleSource, /\.method-lead\s*\{[\s\S]*font-size: 22px !important;[\s\S]*line-height: 1\.35;/);
   assert.match(styleSource, /\.method-step\s*\{[\s\S]*grid-template-columns: 44px minmax\(0, 1fr\);/);
 });
 
@@ -88,8 +88,8 @@ test("capability card uses compact pill tags with added operation roles", () => 
   );
 
   assert.match(indexSource, /capability-pill-grid/);
-  assert.match(styleSource, /\.capability-pill-grid\s*\{[\s\S]*grid-template-columns: 1fr;/);
-  assert.match(styleSource, /\.capability-pill\s*\{[\s\S]*width: 100%;[\s\S]*justify-content: flex-start;/);
+  assert.match(styleSource, /\.capability-pill-grid\s*\{[\s\S]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/);
+  assert.match(styleSource, /\.capability-pill\s*\{[\s\S]*width: auto;[\s\S]*justify-content: center;/);
   assert.match(styleSource, /\.capability-pill\.green\s*\{/);
 });
 
@@ -105,8 +105,12 @@ test("home canvas guides recruiters through a portfolio reading path", () => {
 });
 
 test("home project cards start higher and center their proof controls", () => {
+  assert.doesNotMatch(indexSource, /card\?\.copy \|\| item\.summary/);
+  assert.match(styleSource, /\.project-node-card\s*\{[\s\S]*width: 390px;[\s\S]*min-height: 438px;/);
   assert.match(styleSource, /\.project-node-1\s*\{[\s\S]*top: 760px;/);
   assert.match(styleSource, /\.project-node-4\s*\{[\s\S]*top: 760px;/);
+  assert.match(styleSource, /\.canvas-project-copy h3\s*\{[\s\S]*font-size: 17px;[\s\S]*white-space: nowrap;[\s\S]*text-overflow: ellipsis;/);
+  assert.match(styleSource, /\.canvas-project-copy p\s*\{[\s\S]*display: none;/);
   assert.match(styleSource, /\.canvas-project-steps\s*\{[\s\S]*justify-content: center;/);
   assert.match(styleSource, /\.canvas-project-metrics\s*\{[\s\S]*text-align: center;/);
   assert.match(styleSource, /\.project-link-row\s*\{[\s\S]*justify-content: center;/);

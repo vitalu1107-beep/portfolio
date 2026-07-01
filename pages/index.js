@@ -17,7 +17,7 @@ const canvasNodes = {
   "personal-info": { left: 120, top: 140, width: 390, height: 470 },
   timeline: { left: 650, top: 140, width: 380, height: 455 },
   methods: { left: 1120, top: 140, width: 470, height: 455 },
-  capabilities: { left: 1660, top: 140, width: 300, height: 455 }
+  capabilities: { left: 1660, top: 140, width: 360, height: 350 }
 };
 const canvasConnections = [
   {
@@ -126,8 +126,7 @@ function ProjectNode({ item, index, dragProps }) {
         <ProjectCover variant={card.cover} accent={item.accent} title={card.project} />
       </div>
       <div className="canvas-project-copy">
-        <h3>{card?.headline || item.shortTitle}</h3>
-        <p>{card?.copy || item.summary}</p>
+        <h3 title={card?.headline || item.shortTitle}>{card?.headline || item.shortTitle}</h3>
         <div className="canvas-project-steps" aria-label={`${card.project}项目路径`}>
           {card.steps.map((step) => (
             <span key={`${item.slug}-${step}`}>{step}</span>
