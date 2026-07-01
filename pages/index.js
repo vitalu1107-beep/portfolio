@@ -118,10 +118,14 @@ function ProjectNode({ item, index, dragProps }) {
       <div className="card-pin" />
       <div className="project-index">0{index + 1}</div>
       <div className="project-label-row">
-        <span className="project-owner-label">{card.owner}</span>
-        <span className="project-type-label">{card.project}</span>
+        <div className="project-badge-stack">
+          <div>
+            <span className="project-owner-label">{card.owner}</span>
+            <span className="project-type-label">{card.project}</span>
+          </div>
+          <p className="project-role-line">我的角色：{card.role}</p>
+        </div>
       </div>
-      <p className="project-role-line">我的角色：{card.role}</p>
       <div className="canvas-project-media">
         <ProjectCover variant={card.cover} accent={item.accent} title={card.project} />
       </div>

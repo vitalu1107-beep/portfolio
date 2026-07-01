@@ -29,8 +29,8 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.7;
   letter-spacing: 0;
@@ -3148,9 +3148,11 @@ main {
 .project-node-card {
   overflow: hidden;
   padding: 0;
-  width: 390px;
-  min-height: 438px;
+  width: 400px;
+  min-height: 0;
   border-color: color-mix(in srgb, var(--project-accent) 22%, rgba(43, 127, 216, 0.12));
+  border-radius: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
 }
 
 .project-node-card .card-pin {
@@ -3219,56 +3221,71 @@ main {
 
 .project-index {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 17px;
+  right: 18px;
   z-index: 1;
   border-radius: 999px;
   background: color-mix(in srgb, var(--project-accent) 14%, white);
-  padding: 4px 9px;
+  padding: 5px 10px;
   color: var(--project-ink);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 900;
+  line-height: 1;
 }
 
 .project-label-row {
   display: flex;
   align-items: center;
-  gap: 6px;
-  min-height: 38px;
-  padding: 9px 52px 4px 14px;
+  min-height: 64px;
+  border-bottom: 1px solid color-mix(in srgb, var(--project-accent) 10%, rgba(31, 49, 84, 0.08));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--project-accent) 8%, #fff), rgba(255, 255, 255, 0.82));
+  padding: 12px 60px 12px 16px;
+}
+
+.project-badge-stack {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.project-badge-stack > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
 }
 
 .project-owner-label,
 .project-type-label {
-  border-radius: 4px;
+  border-radius: 7px;
   line-height: 1;
   white-space: nowrap;
 }
 
 .project-owner-label {
   background: var(--project-ink);
-  padding: 6px 8px;
+  padding: 7px 9px;
   color: #fff;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 900;
 }
 
 .project-type-label {
   border: 1px solid color-mix(in srgb, var(--project-accent) 16%, transparent);
   background: color-mix(in srgb, var(--project-accent) 9%, white);
-  padding: 5px 7px;
+  padding: 6px 9px;
   color: var(--project-ink);
-  font-size: 10px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 850;
 }
 
 .project-role-line {
-  margin: -1px 14px 8px;
+  margin: 0;
   border-left: 3px solid var(--project-accent);
-  padding-left: 8px;
+  padding-left: 9px;
   color: #4f5b73;
-  font-size: 11px;
-  font-weight: 760;
+  font-size: 12px;
+  font-weight: 780;
   line-height: 1.35;
   overflow: hidden;
   white-space: nowrap;
@@ -3278,14 +3295,13 @@ main {
 .canvas-project-media {
   position: relative;
   border-bottom: 1px solid rgba(26, 26, 46, 0.08);
-  border-top: 1px solid rgba(26, 26, 46, 0.06);
 }
 
 .project-cover {
   --cover-accent: var(--project-accent);
   position: relative;
   width: 100%;
-  height: 146px;
+  height: 140px;
   margin: 0;
   overflow: hidden;
   background: color-mix(in srgb, var(--cover-accent) 5%, #fff);
@@ -3628,17 +3644,24 @@ main {
 }
 
 .canvas-project-copy {
-  padding: 14px 18px 16px;
+  display: grid;
+  gap: 12px;
+  padding: 18px 18px 16px;
 }
 
 .canvas-project-copy h3 {
-  margin: 0 0 12px;
+  display: -webkit-box;
+  min-height: 48px;
+  margin: 0;
   color: var(--text);
-  font-size: 17px;
-  line-height: 1.22;
+  font-size: 18px;
+  font-weight: 850;
+  line-height: 1.34;
   overflow: hidden;
-  white-space: nowrap;
+  letter-spacing: 0;
   text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .canvas-project-copy p {
@@ -3649,7 +3672,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 6px;
+  gap: 7px;
   margin-top: 0;
 }
 
@@ -3657,37 +3680,43 @@ main {
   border: 1px solid color-mix(in srgb, var(--project-accent) 22%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--project-accent) 7%, white);
-  padding: 4px 8px;
+  padding: 5px 9px;
   color: var(--project-ink);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 820;
 }
 
 .canvas-project-metrics {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin: 10px 0;
+  gap: 10px;
+  margin: 0;
+  border-top: 1px dashed color-mix(in srgb, var(--project-accent) 16%, rgba(31, 49, 84, 0.14));
+  padding-top: 12px;
   text-align: center;
 }
 
 .canvas-project-metrics b {
   color: var(--project-ink);
-  font-size: 18px;
-  line-height: 1.1;
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1;
 }
 
 .canvas-project-metrics small {
   display: block;
+  margin-top: 4px;
   color: var(--subtle);
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 760;
 }
 
 .project-link-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 9px;
+  min-height: 32px;
 }
 
 .project-node-card .canvas-project-copy a {
