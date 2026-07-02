@@ -10,7 +10,7 @@ const styleSource = readFileSync(new URL("../styles/globals.css", import.meta.ur
 test("home identity card follows the compact glass-card structure", () => {
   assert.match(indexSource, /identity-glass-card/);
   assert.match(indexSource, /AI产品运营｜用户运营/);
-  assert.match(indexSource, /把AI变成增长验证的第二执行力/);
+  assert.match(indexSource, /用 AI 把用户洞察变成可验证的增长闭环/);
 });
 
 test("home identity card exposes four contact actions", () => {
@@ -56,10 +56,21 @@ test("home canvas replaces duplicate contact block with a working method system"
   assert.doesNotMatch(indexSource, /href: "#contact"/);
   assert.match(indexSource, /id="methods"/);
   assert.match(indexSource, /我的方法论/);
-  assert.match(indexSource, /从用户需求到任务闭环/);
-  assert.match(indexSource, /识别需求，定义任务/);
-  assert.match(indexSource, /跑通协作，完成任务/);
-  assert.match(indexSource, /反馈系统，持续进化/);
+  assert.match(indexSource, /从用户需求到 AI 任务闭环/);
+  assert.match(indexSource, /识别场景，找到卡点/);
+  assert.match(indexSource, /定义任务，做成原型/);
+  assert.match(indexSource, /验证反馈，判断放大/);
+});
+
+test("home canvas adds an explicit AI product operations thread", () => {
+  assert.match(indexSource, /"ai-thread": \{ left: 120, top: 635, width: 390, height: 112 \}/);
+  assert.match(indexSource, /AI PRODUCT OPS THREAD/);
+  assert.match(indexSource, /把运营经验迁移到 AI 产品闭环/);
+  ["用户洞察", "任务定义", "AI辅助原型", "数据复盘"].forEach((label) => {
+    assert.match(indexSource, new RegExp(label));
+  });
+  assert.match(indexSource, /id: "personal-info-ai-thread"/);
+  assert.match(styleSource, /\.ai-thread-card\s*\{[\s\S]*left: 120px;[\s\S]*top: 635px;[\s\S]*width: 390px;/);
 });
 
 test("timeline and working method headings share one visual type scale", () => {
@@ -72,16 +83,16 @@ test("timeline and working method headings share one visual type scale", () => {
 
 test("working method card stays compact and does not cover capabilities", () => {
   assert.match(indexSource, /methods: \{ left: 1120, top: 140, width: 470, height: 455 \}/);
-  assert.match(indexSource, /capabilities: \{ left: 1660, top: 140, width: 360, height: 350 \}/);
+  assert.match(indexSource, /capabilities: \{ left: 1660, top: 140, width: 360, height: 300 \}/);
   assert.match(indexSource, /fromSide: "right"[\s\S]*toSide: "left"/);
   assert.match(styleSource, /\.methods-card\s*\{[\s\S]*width: 470px;[\s\S]*padding: 22px 24px;/);
-  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*top: 140px;[\s\S]*width: 360px;[\s\S]*min-height: 350px;/);
+  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*top: 140px;[\s\S]*width: 360px;[\s\S]*min-height: 300px;/);
   assert.match(styleSource, /\.method-lead\s*\{[\s\S]*font-size: 22px !important;[\s\S]*line-height: 1\.35;/);
   assert.match(styleSource, /\.method-step\s*\{[\s\S]*grid-template-columns: 44px minmax\(0, 1fr\);/);
 });
 
 test("capability card uses compact pill tags with added operation roles", () => {
-  ["Vibe Coding", "内容运营", "项目管理", "AI产品运营", "Agent Native", "用户运营", "商家运营"].forEach(
+  ["AI产品运营", "AI产品实践", "LLM辅助开发", "Vibe Coding", "用户运营", "增长策略", "商家运营", "项目管理"].forEach(
     (label) => {
       assert.match(indexSource, new RegExp(label));
     }
@@ -96,8 +107,10 @@ test("capability card uses compact pill tags with added operation roles", () => 
 test("home canvas guides recruiters through a portfolio reading path", () => {
   assert.match(indexSource, /阅读路径/);
   assert.match(indexSource, /3分钟阅读建议/);
+  assert.match(indexSource, /先看 AI 定位与方法/);
   assert.doesNotMatch(indexSource, /重点项目案例/);
   assert.doesNotMatch(indexSource, /04 \/ CASE STUDIES/);
+  assert.match(indexSource, /project-evidence-line/);
   assert.match(indexSource, /我的角色：\{card\.role\}/);
   assert.match(indexSource, /查看案例/);
   assert.doesNotMatch(indexSource, /新建增长实验/);
@@ -109,7 +122,8 @@ test("home project cards start higher and center their proof controls", () => {
   assert.match(styleSource, /\.project-node-card\s*\{[\s\S]*width: 400px;[\s\S]*min-height: 0;/);
   assert.match(styleSource, /\.project-node-1\s*\{[\s\S]*top: 760px;/);
   assert.match(styleSource, /\.project-node-4\s*\{[\s\S]*top: 760px;/);
-  assert.match(styleSource, /\.project-label-row\s*\{[\s\S]*min-height: 78px;[\s\S]*border-bottom:/);
+  assert.match(styleSource, /\.project-label-row\s*\{[\s\S]*min-height: 96px;[\s\S]*border-bottom:/);
+  assert.match(styleSource, /\.project-evidence-line\s*\{[\s\S]*width: max-content;/);
   assert.match(styleSource, /\.project-badge-stack\s*\{[\s\S]*display: grid;/);
   assert.match(styleSource, /\.project-cover\s*\{[\s\S]*height: 154px;/);
   assert.match(styleSource, /\.canvas-project-copy h3\s*\{[\s\S]*font-size: 18px;[\s\S]*-webkit-line-clamp: 2;/);

@@ -15,14 +15,23 @@ const defaultZoomIndex = 4;
 const canvasSize = { width: 2480, height: 1560 };
 const canvasNodes = {
   "personal-info": { left: 120, top: 140, width: 390, height: 470 },
+  "ai-thread": { left: 120, top: 635, width: 390, height: 112 },
   timeline: { left: 650, top: 140, width: 380, height: 455 },
   methods: { left: 1120, top: 140, width: 470, height: 455 },
-  capabilities: { left: 1660, top: 140, width: 360, height: 350 }
+  capabilities: { left: 1660, top: 140, width: 360, height: 300 }
 };
 const canvasConnections = [
   {
-    id: "personal-info-timeline",
+    id: "personal-info-ai-thread",
     from: "personal-info",
+    fromSide: "bottom",
+    to: "ai-thread",
+    toSide: "top",
+    color: "#16a34a"
+  },
+  {
+    id: "ai-thread-timeline",
+    from: "ai-thread",
     fromSide: "right",
     to: "timeline",
     toSide: "left",
@@ -49,44 +58,52 @@ const canvasConnections = [
 const methodSteps = [
   {
     number: "01",
-    title: "识别需求，定义任务",
-    text: "从用户洞察与业务场景中，明确 AI 要帮用户完成什么。",
+    title: "识别场景，找到卡点",
+    text: "从用户洞察与业务场景中定位真实问题。",
     tags: ["真实场景", "用户卡点", "成功标准"]
   },
   {
     number: "02",
-    title: "跑通协作，完成任务",
-    text: "让任务引导、AI 输出与人工接管形成可完成的闭环。",
-    tags: ["任务引导", "可用草稿", "人机接力"]
+    title: "定义任务，做成原型",
+    text: "把需求拆成 AI 可协助完成的任务与交互。",
+    tags: ["任务拆解", "AI输出", "人机接力"]
   },
   {
     number: "03",
-    title: "反馈系统，持续进化",
-    text: "把用户反馈与失败样本回写为规则、知识与产品流程。",
-    tags: ["失败样本", "质量阈值", "持续迭代"]
+    title: "验证反馈，判断放大",
+    text: "用 MVP、行为信号和复盘数据决定是否迭代。",
+    tags: ["MVP验证", "行为数据", "持续迭代"]
   }
 ];
 
 const capabilityTags = [
-  { label: "Vibe Coding", tone: "yellow solid" },
-  { label: "内容运营", tone: "blue" },
-  { label: "项目管理", tone: "yellow" },
   { label: "AI产品运营", tone: "yellow solid" },
-  { label: "Agent Native", tone: "blue" },
+  { label: "AI产品实践", tone: "yellow solid" },
+  { label: "LLM辅助开发", tone: "blue" },
+  { label: "Vibe Coding", tone: "yellow solid" },
   { label: "用户运营", tone: "green" },
-  { label: "商家运营", tone: "green" }
+  { label: "增长策略", tone: "blue" },
+  { label: "商家运营", tone: "green" },
+  { label: "项目管理", tone: "yellow" }
+];
+
+const aiThreadSteps = [
+  "用户洞察",
+  "任务定义",
+  "AI辅助原型",
+  "数据复盘"
 ];
 
 const layers = [
-  { href: "#personal-info", label: "个人信息", color: "blue" },
-  { href: "#timeline", label: "经历时间线", color: "blue" },
-  { href: "#methods", label: "我的方法论", color: "yellow" },
-  { href: "#capabilities", label: "核心能力", color: "yellow" },
+  { href: "#personal-info", label: "个人定位", color: "blue" },
+  { href: "#methods", label: "AI方法论", color: "yellow" },
   ...caseStudies.map((item, index) => ({
     href: `#project-${item.slug}`,
     label: item.shortTitle,
     color: layerColors[index % layerColors.length]
-  }))
+  })),
+  { href: "#timeline", label: "经历时间线", color: "blue" },
+  { href: "#capabilities", label: "能力结构", color: "green" }
 ];
 
 function parseExperience(item) {
@@ -123,6 +140,7 @@ function ProjectNode({ item, index, dragProps }) {
             <span className="project-owner-label">{card.owner}</span>
             <span className="project-type-label">{card.project}</span>
           </div>
+          <p className="project-evidence-line">{card.evidenceType}</p>
           <p className="project-role-line">我的角色：{card.role}</p>
         </div>
       </div>
@@ -304,7 +322,7 @@ export default function HomePage() {
 
           <div className="os-create reading-cue">
             <b>3分钟阅读建议</b>
-            <span>先看定位与方法，再进入4个项目案例。</span>
+            <span>先看 AI 定位与方法，再进入小成就和3个增长案例。</span>
           </div>
 
           <div className="mini-map">
@@ -359,7 +377,7 @@ export default function HomePage() {
               </div>
               <div className="identity-glass-card identity-slogan-card">
                 <span>Slogan</span>
-                <strong>把AI变成增长验证的第二执行力</strong>
+                <strong>用 AI 把用户洞察变成可验证的增长闭环</strong>
               </div>
               <div className="identity-glass-card identity-contact-card">
                 <div className="identity-actions">
@@ -403,6 +421,21 @@ export default function HomePage() {
                   )}
                 </div>
               )}
+            </section>
+
+            <section
+              className="canvas-card ai-thread-card draggable-node"
+              id="ai-thread"
+              {...bindDrag("ai-thread")}
+            >
+              <div className="card-pin green" />
+              <span className="ai-thread-eyebrow">AI PRODUCT OPS THREAD</span>
+              <strong>把运营经验迁移到 AI 产品闭环</strong>
+              <div className="ai-thread-steps">
+                {aiThreadSteps.map((step) => (
+                  <span key={step}>{step}</span>
+                ))}
+              </div>
             </section>
 
             <section
@@ -462,7 +495,7 @@ export default function HomePage() {
                 <span>🧭</span>
                 我的方法论
               </h2>
-              <p className="method-lead">从用户需求到任务闭环</p>
+              <p className="method-lead">从用户需求到 AI 任务闭环</p>
               <div className="method-process">
                 {methodSteps.map((step) => (
                   <article className={`method-step step-${step.number}`} key={step.number}>
@@ -480,7 +513,7 @@ export default function HomePage() {
                 ))}
               </div>
               <div className="method-flow">
-                从用户洞察与业务场景出发，把 AI 能力落到可完成、可验证的任务闭环。
+                从用户洞察与业务场景出发，把 AI 能力落到可完成、可验证、可复盘的任务闭环。
               </div>
             </section>
 

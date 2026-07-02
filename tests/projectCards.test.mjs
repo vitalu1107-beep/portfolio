@@ -27,6 +27,10 @@ test("project cards expose ordered presentation metadata", () => {
     cards.map(({ role }) => role),
     ["独立产品负责人 / AI辅助开发", "商家及供给运营", "运营负责人 / 用户增长", "活动营销 / 项目协同"]
   );
+  assert.deepEqual(
+    cards.map(({ evidenceType }) => evidenceType),
+    ["AI产品实践证据", "供给增长能力证据", "用户增长能力证据", "项目协同能力证据"]
+  );
   cards.forEach((card) => {
     assert.equal(card.steps.length, 4);
   });
