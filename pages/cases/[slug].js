@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GrowthLine, FunnelChart } from "../../components/Charts";
 import AssetImage from "../../components/AssetImage";
 import { caseStudies, getCaseBySlug } from "../../data/cases";
+import { caseDecisionContent } from "../../data/caseDecisionContent.mjs";
 import { profile } from "../../data/profile";
 import { findVisualBySrc, selectEvidenceStrip } from "../../lib/casePresentation.mjs";
 import { publicPath } from "../../lib/paths";
@@ -10,18 +11,18 @@ import { publicPath } from "../../lib/paths";
 const caseNav = [
   { href: "#overview", label: "项目概览" },
   { href: "#model", label: "核心模型" },
-  { href: "#problem", label: "背景问题" },
-  { href: "#strategy", label: "策略判断" },
-  { href: "#actions", label: "执行路径" },
-  { href: "#results", label: "数据结果" },
-  { href: "#review", label: "复盘沉淀" },
+  { href: "#problem", label: "问题判断" },
+  { href: "#strategy", label: "方案取舍" },
+  { href: "#actions", label: "执行难点" },
+  { href: "#results", label: "结果证据" },
+  { href: "#review", label: "方法迁移" },
   { href: "#gallery", label: "证据链" }
 ];
 
 const caseBlueprints = {
   "tiny-achievement-app": {
     eyebrow: "Product Validation Map",
-    title: "小成就 APP 的 0→1 交付路径",
+    title: "小成就 APP 的 0->1 交付路径",
     summary: "以“低压力记录能否降低行动阻力”为核心假设，独立完成需求定义、MVP取舍、AI辅助开发、PWA部署与首轮个人自测。",
     nodes: ["行为假设", "MVP取舍", "PWA交付", "首轮自测"],
     proof: "交付证据可核验；使用信号来自N=1个人连续自测，不外推为多用户结论。"
@@ -80,7 +81,7 @@ function EvidenceFigure({ visual, badge }) {
 
 function CaseModelPanel({ item }) {
   const model = caseBlueprints[item.slug];
-  if (!model || item.hideModel) return null;
+  if (!model) return null;
 
   return (
     <section className="case-model-panel" id="model">
@@ -99,6 +100,130 @@ function CaseModelPanel({ item }) {
         ))}
       </div>
     </section>
+  );
+}
+
+function CaseDecisionSnapshot({ decision }) {
+  if (!decision?.roleGoal) return null;
+
+  return (
+    <section className="case-metric-strip" aria-label="招聘方速读">
+      <div className="case-metric">
+        <strong>角色</strong>
+        <span>{decision.roleGoal.role}</span>
+      </div>
+      <div className="case-metric">
+        <strong>目标</strong>
+        <span>{decision.roleGoal.goal}</span>
+      </div>
+      <div className="case-metric">
+        <strong>边界</strong>
+        <span>{decision.roleGoal.boundary}</span>
+      </div>
+    </section>
+  );
+}
+
+function CaseDecisionOptions({ options, selectedOptionId }) {
+  if (!options?.length) return null;
+
+  return (
+    <div className="case-validation-grid" aria-label="方案推演">
+      {options.map((option) => (
+        <article key={option.id}>
+          <span>{option.id === selectedOptionId ? "优先执行" : `方案${option.id}`}</span>
+          <h3>{option.title}</h3>
+          <p>{option.summary}</p>
+          <small>{option.tradeoff}</small>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function CaseSelectedReason({ selected }) {
+  if (!selected) return null;
+
+  return (
+    <div className="case-method-card">
+      <span>为什么选择这个方案</span>
+      <p>{selected.summary}</p>
+      <div>
+        {selected.reasons.map((reason) => (
+          <b key={reason}>{reason}</b>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CaseChallengeList({ items }) {
+  if (!items?.length) return null;
+
+  return (
+    <div className="case-validation-area">
+      <div className="case-validation-grid" aria-label="执行难点与解决">
+        {items.map((item, index) => (
+          <article key={item.challenge}>
+            <span>{String(index + 1).padStart(2, "0")} / 难点</span>
+            <h3>{item.challenge}</h3>
+            <p>{item.solution}</p>
+            <small>{item.learning}</small>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CaseResultScope({ resultScope }) {
+  if (!resultScope) return null;
+
+  return (
+    <div className="case-method-card">
+      <span>结果口径与证据边界</span>
+      <p>{resultScope.scope}</p>
+      <p>{resultScope.caveat}</p>
+      <div>
+        {resultScope.evidence.map((proof) => (
+          <b key={proof}>{proof}</b>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CaseTransferMethod({ method }) {
+  if (!method) return null;
+
+  return (
+    <div className="case-validation-area">
+      <div className="case-board-head">
+        <span className="case-section-label">Method Transfer</span>
+        <h3>{method.name}</h3>
+        <p>{method.summary}</p>
+      </div>
+      <div className="case-validation-grid" aria-label="方法论与迁移场景">
+        <article>
+          <span>方法步骤</span>
+          <h3>我会如何复用这套方法</h3>
+          <ul>
+            {method.steps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ul>
+        </article>
+        <article>
+          <span>迁移场景</span>
+          <h3>还能迁移到哪里</h3>
+          <ul>
+            {method.scenarios.map((scenario) => (
+              <li key={scenario}>{scenario}</li>
+            ))}
+          </ul>
+        </article>
+      </div>
+    </div>
   );
 }
 
@@ -286,8 +411,9 @@ function NarrativeCaseHero({ item }) {
 
 export default function CaseDetailPage({ item }) {
   const pageTitle = `${item.shortTitle} | 卢倩作品集`;
+  const decision = caseDecisionContent[item.slug];
   const gallery = item.gallery || [];
-  const visibleCaseNav = caseNav.filter((nav) => !(item.hideModel && nav.href === "#model"));
+  const visibleCaseNav = caseNav.filter((nav) => nav.href !== "#model" || caseBlueprints[item.slug]);
   const problemVisual =
     findVisualBySrc(gallery, item.sectionVisuals?.problem) || gallery[0];
   const strategyVisual =
@@ -369,7 +495,9 @@ export default function CaseDetailPage({ item }) {
             </>
           )}
 
-          {!item.hideModel && <CaseModelPanel item={item} />}
+          <CaseDecisionSnapshot decision={decision} />
+
+          <CaseModelPanel item={item} />
 
           <div className="case-report-layout">
             <aside className="case-toc" aria-label="案例目录">
@@ -386,9 +514,24 @@ export default function CaseDetailPage({ item }) {
             <div className="case-report-body">
               <section className="case-story-panel case-question-panel" id="problem">
                 <div className="case-story-copy">
-                  <span className="case-section-label">01 / Problem</span>
-                  <h2>背景问题</h2>
-                  <p>{item.problem}</p>
+                  <span className="case-section-label">01 / Judgement</span>
+                  <h2>{decision ? "关键问题判断" : "背景问题"}</h2>
+                  {decision ? (
+                    <>
+                      <p><strong>表面问题：</strong>{decision.problemJudgement.surface}</p>
+                      <p><strong>真正卡点：</strong>{decision.problemJudgement.core}</p>
+                      <div className="case-method-card">
+                        <span>判断依据</span>
+                        <div>
+                          {decision.problemJudgement.reasoning.map((reason) => (
+                            <b key={reason}>{reason}</b>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <p>{item.problem}</p>
+                  )}
                 </div>
                 <EvidenceFigure
                   visual={problemVisual}
@@ -396,24 +539,45 @@ export default function CaseDetailPage({ item }) {
                 />
               </section>
 
-              <section className="case-story-panel case-story-panel-reverse" id="strategy">
-                <EvidenceFigure
-                  visual={strategyVisual}
-                  badge={item.sectionEvidenceLabels?.strategy || "策略证据"}
-                />
-                <div className="case-story-copy">
-                  <span className="case-section-label">02 / Strategy</span>
-                  <h2>我的策略判断</h2>
-                  <p>{item.strategy}</p>
-                  <div className="case-method-card">
-                    <span>使用的方法论</span>
-                    <div>
-                      {item.methods.map((method) => (
-                        <b key={method}>{method}</b>
-                      ))}
+              <section className="case-panel" id="strategy">
+                <div className="case-board-head">
+                  <span className="case-section-label">02 / Options</span>
+                  <h2>{decision ? "方案推演与选择理由" : "我的策略判断"}</h2>
+                  <p>{decision ? decision.selected.summary : item.strategy}</p>
+                </div>
+                {decision ? (
+                  <>
+                    <CaseDecisionOptions
+                      options={decision.options}
+                      selectedOptionId={decision.selected.optionId}
+                    />
+                    <CaseSelectedReason selected={decision.selected} />
+                    <div className="case-result-evidence-grid">
+                      <EvidenceFigure
+                        visual={strategyVisual}
+                        badge={item.sectionEvidenceLabels?.strategy || "方案证据"}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <div className="case-story-panel case-story-panel-reverse">
+                    <EvidenceFigure
+                      visual={strategyVisual}
+                      badge={item.sectionEvidenceLabels?.strategy || "策略证据"}
+                    />
+                    <div className="case-story-copy">
+                      <p>{item.strategy}</p>
+                      <div className="case-method-card">
+                        <span>使用的方法论</span>
+                        <div>
+                          {item.methods.map((method) => (
+                            <b key={method}>{method}</b>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </section>
 
               <CaseConversionEvidencePanel items={item.conversionEvidence} />
@@ -421,7 +585,7 @@ export default function CaseDetailPage({ item }) {
               <section className="case-panel case-execution-panel" id="actions">
                 <div className="case-board-head">
                   <span className="case-section-label">03 / Execution</span>
-                  <h2>执行路径</h2>
+                  <h2>{decision ? "执行路径与难点解决" : "执行路径"}</h2>
                   <p>{item.executionIntro || "将关键动作与对应产出放在同一条执行路径中。"}</p>
                 </div>
                 {item.executionMatrix ? (
@@ -450,6 +614,7 @@ export default function CaseDetailPage({ item }) {
                     })}
                   </div>
                 )}
+                <CaseChallengeList items={decision?.challenges} />
               </section>
 
               <section className="case-panel case-results-panel" id="results">
@@ -458,7 +623,7 @@ export default function CaseDetailPage({ item }) {
                     <span className="case-section-label">
                       {item.validationStatus ? "04 / Validation" : "04 / Data"}
                     </span>
-                    <h2>{item.validationStatus ? "验证结果与证据" : "数据结果"}</h2>
+                    <h2>{item.validationStatus ? "验证结果与证据" : "结果、口径与证据"}</h2>
                     <p>{item.result}</p>
                   </div>
                   {!item.resultHighlights && (
@@ -468,6 +633,7 @@ export default function CaseDetailPage({ item }) {
                     />
                   )}
                 </div>
+                <CaseResultScope resultScope={decision?.resultScope} />
                 {item.resultHighlights ? (
                   <CaseResultHighlights
                     highlights={item.resultHighlights}
@@ -488,9 +654,10 @@ export default function CaseDetailPage({ item }) {
 
               <section className="case-story-panel case-review-panel" id="review">
                 <div className="case-story-copy">
-                  <span className="case-section-label">05 / Review</span>
-                  <h2>复盘总结</h2>
-                  <p>{item.review}</p>
+                  <span className="case-section-label">05 / Transfer</span>
+                  <h2>{decision ? "方法沉淀与迁移场景" : "复盘总结"}</h2>
+                  <p>{decision?.methodTransfer?.summary || item.review}</p>
+                  <CaseTransferMethod method={decision?.methodTransfer} />
                 </div>
                 <EvidenceFigure
                   visual={reviewVisual}
@@ -501,7 +668,9 @@ export default function CaseDetailPage({ item }) {
               <section className="case-panel case-gallery-panel" id="gallery">
                 <span className="case-section-label">06 / Evidence</span>
                 <h2>证据链总览</h2>
-                <p>这些不是单独展示的图片，而是支撑前面判断、策略、执行和结果的项目材料。</p>
+                <p>
+                  这些材料不是单独展示的图片，而是支撑前面问题判断、方案取舍、执行难点、结果口径和方法沉淀的项目证据。
+                </p>
                 <div className="case-evidence-strip">
                   {evidenceStrip.map((visual, index) => (
                     <figure key={visual.src}>
