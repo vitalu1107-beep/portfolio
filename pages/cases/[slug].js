@@ -197,30 +197,33 @@ function CaseTransferMethod({ method }) {
   if (!method) return null;
 
   return (
-    <div className="case-validation-area">
-      <div className="case-board-head">
+    <div className="case-review-transfer">
+      <div className="case-board-head case-transfer-head">
         <span className="case-section-label">Method Transfer</span>
         <h3>{method.name}</h3>
         <p>{method.summary}</p>
       </div>
-      <div className="case-validation-grid" aria-label="方法论与迁移场景">
-        <article>
+      <div className="case-transfer-grid" aria-label="方法论与迁移场景">
+        <article className="case-transfer-card case-transfer-steps">
           <span>方法步骤</span>
           <h3>我会如何复用这套方法</h3>
-          <ul>
-            {method.steps.map((step) => (
-              <li key={step}>{step}</li>
+          <ol>
+            {method.steps.map((step, index) => (
+              <li key={step}>
+                <b>{String(index + 1).padStart(2, "0")}</b>
+                <small>{step}</small>
+              </li>
             ))}
-          </ul>
+          </ol>
         </article>
-        <article>
+        <article className="case-transfer-card case-transfer-scenarios">
           <span>迁移场景</span>
           <h3>还能迁移到哪里</h3>
-          <ul>
+          <div>
             {method.scenarios.map((scenario) => (
-              <li key={scenario}>{scenario}</li>
+              <b key={scenario}>{scenario}</b>
             ))}
-          </ul>
+          </div>
         </article>
       </div>
     </div>
@@ -659,12 +662,12 @@ export default function CaseDetailPage({ item }) {
                   <span className="case-section-label">05 / Transfer</span>
                   <h2>{decision ? "方法沉淀与迁移场景" : "复盘总结"}</h2>
                   <p>{decision?.methodTransfer?.summary || item.review}</p>
-                  <CaseTransferMethod method={decision?.methodTransfer} />
                 </div>
                 <EvidenceFigure
                   visual={reviewVisual}
                   badge={item.sectionEvidenceLabels?.review || "复盘证据"}
                 />
+                <CaseTransferMethod method={decision?.methodTransfer} />
               </section>
 
               <section className="case-panel case-gallery-panel" id="gallery">

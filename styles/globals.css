@@ -1709,6 +1709,112 @@ main {
   margin-top: 28px;
 }
 
+.case-review-transfer {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 14px;
+  margin-top: 2px;
+  border-top: 1px solid rgba(26, 26, 46, 0.1);
+  padding-top: 20px;
+}
+
+.case-transfer-head {
+  max-width: 860px;
+}
+
+.case-transfer-head h3 {
+  margin: 8px 0 8px;
+  color: var(--text);
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.case-transfer-head p {
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.case-transfer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.case-transfer-card {
+  border: 1px solid color-mix(in srgb, var(--case-accent) 18%, rgba(26, 26, 46, 0.08));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--case-accent) 5%, white);
+  padding: 16px;
+}
+
+.case-transfer-card > span {
+  display: inline-flex;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 5px 9px;
+  color: var(--case-accent);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.case-transfer-card h3 {
+  margin: 12px 0 12px;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.case-transfer-steps ol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-transfer-steps li {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+
+.case-transfer-steps b {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--case-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.case-transfer-steps small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.case-transfer-scenarios div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.case-transfer-scenarios b {
+  border: 1px solid color-mix(in srgb, var(--case-accent) 22%, transparent);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 7px 10px;
+  color: var(--case-accent);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 .case-validation-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2282,8 +2388,14 @@ main {
   .case-action-board,
   .case-evidence-strip,
   .case-result-highlight-grid,
+  .case-transfer-grid,
+  .case-transfer-steps ol,
   .case-model-map {
     grid-template-columns: 1fr;
+  }
+
+  .case-review-transfer {
+    padding-top: 16px;
   }
 
   .case-model-panel {
