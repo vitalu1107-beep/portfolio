@@ -6,13 +6,13 @@ export const projectCards = {
     ink: "#0b6b34",
     type: "AI产品验证",
     evidenceType: "AI产品实践证据",
-    role: "独立产品负责人 / AI辅助开发",
-    headline: "用7天验证一个可上线的AI辅助产品闭环",
-    copy: "从用户洞察、MVP、PWA上线到行为信号，验证“正反馈记录”是否成立。",
-    steps: ["洞察", "MVP", "上线", "验证"],
+    role: "AI产品验证 / 运营洞察",
+    headline: "用运营洞察和AI协作验证正反馈记录产品",
+    copy: "把用户运营经验拆成AI任务、PWA上线和下一轮指标，验证“低压力记录”是否值得扩样。",
+    steps: ["洞察", "AI任务", "上线", "指标"],
     proofs: [
       { value: "0→1", label: "PWA上线" },
-      { value: "第3天", label: "主动打开" }
+      { value: "3层", label: "证据分层" }
     ]
   },
   "meituan-supply-growth": {

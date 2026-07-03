@@ -55,4 +55,28 @@ for (const slug of expectedSlugs) {
   );
 }
 
+const smallWinsDecision = caseDecisionContent["tiny-achievement-app"];
+const smallWinsSerialized = JSON.stringify(smallWinsDecision);
+
+[
+  "运营洞察",
+  "AI协作",
+  "AI任务",
+  "指标",
+  "7日记录率",
+  "主动打开频次",
+  "随机回顾使用率"
+].forEach((phrase) => {
+  assert.match(
+    smallWinsSerialized,
+    new RegExp(phrase),
+    `small wins decision content should expose ${phrase}`
+  );
+});
+
+assert.equal(
+  smallWinsDecision.methodTransfer.name,
+  "运营洞察-AI任务-MVP验证-指标扩样"
+);
+
 console.log("case decision content complete");

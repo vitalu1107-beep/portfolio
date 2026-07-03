@@ -22,9 +22,9 @@ const caseNav = [
 const caseBlueprints = {
   "tiny-achievement-app": {
     eyebrow: "Product Validation Map",
-    title: "小成就 APP 的 0->1 交付路径",
-    summary: "以“低压力记录能否降低行动阻力”为核心假设，独立完成需求定义、MVP取舍、AI辅助开发、PWA部署与首轮个人自测。",
-    nodes: ["行为假设", "MVP取舍", "PWA交付", "首轮自测"],
+    title: "小成就 APP 的 AI 产品验证路径",
+    summary: "以“低压力记录能否降低行动阻力”为核心假设，把运营洞察拆成AI任务、MVP交付和下一轮指标验证。",
+    nodes: ["运营洞察", "AI任务", "MVP取舍", "PWA交付", "指标扩样"],
     proof: "交付证据可核验；使用信号来自N=1个人连续自测，不外推为多用户结论。"
   },
   "meituan-supply-growth": {
@@ -81,7 +81,7 @@ function EvidenceFigure({ visual, badge }) {
 
 function CaseModelPanel({ item }) {
   const model = caseBlueprints[item.slug];
-  if (!model) return null;
+  if (!model || item.hideModel) return null;
 
   return (
     <section className="case-model-panel" id="model">
@@ -107,7 +107,7 @@ function CaseDecisionSnapshot({ decision }) {
   if (!decision?.roleGoal) return null;
 
   return (
-    <section className="case-metric-strip" aria-label="招聘方速读">
+    <section className="case-metric-strip" aria-label="案例速读">
       <div className="case-metric">
         <strong>角色</strong>
         <span>{decision.roleGoal.role}</span>
@@ -413,7 +413,9 @@ export default function CaseDetailPage({ item }) {
   const pageTitle = `${item.shortTitle} | 卢倩作品集`;
   const decision = caseDecisionContent[item.slug];
   const gallery = item.gallery || [];
-  const visibleCaseNav = caseNav.filter((nav) => nav.href !== "#model" || caseBlueprints[item.slug]);
+  const visibleCaseNav = caseNav.filter(
+    (nav) => nav.href !== "#model" || (caseBlueprints[item.slug] && !item.hideModel)
+  );
   const problemVisual =
     findVisualBySrc(gallery, item.sectionVisuals?.problem) || gallery[0];
   const strategyVisual =

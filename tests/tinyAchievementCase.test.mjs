@@ -5,7 +5,7 @@ import { tinyAchievementCase } from "../data/tinyAchievementCase.mjs";
 
 test("Small Wins case separates verified delivery, early signal, and next validation", () => {
   assert.equal(tinyAchievementCase.company, "独立AI项目");
-  assert.equal(tinyAchievementCase.role, "产品策划 / AI辅助开发 / 体验验证");
+  assert.equal(tinyAchievementCase.role, "AI产品验证 / 运营洞察 / AI协作交付");
   assert.equal(tinyAchievementCase.validationStatus.length, 3);
   assert.deepEqual(
     tinyAchievementCase.validationStatus.map(({ status }) => status),
@@ -48,4 +48,23 @@ test("Small Wins case uses auditable repository milestones and avoids unsupporte
   }
   assert.equal(serialized.includes("app-optimization.jpg"), false);
   assert.equal(serialized.includes("app-dashboard.jpg"), false);
+});
+
+test("Small Wins frames the case as operations insight plus AI product validation", () => {
+  const serialized = JSON.stringify(tinyAchievementCase);
+
+  [
+    "运营洞察",
+    "AI协作",
+    "AI任务拆解",
+    "指标验证",
+    "7日记录率",
+    "主动打开频次",
+    "随机回顾使用率"
+  ].forEach((phrase) => {
+    assert.match(serialized, new RegExp(phrase), `missing AI product validation phrase: ${phrase}`);
+  });
+
+  assert.match(tinyAchievementCase.hero.title, /运营洞察.*AI协作/);
+  assert.equal(tinyAchievementCase.hero.metrics.some(({ label }) => label.includes("AI协作")), true);
 });
