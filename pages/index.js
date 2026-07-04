@@ -106,6 +106,14 @@ const layers = [
   { href: "#capabilities", label: "能力结构", color: "green" }
 ];
 
+const mobileLayers = [
+  { href: "#personal-info", label: "定位" },
+  { href: "#methods", label: "方法" },
+  { href: "#project-tiny-achievement-app", label: "项目" },
+  { href: "#timeline", label: "经历" },
+  { href: "#personal-info", label: "联系" }
+];
+
 function parseExperience(item) {
   const [meta, summary = ""] = item.split("：");
   const [period, company = "", role = ""] = meta.split("｜");
@@ -115,6 +123,10 @@ function parseExperience(item) {
     title: [company, role].filter(Boolean).join(" · "),
     summary
   };
+}
+
+function isMobileCanvas() {
+  return typeof window !== "undefined" && window.matchMedia("(max-width: 960px)").matches;
 }
 
 function ProjectNode({ item, index, dragProps }) {
@@ -201,6 +213,7 @@ export default function HomePage() {
   }
 
   function handlePointerDown(event, id) {
+    if (isMobileCanvas()) return;
     if (event.button !== 0 || event.target.closest("a, button")) return;
     const position = positions[id] || { x: 0, y: 0 };
     dragRef.current = {
@@ -237,6 +250,7 @@ export default function HomePage() {
   }
 
   function handleCanvasPointerDown(event) {
+    if (isMobileCanvas()) return;
     if (
       event.button !== 0 ||
       event.target.closest(".draggable-node, .canvas-toolbar, .zoom-controls, a, button")
@@ -316,6 +330,14 @@ export default function HomePage() {
                 <i className={layer.color} />
                 {layer.label}
                 <em>◎</em>
+              </a>
+            ))}
+          </nav>
+
+          <nav className="mobile-layer-list" aria-label="手机端阅读路径">
+            {mobileLayers.map((layer) => (
+              <a href={layer.href} key={`${layer.href}-${layer.label}`}>
+                {layer.label}
               </a>
             ))}
           </nav>
@@ -516,6 +538,12 @@ export default function HomePage() {
                 从用户洞察与业务场景出发，把 AI 能力落到可完成、可验证、可复盘的任务闭环。
               </div>
             </section>
+
+            <div className="mobile-case-heading" aria-label="项目案例">
+              <span>Case Evidence</span>
+              <strong>4个项目案例</strong>
+              <p>从 AI 产品验证到增长、供给和活动操盘。</p>
+            </div>
 
             {caseStudies.map((item, index) => (
               <ProjectNode

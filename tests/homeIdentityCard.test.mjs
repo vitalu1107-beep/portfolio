@@ -134,6 +134,42 @@ test("home project cards start higher and center their proof controls", () => {
   assert.match(styleSource, /\.project-link-row\s*\{[\s\S]*justify-content: center;/);
 });
 
+test("home mobile reading flow prioritizes identity, method, cases, capability, and timeline", () => {
+  assert.match(indexSource, /const mobileLayers = \[/);
+  ["定位", "方法", "项目", "经历", "联系"].forEach((label) => {
+    assert.match(indexSource, new RegExp(`label: "${label}"`));
+  });
+  assert.match(indexSource, /className="mobile-layer-list"/);
+  assert.match(indexSource, /className="mobile-case-heading"/);
+  assert.match(indexSource, /4个项目案例/);
+
+  assert.match(styleSource, /\.mobile-layer-list,\s*\n\.mobile-case-heading\s*\{[\s\S]*display: none;/);
+  assert.match(styleSource, /\.identity-card\s*\{[\s\S]*order: 1;/);
+  assert.match(styleSource, /\.ai-thread-card\s*\{[\s\S]*order: 2;/);
+  assert.match(styleSource, /\.methods-card\s*\{[\s\S]*order: 3;/);
+  assert.match(styleSource, /\.mobile-case-heading\s*\{[\s\S]*order: 4;/);
+  assert.match(styleSource, /\.project-node-1\s*\{[\s\S]*order: 5;/);
+  assert.match(styleSource, /\.project-node-4\s*\{[\s\S]*order: 8;/);
+  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*order: 9;/);
+  assert.match(styleSource, /\.timeline-card\s*\{[\s\S]*order: 10;/);
+});
+
+test("home mobile project cards are compact and touch friendly", () => {
+  assert.match(indexSource, /function isMobileCanvas\(\)/);
+  assert.match(indexSource, /window\.matchMedia\("\(max-width: 960px\)"\)\.matches/);
+  assert.match(indexSource, /if \(isMobileCanvas\(\)\) return;/);
+  assert.match(styleSource, /\.layer-list\s*\{[\s\S]*display: none;/);
+  assert.match(styleSource, /\.mobile-layer-list\s*\{[\s\S]*display: flex;[\s\S]*overflow-x: auto;/);
+  assert.match(styleSource, /\.mobile-layer-list a\s*\{[\s\S]*min-height: 38px;/);
+  assert.match(styleSource, /\.draggable-node\s*\{[\s\S]*touch-action: auto;/);
+  assert.match(styleSource, /\.project-node-card\s*\{[\s\S]*border-radius: 18px;/);
+  assert.match(styleSource, /\.project-label-row\s*\{[\s\S]*min-height: 0;[\s\S]*padding: 14px 56px 12px 16px;/);
+  assert.match(styleSource, /\.project-role-line\s*\{[\s\S]*white-space: normal;/);
+  assert.match(styleSource, /\.project-cover\s*\{[\s\S]*height: 124px;/);
+  assert.match(styleSource, /\.canvas-project-copy h3\s*\{[\s\S]*min-height: 0;[\s\S]*-webkit-line-clamp: 3;/);
+  assert.match(styleSource, /\.project-link-row a\s*\{[\s\S]*min-height: 44px;/);
+});
+
 test("home canvas starts zoomed out and keeps controls off the project cards", () => {
   assert.match(indexSource, /const defaultZoomIndex = 4;/);
   assert.match(indexSource, /useState\(defaultZoomIndex\)/);
