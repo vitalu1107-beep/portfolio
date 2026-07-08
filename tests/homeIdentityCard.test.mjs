@@ -20,13 +20,13 @@ test("home identity card exposes four contact actions", () => {
 });
 
 test("home identity card uses a balanced compact card rhythm", () => {
-  assert.match(indexSource, /"personal-info": \{ left: 40, top: 44, width: 330, height: 286 \}/);
-  assert.match(styleSource, /\.identity-card\s*\{[\s\S]*width: 330px;[\s\S]*min-height: 286px;[\s\S]*display: grid;/);
+  assert.match(indexSource, /"personal-info": \{ left: 120, top: 140, width: 390, height: 470 \}/);
+  assert.match(styleSource, /\.identity-card\s*\{[\s\S]*width: 390px;[\s\S]*min-height: 470px;[\s\S]*display: grid;/);
   assert.match(styleSource, /\.identity-avatar-photo\s*\{[\s\S]*object-position: center top;/);
 });
 
 test("timeline uses compact three-line entries", () => {
-  assert.match(indexSource, /timeline: \{ left: 836, top: 304, width: 364, height: 206 \}/);
+  assert.match(indexSource, /timeline: \{ left: 650, top: 140, width: 380, height: 455 \}/);
   assert.match(styleSource, /\.timeline-mini b\s*\{[\s\S]*white-space: nowrap;[\s\S]*text-overflow: ellipsis;/);
   assert.match(styleSource, /\.timeline-mini small\s*\{[\s\S]*white-space: nowrap;[\s\S]*text-overflow: ellipsis;/);
 
@@ -63,14 +63,14 @@ test("home canvas replaces duplicate contact block with a working method system"
 });
 
 test("home canvas adds an explicit AI product operations thread", () => {
-  assert.match(indexSource, /"ai-thread": \{ left: 40, top: 348, width: 330, height: 82 \}/);
+  assert.match(indexSource, /"ai-thread": \{ left: 120, top: 635, width: 390, height: 112 \}/);
   assert.match(indexSource, /AI PRODUCT OPS THREAD/);
   assert.match(indexSource, /把运营经验迁移到 AI 产品闭环/);
   ["用户洞察", "任务定义", "AI辅助原型", "数据复盘"].forEach((label) => {
     assert.match(indexSource, new RegExp(label));
   });
   assert.match(indexSource, /id: "personal-info-ai-thread"/);
-  assert.match(styleSource, /\.ai-thread-card\s*\{[\s\S]*left: 40px;[\s\S]*top: 348px;[\s\S]*width: 330px;/);
+  assert.match(styleSource, /\.ai-thread-card\s*\{[\s\S]*left: 120px;[\s\S]*top: 635px;[\s\S]*width: 390px;/);
 });
 
 test("timeline and working method headings share one visual type scale", () => {
@@ -78,21 +78,21 @@ test("timeline and working method headings share one visual type scale", () => {
   assert.match(indexSource, /className="canvas-section-heading"[\s\S]*经历时间线/);
   assert.match(indexSource, /className="canvas-section-heading"[\s\S]*我的方法论/);
   assert.doesNotMatch(indexSource, /MY WORKING METHOD/);
-  assert.match(styleSource, /\.canvas-section-heading\s*\{[\s\S]*font-size: 18px;/);
+  assert.match(styleSource, /\.canvas-section-heading\s*\{[\s\S]*font-size: 25px;/);
 });
 
 test("working method card stays compact and does not cover capabilities", () => {
-  assert.match(indexSource, /methods: \{ left: 398, top: 44, width: 410, height: 386 \}/);
-  assert.match(indexSource, /capabilities: \{ left: 836, top: 44, width: 364, height: 236 \}/);
+  assert.match(indexSource, /methods: \{ left: 1120, top: 140, width: 470, height: 455 \}/);
+  assert.match(indexSource, /capabilities: \{ left: 1660, top: 140, width: 360, height: 300 \}/);
   assert.match(indexSource, /fromSide: "right"[\s\S]*toSide: "left"/);
-  assert.match(styleSource, /\.methods-card\s*\{[\s\S]*width: 410px;[\s\S]*padding: 20px;/);
-  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*top: 44px;[\s\S]*width: 364px;[\s\S]*min-height: 236px;/);
-  assert.match(styleSource, /\.method-lead\s*\{[\s\S]*font-size: 18px !important;[\s\S]*line-height: 1\.35;/);
-  assert.match(styleSource, /\.method-step\s*\{[\s\S]*grid-template-columns: 34px minmax\(0, 1fr\);/);
+  assert.match(styleSource, /\.methods-card\s*\{[\s\S]*width: 470px;[\s\S]*padding: 22px 24px;/);
+  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*top: 140px;[\s\S]*width: 360px;[\s\S]*min-height: 300px;/);
+  assert.match(styleSource, /\.method-lead\s*\{[\s\S]*font-size: 22px !important;[\s\S]*line-height: 1\.35;/);
+  assert.match(styleSource, /\.method-step\s*\{[\s\S]*grid-template-columns: 44px minmax\(0, 1fr\);/);
 });
 
 test("capability card uses compact pill tags with added operation roles", () => {
-  ["AI产品思维", "AI产品实践", "LLM应用开发", "Vibe Coding", "用户运营", "增长策略", "商家运营", "项目管理"].forEach(
+  ["AI产品运营", "AI产品实践", "LLM辅助开发", "Vibe Coding", "用户运营", "增长策略", "商家运营", "项目管理"].forEach(
     (label) => {
       assert.match(indexSource, new RegExp(label));
     }
@@ -119,33 +119,19 @@ test("home canvas guides recruiters through a portfolio reading path", () => {
 
 test("home project cards start higher and center their proof controls", () => {
   assert.doesNotMatch(indexSource, /card\?\.copy \|\| item\.summary/);
-  assert.match(styleSource, /\.project-node-card\s*\{[\s\S]*width: 274px;[\s\S]*height: 252px;/);
-  assert.match(styleSource, /\.project-node-1\s*\{[\s\S]*left: 40px;[\s\S]*top: 538px;/);
-  assert.match(styleSource, /\.project-node-4\s*\{[\s\S]*left: 928px;[\s\S]*top: 538px;/);
-  assert.match(styleSource, /\.project-label-row\s*\{[\s\S]*min-height: 58px;[\s\S]*border-bottom:/);
+  assert.match(styleSource, /\.project-node-card\s*\{[\s\S]*width: 400px;[\s\S]*min-height: 0;/);
+  assert.match(styleSource, /\.project-node-1\s*\{[\s\S]*top: 760px;/);
+  assert.match(styleSource, /\.project-node-4\s*\{[\s\S]*top: 760px;/);
+  assert.match(styleSource, /\.project-label-row\s*\{[\s\S]*min-height: 96px;[\s\S]*border-bottom:/);
   assert.match(styleSource, /\.project-evidence-line\s*\{[\s\S]*width: max-content;/);
   assert.match(styleSource, /\.project-badge-stack\s*\{[\s\S]*display: grid;/);
-  assert.match(styleSource, /\.project-cover\s*\{[\s\S]*height: 82px;/);
-  assert.match(styleSource, /\.canvas-project-copy h3\s*\{[\s\S]*font-size: 15px;[\s\S]*-webkit-line-clamp: 2;/);
+  assert.match(styleSource, /\.project-cover\s*\{[\s\S]*height: 154px;/);
+  assert.match(styleSource, /\.canvas-project-copy h3\s*\{[\s\S]*font-size: 18px;[\s\S]*-webkit-line-clamp: 2;/);
   assert.match(styleSource, /\.canvas-project-copy p\s*\{[\s\S]*display: none;/);
-  assert.match(styleSource, /\.canvas-project-steps\s*\{[\s\S]*justify-content: flex-start;/);
+  assert.match(styleSource, /\.canvas-project-steps\s*\{[\s\S]*justify-content: center;/);
   assert.match(styleSource, /\.canvas-project-metrics\s*\{[\s\S]*gap: 12px;[\s\S]*text-align: center;/);
   assert.match(styleSource, /\.canvas-project-metrics b\s*\{[\s\S]*display: grid;[\s\S]*border-radius: 12px;/);
-  assert.match(styleSource, /\.project-link-row\s*\{[\s\S]*align-self: end;/);
-});
-
-test("home desktop canvas is a centered fixed stage with center-origin zoom", () => {
-  assert.match(indexSource, /const canvasSize = \{ width: 1240, height: 820 \};/);
-  assert.match(indexSource, /const zoomSteps = \[0\.7, 0\.8, 0\.9, 1, 1\.1\];/);
-  assert.match(indexSource, /const defaultZoomIndex = 1;/);
-  assert.match(indexSource, /className="main-area os-canvas"/);
-  assert.match(indexSource, /className="top-toolbar"/);
-  assert.match(indexSource, /className="canvas-viewport"/);
-  assert.match(indexSource, /className="stage-shell canvas-stage-shell"/);
-  assert.match(indexSource, /transform: `scale\(\$\{zoom\}\)`/);
-  assert.match(styleSource, /\.canvas-viewport\s*\{[\s\S]*display: grid;[\s\S]*place-items: center;/);
-  assert.match(styleSource, /\.canvas-stage\s*\{[\s\S]*transform-origin: center center;/);
-  assert.doesNotMatch(styleSource, /transform-origin: top left;/);
+  assert.match(styleSource, /\.project-link-row\s*\{[\s\S]*justify-content: center;/);
 });
 
 test("home mobile reading flow prioritizes identity, method, cases, capability, and timeline", () => {
@@ -170,7 +156,7 @@ test("home mobile reading flow prioritizes identity, method, cases, capability, 
 
 test("home mobile project cards are compact and touch friendly", () => {
   assert.match(indexSource, /function isMobileCanvas\(\)/);
-  assert.match(indexSource, /window\.matchMedia\("\(max-width: 1023px\)"\)\.matches/);
+  assert.match(indexSource, /window\.matchMedia\("\(max-width: 960px\)"\)\.matches/);
   assert.match(indexSource, /if \(isMobileCanvas\(\)\) return;/);
   assert.match(styleSource, /\.layer-list\s*\{[\s\S]*display: none;/);
   assert.match(styleSource, /\.mobile-layer-list\s*\{[\s\S]*display: flex;[\s\S]*overflow-x: auto;/);
@@ -185,19 +171,10 @@ test("home mobile project cards are compact and touch friendly", () => {
 });
 
 test("home canvas starts zoomed out and keeps controls off the project cards", () => {
-  assert.match(indexSource, /const defaultZoomIndex = 1;/);
+  assert.match(indexSource, /const defaultZoomIndex = 4;/);
   assert.match(indexSource, /useState\(defaultZoomIndex\)/);
   assert.match(indexSource, /<span>Swipe<\/span>[\s\S]*<em>左右滑动<\/em>/);
   assert.doesNotMatch(indexSource, /拖拽卡片/);
-  assert.match(styleSource, /\.zoom-controls\s*\{[\s\S]*position: static;/);
-  assert.match(styleSource, /\.canvas-toolbar\s*\{[\s\S]*position: static;/);
-});
-
-test("home visual theme uses green variables across desktop and mobile", () => {
-  assert.match(styleSource, /--portfolio-primary: #16a34a;/);
-  assert.match(styleSource, /--portfolio-deep: #15803d;/);
-  assert.match(styleSource, /--portfolio-soft: #ecfdf3;/);
-  assert.match(styleSource, /--portfolio-page: #f8faf7;/);
-  assert.match(styleSource, /\.mobile-layer-list a\s*\{[\s\S]*border: 1px solid var\(--portfolio-border\);[\s\S]*color: var\(--portfolio-deep\);/);
-  assert.match(styleSource, /\.project-node-card \.project-link-row a:first-child\s*\{[\s\S]*background: var\(--portfolio-primary\);/);
+  assert.match(styleSource, /\.zoom-controls\s*\{[\s\S]*top: 20px;[\s\S]*bottom: auto;/);
+  assert.match(styleSource, /\.canvas-toolbar\s*\{[\s\S]*top: 20px;[\s\S]*bottom: auto;/);
 });

@@ -8,17 +8,17 @@ import { profile } from "../data/profile";
 import { projectCards } from "../data/projectCards.mjs";
 import { publicPath } from "../lib/paths";
 
-const layerColors = ["green", "green", "green", "green"];
+const layerColors = ["red", "blue", "yellow", "green"];
 
-const zoomSteps = [0.7, 0.8, 0.9, 1, 1.1];
-const defaultZoomIndex = 1;
-const canvasSize = { width: 1240, height: 820 };
+const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
+const defaultZoomIndex = 4;
+const canvasSize = { width: 2480, height: 1560 };
 const canvasNodes = {
-  "personal-info": { left: 40, top: 44, width: 330, height: 286 },
-  "ai-thread": { left: 40, top: 348, width: 330, height: 82 },
-  methods: { left: 398, top: 44, width: 410, height: 386 },
-  capabilities: { left: 836, top: 44, width: 364, height: 236 },
-  timeline: { left: 836, top: 304, width: 364, height: 206 }
+  "personal-info": { left: 120, top: 140, width: 390, height: 470 },
+  "ai-thread": { left: 120, top: 635, width: 390, height: 112 },
+  timeline: { left: 650, top: 140, width: 380, height: 455 },
+  methods: { left: 1120, top: 140, width: 470, height: 455 },
+  capabilities: { left: 1660, top: 140, width: 360, height: 300 }
 };
 const canvasConnections = [
   {
@@ -33,9 +33,17 @@ const canvasConnections = [
     id: "ai-thread-timeline",
     from: "ai-thread",
     fromSide: "right",
+    to: "timeline",
+    toSide: "left",
+    color: "#2b7fd8"
+  },
+  {
+    id: "timeline-methods",
+    from: "timeline",
+    fromSide: "right",
     to: "methods",
     toSide: "left",
-    color: "#16a34a"
+    color: "#2b7fd8"
   },
   {
     id: "methods-capabilities",
@@ -43,15 +51,7 @@ const canvasConnections = [
     fromSide: "right",
     to: "capabilities",
     toSide: "left",
-    color: "#16a34a"
-  },
-  {
-    id: "capabilities-timeline",
-    from: "capabilities",
-    fromSide: "bottom",
-    to: "timeline",
-    toSide: "top",
-    color: "#86efac"
+    color: "#f4d758"
   }
 ];
 
@@ -77,12 +77,12 @@ const methodSteps = [
 ];
 
 const capabilityTags = [
-  { label: "AI产品思维", tone: "green solid" },
+  { label: "AI产品运营", tone: "yellow solid" },
   { label: "AI产品实践", tone: "yellow solid" },
-  { label: "LLM应用开发", tone: "green" },
-  { label: "Vibe Coding", tone: "yellow" },
+  { label: "LLM辅助开发", tone: "blue" },
+  { label: "Vibe Coding", tone: "yellow solid" },
   { label: "用户运营", tone: "green" },
-  { label: "增长策略", tone: "green" },
+  { label: "增长策略", tone: "blue" },
   { label: "商家运营", tone: "green" },
   { label: "项目管理", tone: "yellow" }
 ];
@@ -126,7 +126,7 @@ function parseExperience(item) {
 }
 
 function isMobileCanvas() {
-  return typeof window !== "undefined" && window.matchMedia("(max-width: 1023px)").matches;
+  return typeof window !== "undefined" && window.matchMedia("(max-width: 960px)").matches;
 }
 
 function ProjectNode({ item, index, dragProps }) {
@@ -139,8 +139,8 @@ function ProjectNode({ item, index, dragProps }) {
       id={`project-${item.slug}`}
       style={{
         ...style,
-        "--project-accent": "var(--portfolio-primary)",
-        "--project-ink": "var(--portfolio-deep)"
+        "--project-accent": item.accent,
+        "--project-ink": card.ink
       }}
       {...eventProps}
     >
@@ -157,7 +157,7 @@ function ProjectNode({ item, index, dragProps }) {
         </div>
       </div>
       <div className="canvas-project-media">
-        <ProjectCover variant={card.cover} accent="var(--portfolio-primary)" title={card.project} />
+        <ProjectCover variant={card.cover} accent={item.accent} title={card.project} />
       </div>
       <div className="canvas-project-copy">
         <h3 title={card?.headline || item.shortTitle}>{card?.headline || item.shortTitle}</h3>
@@ -316,7 +316,7 @@ export default function HomePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <main className="portfolio-page os-page">
+      <main className="os-page">
         <aside className="os-sidebar" aria-label="作品集阅读路径">
           <div className="os-brand">
             <span> L </span>
@@ -357,49 +357,17 @@ export default function HomePage() {
           </div>
         </aside>
 
-        <section className="main-area os-canvas" aria-label="卢倩个人OS画布">
-          <div className="top-toolbar">
-            <div className="canvas-toolbar" aria-label="画布操作提示">
-              <span>Scroll</span>
-              <em>缩放</em>
-              <b>·</b>
-              <span>Swipe</span>
-              <em>左右滑动</em>
-              <b>·</b>
-              <span>Click</span>
-              <em>查看案例</em>
-            </div>
+        <section
+          className="os-canvas"
+          aria-label="卢倩个人OS画布"
+          ref={canvasRef}
+          onPointerDown={handleCanvasPointerDown}
+          onPointerMove={handleCanvasPointerMove}
+          onPointerUp={handleCanvasPointerUp}
+          onPointerCancel={handleCanvasPointerUp}
+        >
 
-            <div className="zoom-controls" aria-label="画布缩放控制">
-              <button
-                type="button"
-                onClick={zoomOut}
-                aria-label="缩小画布"
-                disabled={zoomIndex === 0}
-              >
-                -
-              </button>
-              <span>{Math.round(zoom * 100)}%</span>
-              <button
-                type="button"
-                onClick={zoomIn}
-                aria-label="放大画布"
-                disabled={zoomIndex === zoomSteps.length - 1}
-              >
-                +
-              </button>
-            </div>
-          </div>
-
-          <div
-            className="canvas-viewport"
-            ref={canvasRef}
-            onPointerDown={handleCanvasPointerDown}
-            onPointerMove={handleCanvasPointerMove}
-            onPointerUp={handleCanvasPointerUp}
-            onPointerCancel={handleCanvasPointerUp}
-          >
-          <div className="stage-shell canvas-stage-shell" style={scaledCanvasStyle}>
+          <div className="canvas-stage-shell" style={scaledCanvasStyle}>
             <div className="canvas-stage" style={canvasStageStyle}>
             <CanvasConnections
               connections={canvasConnections}
@@ -588,6 +556,36 @@ export default function HomePage() {
 
             </div>
           </div>
+
+          <div className="zoom-controls" aria-label="画布缩放控制">
+            <button
+              type="button"
+              onClick={zoomOut}
+              aria-label="缩小画布"
+              disabled={zoomIndex === 0}
+            >
+              -
+            </button>
+            <span>{Math.round(zoom * 100)}%</span>
+            <button
+              type="button"
+              onClick={zoomIn}
+              aria-label="放大画布"
+              disabled={zoomIndex === zoomSteps.length - 1}
+            >
+              +
+            </button>
+          </div>
+
+          <div className="canvas-toolbar" aria-label="画布操作提示">
+            <span>Scroll</span>
+            <em>缩放</em>
+            <b>·</b>
+            <span>Swipe</span>
+            <em>左右滑动</em>
+            <b>·</b>
+            <span>Click</span>
+            <em>查看案例</em>
           </div>
         </section>
       </main>
