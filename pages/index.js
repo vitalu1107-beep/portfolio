@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CanvasConnections from "../components/CanvasConnections";
 import ProjectCover from "../components/ProjectCover";
 import { caseStudies } from "../data/cases";
@@ -14,11 +14,11 @@ const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const defaultZoomIndex = 4;
 const canvasSize = { width: 2480, height: 1560 };
 const canvasNodes = {
-  "personal-info": { left: 120, top: 140, width: 390, height: 470 },
-  "ai-thread": { left: 120, top: 635, width: 390, height: 112 },
-  timeline: { left: 650, top: 140, width: 380, height: 455 },
-  methods: { left: 1120, top: 140, width: 470, height: 455 },
-  capabilities: { left: 1660, top: 140, width: 360, height: 300 }
+  "personal-info": { left: 420, top: 300, width: 390, height: 470 },
+  "ai-thread": { left: 420, top: 820, width: 390, height: 112 },
+  timeline: { left: 980, top: 260, width: 380, height: 455 },
+  methods: { left: 1510, top: 300, width: 470, height: 455 },
+  capabilities: { left: 980, top: 800, width: 470, height: 250 }
 };
 const canvasConnections = [
   {
@@ -195,15 +195,33 @@ export default function HomePage() {
   const [zoomIndex, setZoomIndex] = useState(defaultZoomIndex);
   const [visibleContact, setVisibleContact] = useState(null);
   const zoom = zoomSteps[zoomIndex];
+  const scaledCanvasWidth = canvasSize.width * zoom;
+  const scaledCanvasHeight = canvasSize.height * zoom;
   const scaledCanvasStyle = {
-    width: `${canvasSize.width * zoom}px`,
-    height: `${canvasSize.height * zoom}px`
+    width: `${scaledCanvasWidth}px`,
+    height: `${scaledCanvasHeight}px`,
+    "--scaled-canvas-width": `${scaledCanvasWidth}px`,
+    "--scaled-canvas-height": `${scaledCanvasHeight}px`
   };
   const canvasStageStyle = {
     width: `${canvasSize.width}px`,
     height: `${canvasSize.height}px`,
-    transform: `scale(${zoom})`
+    transform: `translate(-50%, -50%) scale(${zoom})`
   };
+
+  function centerCanvasViewport() {
+    const canvas = canvasRef.current;
+    if (!canvas || isMobileCanvas()) return;
+
+    window.requestAnimationFrame(() => {
+      canvas.scrollLeft = (canvas.scrollWidth - canvas.clientWidth) / 2;
+      canvas.scrollTop = (canvas.scrollHeight - canvas.clientHeight) / 2;
+    });
+  }
+
+  useEffect(() => {
+    centerCanvasViewport();
+  }, [zoom]);
 
   function getNodeStyle(id) {
     const position = positions[id] || { x: 0, y: 0 };

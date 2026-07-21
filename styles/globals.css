@@ -2654,14 +2654,19 @@ main {
 
 .canvas-stage-shell {
   position: relative;
+  display: grid;
+  place-items: center;
   min-width: 0;
   min-height: 0;
+  margin: max(96px, calc((100vh - var(--scaled-canvas-height)) / 2)) max(96px, calc((100% - var(--scaled-canvas-width)) / 2));
 }
 
 .canvas-stage {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   padding: 96px 96px 150px;
-  transform-origin: top left;
+  transform-origin: center center;
 }
 
 .canvas-connections {
@@ -2744,8 +2749,8 @@ main {
 }
 
 .identity-card {
-  left: 120px;
-  top: 140px;
+  left: 420px;
+  top: 300px;
   width: 390px;
   min-height: 470px;
   display: grid;
@@ -2966,8 +2971,8 @@ main {
 }
 
 .ai-thread-card {
-  left: 120px;
-  top: 635px;
+  left: 420px;
+  top: 820px;
   width: 390px;
   min-height: 112px;
   border-color: rgba(22, 163, 74, 0.2);
@@ -3015,8 +3020,8 @@ main {
 }
 
 .timeline-card {
-  left: 650px;
-  top: 140px;
+  left: 980px;
+  top: 260px;
   width: 380px;
   padding: 20px 22px 22px;
 }
@@ -3109,17 +3114,17 @@ main {
 }
 
 .capability-card {
-  left: 1660px;
-  top: 140px;
+  left: 980px;
+  top: 800px;
   z-index: 2;
-  width: 360px;
-  min-height: 300px;
+  width: 470px;
+  min-height: 250px;
   padding: 22px 24px;
 }
 
 .methods-card {
-  left: 1120px;
-  top: 140px;
+  left: 1510px;
+  top: 300px;
   z-index: 1;
   width: 470px;
   padding: 22px 24px;
@@ -3326,23 +3331,23 @@ main {
 }
 
 .project-node-1 {
-  left: 120px;
-  top: 760px;
+  left: 320px;
+  top: 1060px;
 }
 
 .project-node-2 {
-  left: 570px;
-  top: 760px;
+  left: 800px;
+  top: 1060px;
 }
 
 .project-node-3 {
-  left: 1020px;
-  top: 760px;
+  left: 1280px;
+  top: 1060px;
 }
 
 .project-node-4 {
-  left: 1470px;
-  top: 760px;
+  left: 1760px;
+  top: 1060px;
 }
 
 .project-section-label {
@@ -4095,9 +4100,13 @@ main {
   .canvas-stage-shell {
     width: auto !important;
     height: auto !important;
+    margin: 0;
   }
 
   .canvas-stage {
+    position: relative;
+    top: auto;
+    left: auto;
     width: auto !important;
     height: auto !important;
     min-width: 0;
