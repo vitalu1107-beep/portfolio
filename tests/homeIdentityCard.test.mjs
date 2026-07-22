@@ -83,10 +83,10 @@ test("timeline and working method headings share one visual type scale", () => {
 
 test("working method card stays compact and does not cover capabilities", () => {
   assert.match(indexSource, /methods: \{ left: 1510, top: 310, width: 470, height: 455 \}/);
-  assert.match(indexSource, /capabilities: \{ left: 1950, top: 860, width: 470, height: 250 \}/);
+  assert.match(indexSource, /capabilities: \{ left: 2070, top: 940, width: 470, height: 250 \}/);
   assert.match(indexSource, /fromSide: "right"[\s\S]*toSide: "left"/);
   assert.match(styleSource, /\.methods-card\s*\{[\s\S]*width: 470px;[\s\S]*padding: 22px 24px;/);
-  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*left: 1950px;[\s\S]*top: 860px;[\s\S]*width: 470px;[\s\S]*min-height: 250px;/);
+  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*left: 2070px;[\s\S]*top: 940px;[\s\S]*width: 470px;[\s\S]*min-height: 250px;/);
   assert.match(styleSource, /\.method-lead\s*\{[\s\S]*font-size: 22px !important;[\s\S]*line-height: 1\.35;/);
   assert.match(styleSource, /\.method-step\s*\{[\s\S]*grid-template-columns: 44px minmax\(0, 1fr\);/);
 });
@@ -156,8 +156,8 @@ test("home project cards form a spacious lower case-study row", () => {
 
 test("home desktop canvas zooms around the viewport center", () => {
   assert.match(indexSource, /import \{ useEffect, useRef, useState \} from "react";/);
-  assert.match(indexSource, /const canvasSize = \{ width: 2480, height: 1720 \};/);
-  assert.match(indexSource, /const canvasFocus = \{ x: 1320, y: 930 \};/);
+  assert.match(indexSource, /const canvasSize = \{ width: 2600, height: 1720 \};/);
+  assert.match(indexSource, /const canvasFocus = \{ x: 1380, y: 960 \};/);
   assert.match(indexSource, /const scaledCanvasWidth = canvasSize\.width \* zoom;/);
   assert.match(indexSource, /"--scaled-canvas-width": `\$\{scaledCanvasWidth\}px`/);
   assert.match(indexSource, /function centerCanvasViewport\(\)/);
@@ -169,7 +169,7 @@ test("home desktop canvas zooms around the viewport center", () => {
   assert.match(styleSource, /\.canvas-stage-shell\s*\{[\s\S]*display: grid;[\s\S]*place-items: center;/);
   assert.match(styleSource, /\.canvas-stage-shell\s*\{[\s\S]*margin: max\(96px, calc\(\(100vh - var\(--scaled-canvas-height\)\) \/ 2\)\) max\(96px, calc\(\(100% - var\(--scaled-canvas-width\)\) \/ 2\)\);/);
   assert.match(styleSource, /\.canvas-stage\s*\{[\s\S]*transform-origin: center center;/);
-  assert.match(styleSource, /\.canvas-connections\s*\{[\s\S]*width: 2480px;[\s\S]*height: 1720px;/);
+  assert.match(styleSource, /\.canvas-connections\s*\{[\s\S]*width: 2600px;[\s\S]*height: 1720px;/);
 });
 
 test("home mobile reading flow prioritizes identity, method, cases, capability, and timeline", () => {

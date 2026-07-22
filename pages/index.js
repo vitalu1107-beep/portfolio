@@ -13,14 +13,14 @@ const layerColors = ["red", "blue", "yellow", "green"];
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const defaultZoomIndex = 2;
 const readableZoomIndex = 4;
-const canvasSize = { width: 2480, height: 1720 };
-const canvasFocus = { x: 1320, y: 930 };
+const canvasSize = { width: 2600, height: 1720 };
+const canvasFocus = { x: 1380, y: 960 };
 const canvasNodes = {
   "personal-info": { left: 300, top: 250, width: 390, height: 470 },
   "ai-thread": { left: 500, top: 820, width: 390, height: 112 },
   timeline: { left: 980, top: 245, width: 380, height: 455 },
   methods: { left: 1510, top: 310, width: 470, height: 455 },
-  capabilities: { left: 1950, top: 860, width: 470, height: 250 }
+  capabilities: { left: 2070, top: 940, width: 470, height: 250 }
 };
 const projectCanvasNodes = {
   "tiny-achievement-app": { left: 240, top: 1120, width: 400, height: 520 },

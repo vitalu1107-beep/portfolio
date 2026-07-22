@@ -2677,7 +2677,7 @@ main {
   position: absolute;
   inset: 0;
   z-index: 0;
-  width: 2480px;
+  width: 2600px;
   height: 1720px;
   overflow: visible;
   pointer-events: none;
@@ -3118,8 +3118,8 @@ main {
 }
 
 .capability-card {
-  left: 1950px;
-  top: 860px;
+  left: 2070px;
+  top: 940px;
   z-index: 2;
   width: 470px;
   min-height: 250px;
