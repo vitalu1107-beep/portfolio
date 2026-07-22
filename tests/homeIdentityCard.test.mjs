@@ -117,6 +117,23 @@ test("home canvas guides recruiters through a portfolio reading path", () => {
   assert.doesNotMatch(indexSource, /双击修改/);
 });
 
+test("home reading path centers the matching canvas card at a readable zoom", () => {
+  assert.match(indexSource, /const readableZoomIndex = 4;/);
+  assert.match(indexSource, /const projectCanvasNodes = \{/);
+  assert.match(indexSource, /"tiny-achievement-app": \{ left: 240, top: 1120, width: 400, height: 520 \}/);
+  assert.match(indexSource, /function getCanvasNavigationTarget\(targetId\)/);
+  assert.match(indexSource, /function scrollCanvasToBox\(box, targetZoom = zoom, behavior = "smooth"\)/);
+  assert.match(indexSource, /canvas\.scrollTo\(\{[\s\S]*left: Math\.max\(0, targetLeft - canvas\.clientWidth \/ 2\),[\s\S]*behavior/);
+  assert.match(indexSource, /function focusCanvasTarget\(targetId\)/);
+  assert.match(indexSource, /pendingFocusRef\.current = targetId;/);
+  assert.match(indexSource, /setZoomIndex\(nextZoomIndex\);/);
+  assert.match(indexSource, /function handleLayerClick\(event, href\)/);
+  assert.match(indexSource, /event\.preventDefault\(\);/);
+  assert.match(indexSource, /onClick=\{\(event\) => handleLayerClick\(event, layer\.href\)\}/);
+  assert.match(indexSource, /className=\{activeLayer === layer\.href \? "is-active" : undefined\}/);
+  assert.match(styleSource, /\.layer-list a:hover,\s*\n\.layer-list a\.is-active\s*\{/);
+});
+
 test("home project cards form a spacious lower case-study row", () => {
   assert.doesNotMatch(indexSource, /card\?\.copy \|\| item\.summary/);
   assert.match(styleSource, /\.project-node-card\s*\{[\s\S]*width: 400px;[\s\S]*min-height: 0;/);

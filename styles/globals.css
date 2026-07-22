@@ -2556,8 +2556,12 @@ main {
 }
 
 .layer-list a:hover,
-.layer-list a:first-of-type {
+.layer-list a.is-active {
   background: #fff6d9;
+  color: var(--blue);
+}
+
+.layer-list a.is-active::before {
   color: var(--blue);
 }
 
@@ -4085,6 +4089,12 @@ main {
     font-size: 13px;
     font-weight: 850;
     box-shadow: 0 8px 18px rgba(31, 49, 84, 0.06);
+  }
+
+  .mobile-layer-list a.is-active {
+    border-color: rgba(43, 127, 216, 0.34);
+    background: #fff6d9;
+    color: var(--blue);
   }
 
   .os-canvas {

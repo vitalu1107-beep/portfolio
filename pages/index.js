@@ -12,6 +12,7 @@ const layerColors = ["red", "blue", "yellow", "green"];
 
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const defaultZoomIndex = 2;
+const readableZoomIndex = 4;
 const canvasSize = { width: 2480, height: 1720 };
 const canvasFocus = { x: 1320, y: 930 };
 const canvasNodes = {
@@ -20,6 +21,24 @@ const canvasNodes = {
   timeline: { left: 980, top: 245, width: 380, height: 455 },
   methods: { left: 1510, top: 310, width: 470, height: 455 },
   capabilities: { left: 1950, top: 860, width: 470, height: 250 }
+};
+const projectCanvasNodes = {
+  "tiny-achievement-app": { left: 240, top: 1120, width: 400, height: 520 },
+  "meituan-supply-growth": { left: 760, top: 1210, width: 400, height: 520 },
+  "community-growth": { left: 1280, top: 1080, width: 400, height: 520 },
+  "campaign-marketing": { left: 1800, top: 1230, width: 400, height: 520 }
+};
+const canvasNavigationTargets = {
+  "personal-info": { box: canvasNodes["personal-info"], zoomIndex: readableZoomIndex },
+  methods: { box: canvasNodes.methods, zoomIndex: readableZoomIndex },
+  timeline: { box: canvasNodes.timeline, zoomIndex: readableZoomIndex },
+  capabilities: { box: canvasNodes.capabilities, zoomIndex: readableZoomIndex },
+  ...Object.fromEntries(
+    caseStudies.map((item) => [
+      `project-${item.slug}`,
+      { box: projectCanvasNodes[item.slug], zoomIndex: readableZoomIndex }
+    ])
+  )
 };
 const canvasConnections = [
   {
@@ -130,6 +149,10 @@ function isMobileCanvas() {
   return typeof window !== "undefined" && window.matchMedia("(max-width: 960px)").matches;
 }
 
+function getCanvasNavigationTarget(targetId) {
+  return canvasNavigationTargets[targetId];
+}
+
 function ProjectNode({ item, index, dragProps }) {
   const card = projectCards[item.slug];
   const { style, ...eventProps } = dragProps;
@@ -192,9 +215,11 @@ export default function HomePage() {
   const canvasRef = useRef(null);
   const dragRef = useRef(null);
   const panRef = useRef(null);
+  const pendingFocusRef = useRef(null);
   const [positions, setPositions] = useState({});
   const [zoomIndex, setZoomIndex] = useState(defaultZoomIndex);
   const [visibleContact, setVisibleContact] = useState(null);
+  const [activeLayer, setActiveLayer] = useState(layers[0]?.href ?? "#personal-info");
   const zoom = zoomSteps[zoomIndex];
   const scaledCanvasWidth = canvasSize.width * zoom;
   const scaledCanvasHeight = canvasSize.height * zoom;
@@ -225,7 +250,62 @@ export default function HomePage() {
     });
   }
 
+  function scrollCanvasToBox(box, targetZoom = zoom, behavior = "smooth") {
+    const canvas = canvasRef.current;
+    if (!canvas || !box || isMobileCanvas()) return;
+
+    window.requestAnimationFrame(() => {
+      const centerX = box.left + box.width / 2;
+      const centerY = box.top + box.height / 2;
+      const targetLeft =
+        canvas.scrollWidth / 2 + (centerX - canvasSize.width / 2) * targetZoom;
+      const targetTop =
+        canvas.scrollHeight / 2 + (centerY - canvasSize.height / 2) * targetZoom;
+
+      canvas.scrollTo({
+        left: Math.max(0, targetLeft - canvas.clientWidth / 2),
+        top: Math.max(0, targetTop - canvas.clientHeight / 2),
+        behavior
+      });
+    });
+  }
+
+  function focusCanvasTarget(targetId) {
+    const target = getCanvasNavigationTarget(targetId);
+    if (!target) return;
+
+    if (isMobileCanvas()) {
+      document.getElementById(targetId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+      return;
+    }
+
+    const nextZoomIndex = target.zoomIndex ?? readableZoomIndex;
+    pendingFocusRef.current = targetId;
+    setZoomIndex(nextZoomIndex);
+
+    if (nextZoomIndex === zoomIndex) {
+      pendingFocusRef.current = null;
+      scrollCanvasToBox(target.box, zoomSteps[nextZoomIndex], "smooth");
+    }
+  }
+
   useEffect(() => {
+    const pendingTargetId = pendingFocusRef.current;
+
+    if (pendingTargetId) {
+      pendingFocusRef.current = null;
+      const target = getCanvasNavigationTarget(pendingTargetId);
+
+      if (target) {
+        scrollCanvasToBox(target.box, zoom, "smooth");
+      }
+
+      return;
+    }
+
     centerCanvasViewport();
   }, [zoom]);
 
@@ -324,6 +404,18 @@ export default function HomePage() {
     setVisibleContact((current) => (current === type ? null : type));
   }
 
+  function handleLayerClick(event, href) {
+    event.preventDefault();
+    const targetId = href.replace("#", "");
+
+    setActiveLayer(href);
+    focusCanvasTarget(targetId);
+
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", href);
+    }
+  }
+
   function zoomOut() {
     setZoomIndex((current) => Math.max(0, current - 1));
   }
@@ -350,7 +442,13 @@ export default function HomePage() {
           <nav className="layer-list">
             <h2>阅读路径</h2>
             {layers.map((layer) => (
-              <a href={layer.href} key={layer.href}>
+              <a
+                href={layer.href}
+                key={layer.href}
+                className={activeLayer === layer.href ? "is-active" : undefined}
+                aria-current={activeLayer === layer.href ? "location" : undefined}
+                onClick={(event) => handleLayerClick(event, layer.href)}
+              >
                 <i className={layer.color} />
                 {layer.label}
                 <em>◎</em>
@@ -360,7 +458,13 @@ export default function HomePage() {
 
           <nav className="mobile-layer-list" aria-label="手机端阅读路径">
             {mobileLayers.map((layer) => (
-              <a href={layer.href} key={`${layer.href}-${layer.label}`}>
+              <a
+                href={layer.href}
+                key={`${layer.href}-${layer.label}`}
+                className={activeLayer === layer.href ? "is-active" : undefined}
+                aria-current={activeLayer === layer.href ? "location" : undefined}
+                onClick={(event) => handleLayerClick(event, layer.href)}
+              >
                 {layer.label}
               </a>
             ))}
