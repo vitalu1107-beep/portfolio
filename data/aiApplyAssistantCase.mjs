@@ -10,7 +10,7 @@ export const aiApplyAssistantCase = {
     "面向高频求职投递场景，将岗位 JD 分析、岗位筛选判断、分对象打招呼话术、简历微调建议和投递记录整合到一个工作台中，减少重复判断、重复改写和漏跟进成本。",
   hero: {
     layout: "narrative-product",
-    visualStyle: "board",
+    visualStyle: "workbench",
     index: "05",
     meta: ["Independent AI Tool", "Practice Project"],
     label: "AI 智能投递助手 · APPLY ASSISTANT",

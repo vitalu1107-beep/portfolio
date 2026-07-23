@@ -62,6 +62,7 @@ test("AI apply assistant case separates product evidence from unverified metrics
     "/assets/cases/ai-apply-assistant-architecture.svg",
     "/assets/cases/ai-apply-assistant-validation-plan.svg"
   ]);
+  assert.equal(item.hero.visualStyle, "workbench");
   assert.equal(item.hero.visual, "/assets/cases/ai-apply-assistant-workbench-latest.svg");
   assert.match(serialized, /127\.0\.0\.1:3000/);
   assert.match(serialized, /岗位薪资/);
@@ -70,4 +71,12 @@ test("AI apply assistant case separates product evidence from unverified metrics
   assert.match(serialized, /不虚构用户量、转化率或商业成绩/);
   assert.match(serialized, /单个 JD 判断耗时/);
   assert.match(serialized, /API Key 仅在服务端环境变量中读取/);
+});
+
+test("AI apply assistant uses a larger workbench hero visual treatment", () => {
+  const source = readFileSync(new URL("../styles/globals.css", import.meta.url), "utf8");
+
+  assert.match(source, /\.case-report-hero-workbench/);
+  assert.match(source, /\.case-hero-visual-workbench > div/);
+  assert.match(source, /minmax\(470px, 0\.96fr\)/);
 });
