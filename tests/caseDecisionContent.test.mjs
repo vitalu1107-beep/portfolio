@@ -5,13 +5,14 @@ const expectedSlugs = [
   "tiny-achievement-app",
   "meituan-supply-growth",
   "community-growth",
-  "campaign-marketing"
+  "campaign-marketing",
+  "ai-apply-assistant"
 ];
 
 assert.deepEqual(
   Object.keys(caseDecisionContent).sort(),
   expectedSlugs.sort(),
-  "all four portfolio cases should have decision content"
+  "all portfolio cases should have decision content"
 );
 
 for (const slug of expectedSlugs) {

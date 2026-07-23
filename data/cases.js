@@ -1,4 +1,5 @@
 import { tinyAchievementCase } from "./tinyAchievementCase.mjs";
+import { aiApplyAssistantCase } from "./aiApplyAssistantCase.mjs";
 import { businessCaseHeroes } from "./businessCaseHeroes.mjs";
 
 export const caseStudies = [
@@ -375,14 +376,16 @@ export const caseStudies = [
         caption: "记录成功动作、异常问题和下次改进方向。"
       }
     ]
-  }
+  },
+  aiApplyAssistantCase
 ];
 
 export const featuredCaseSlugs = [
   "tiny-achievement-app",
   "meituan-supply-growth",
   "community-growth",
-  "campaign-marketing"
+  "campaign-marketing",
+  "ai-apply-assistant"
 ];
 
 export function getCaseBySlug(slug) {

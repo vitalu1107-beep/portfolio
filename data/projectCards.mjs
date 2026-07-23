@@ -62,5 +62,23 @@ export const projectCards = {
       { value: "3天", label: "完成月度目标" },
       { value: "60%", label: "GMV提升" }
     ]
+  },
+  "ai-apply-assistant": {
+    owner: "独立 AI 工具",
+    project: "求职投递工作台",
+    cover: "ai-apply-assistant",
+    image: "/assets/cases/ai-apply-assistant-workbench.png",
+    imageAlt: "AI 智能投递助手工作台界面截图",
+    ink: "#065f46",
+    type: "求职投递工作台",
+    evidenceType: "AI 产品实践证据",
+    role: "产品设计 / Prompt 设计 / AI 辅助开发",
+    headline: "把高频求职投递流程做成可筛选、可生成、可记录的 AI 工作台",
+    copy: "整合 JD 分析、岗位筛选、分对象话术、简历建议和投递记录，减少重复判断与文案整理成本。",
+    steps: ["岗位输入", "AI 判断", "话术生成", "投递记录"],
+    proofs: [
+      { value: "0→1", label: "完成可用产品闭环" },
+      { value: "4类", label: "分对象投递话术" }
+    ]
   }
 };

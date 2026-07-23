@@ -28,13 +28,19 @@ test("selectEvidenceStrip falls back to the first five gallery items", () => {
 });
 
 test("all case studies expose the candidate role clearly", () => {
-  assert.equal(caseStudies.length, 4);
+  assert.equal(caseStudies.length, 5);
 
   for (const item of caseStudies) {
     assert.equal(typeof item.role, "string", `${item.shortTitle} should define a role`);
     assert.ok(item.role.length >= 8, `${item.shortTitle} role should be specific`);
     assert.doesNotMatch(item.role, /项目操盘$/, `${item.shortTitle} should not use fallback role copy`);
   }
+  assert.equal(caseStudies.at(-1).slug, "ai-apply-assistant");
+  assert.equal(caseStudies.at(-1).shortTitle, "AI 投递助手");
+  assert.deepEqual(
+    caseStudies.at(-1).externalLinks.map((link) => link.label),
+    ["查看静态原型", "查看代码"]
+  );
 });
 
 test("narrative case hero renders the role block", () => {

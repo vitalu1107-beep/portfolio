@@ -13,8 +13,8 @@ const layerColors = ["red", "blue", "yellow", "green"];
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const defaultZoomIndex = 2;
 const readableZoomIndex = 4;
-const canvasSize = { width: 2600, height: 1720 };
-const canvasFocus = { x: 1380, y: 960 };
+const canvasSize = { width: 2860, height: 1960 };
+const canvasFocus = { x: 1510, y: 1040 };
 const canvasNodes = {
   "personal-info": { left: 300, top: 250, width: 390, height: 470 },
   "ai-thread": { left: 500, top: 820, width: 390, height: 112 },
@@ -26,7 +26,8 @@ const projectCanvasNodes = {
   "tiny-achievement-app": { left: 240, top: 1120, width: 400, height: 520 },
   "meituan-supply-growth": { left: 760, top: 1210, width: 400, height: 520 },
   "community-growth": { left: 1280, top: 1080, width: 400, height: 520 },
-  "campaign-marketing": { left: 1800, top: 1230, width: 400, height: 520 }
+  "campaign-marketing": { left: 1800, top: 1230, width: 400, height: 520 },
+  "ai-apply-assistant": { left: 2260, top: 1300, width: 400, height: 520 }
 };
 const canvasNavigationTargets = {
   "personal-info": { box: canvasNodes["personal-info"], zoomIndex: readableZoomIndex },
@@ -181,7 +182,13 @@ function ProjectNode({ item, index, dragProps }) {
         </div>
       </div>
       <div className="canvas-project-media">
-        <ProjectCover variant={card.cover} accent={item.accent} title={card.project} />
+        <ProjectCover
+          variant={card.cover}
+          accent={item.accent}
+          title={card.project}
+          image={card.image}
+          imageAlt={card.imageAlt}
+        />
       </div>
       <div className="canvas-project-copy">
         <h3 title={card?.headline || item.shortTitle}>{card?.headline || item.shortTitle}</h3>
@@ -472,7 +479,7 @@ export default function HomePage() {
 
           <div className="os-create reading-cue">
             <b>3分钟阅读建议</b>
-            <span>先看 AI 定位与方法，再进入小成就和3个增长案例。</span>
+            <span>先看 AI 定位与方法，再进入小成就、AI 投递助手和3个增长案例。</span>
           </div>
 
           <div className="mini-map">
@@ -669,7 +676,7 @@ export default function HomePage() {
 
             <div className="mobile-case-heading" aria-label="项目案例">
               <span>Case Evidence</span>
-              <strong>4个项目案例</strong>
+              <strong>5个项目案例</strong>
               <p>从 AI 产品验证到增长、供给和活动操盘。</p>
             </div>
 

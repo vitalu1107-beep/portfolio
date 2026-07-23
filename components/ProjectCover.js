@@ -1,8 +1,11 @@
+import { publicPath } from "../lib/paths";
+
 const coverHeadings = {
   "product-validation": { kicker: "AI PRODUCT BUILD", stat: "7 DAYS" },
   "supply-flywheel": { kicker: "SUPPLY FLYWHEEL", stat: "520 KOS" },
   "growth-funnel": { kicker: "GROWTH FUNNEL", stat: "100W+ USERS" },
-  "campaign-map": { kicker: "618 WAR MAP", stat: "+60% GMV" }
+  "campaign-map": { kicker: "618 WAR MAP", stat: "+60% GMV" },
+  "ai-apply-assistant": { kicker: "AI APPLY WORKBENCH", stat: "0→1 TOOL" }
 };
 
 function CoverHeading({ kicker, stat }) {
@@ -90,9 +93,30 @@ const coverBodies = {
   "campaign-map": CampaignMapCover
 };
 
-export default function ProjectCover({ variant, accent, title }) {
+export default function ProjectCover({ variant, accent, title, image, imageAlt }) {
   const heading = coverHeadings[variant] || coverHeadings["product-validation"];
   const CoverBody = coverBodies[variant] || ProductValidationCover;
+
+  if (image) {
+    return (
+      <figure
+        className={`project-cover project-cover-${variant} project-cover-screenshot`}
+        style={{ "--cover-accent": accent }}
+        aria-label={imageAlt || `${title}界面截图`}
+      >
+        <img
+          src={publicPath(image)}
+          alt={imageAlt || `${title}界面截图`}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption className="project-cover-screenshot-caption">
+          <span>{heading.kicker}</span>
+          <strong>{heading.stat}</strong>
+        </figcaption>
+      </figure>
+    );
+  }
 
   return (
     <figure
