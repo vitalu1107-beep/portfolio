@@ -67,8 +67,6 @@ export const projectCards = {
     owner: "独立 AI 工具",
     project: "求职投递工作台",
     cover: "ai-apply-assistant",
-    image: "/assets/cases/ai-apply-assistant-workbench.png",
-    imageAlt: "AI 智能投递助手工作台界面截图",
     ink: "#065f46",
     type: "求职投递工作台",
     evidenceType: "AI 产品实践证据",

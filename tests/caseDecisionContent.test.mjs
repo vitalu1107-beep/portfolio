@@ -80,4 +80,28 @@ assert.equal(
   "运营洞察-AI任务-MVP验证-指标扩样"
 );
 
+const applyAssistantDecision = caseDecisionContent["ai-apply-assistant"];
+const applyAssistantSerialized = JSON.stringify(applyAssistantDecision);
+
+[
+  "投递前 AI 工作台",
+  "分对象 Prompt",
+  "HR、猎头、业务主管和创始人",
+  "API Key",
+  "单个 JD 判断耗时",
+  "话术二次修改比例",
+  "不写用户量、转化率或商业成绩"
+].forEach((phrase) => {
+  assert.match(
+    applyAssistantSerialized,
+    new RegExp(phrase),
+    `AI apply assistant decision content should expose ${phrase}`
+  );
+});
+
+assert.equal(
+  applyAssistantDecision.methodTransfer.name,
+  "高频场景-AI判断-分层表达-轻量记录"
+);
+
 console.log("case decision content complete");

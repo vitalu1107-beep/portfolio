@@ -49,3 +49,21 @@ test("narrative case hero renders the role block", () => {
   assert.match(source, /case-hero-role/);
   assert.match(source, /我的角色/);
 });
+
+test("AI apply assistant case separates product evidence from unverified metrics", () => {
+  const item = caseStudies.find((caseItem) => caseItem.slug === "ai-apply-assistant");
+  const serialized = JSON.stringify(item);
+
+  assert.ok(item.gallery.length >= 5);
+  assert.deepEqual(item.evidenceStrip, [
+    "/assets/cases/ai-apply-assistant-workbench.png",
+    "/assets/cases/ai-apply-assistant-flow.svg",
+    "/assets/cases/ai-apply-assistant-persona-prompts.svg",
+    "/assets/cases/ai-apply-assistant-architecture.svg",
+    "/assets/cases/ai-apply-assistant-validation-plan.svg"
+  ]);
+  assert.match(serialized, /静态 UI 原型/);
+  assert.match(serialized, /不虚构用户量、转化率或商业成绩/);
+  assert.match(serialized, /单个 JD 判断耗时/);
+  assert.match(serialized, /API Key 仅在服务端环境变量中读取/);
+});

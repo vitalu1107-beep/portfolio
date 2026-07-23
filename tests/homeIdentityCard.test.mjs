@@ -166,6 +166,17 @@ test("home project cards form a spacious lower case-study row", () => {
   assert.match(styleSource, /\.project-cover-screenshot img\s*\{[\s\S]*object-fit: cover;/);
 });
 
+test("AI apply assistant uses a rebuilt cover model instead of a screenshot thumbnail", () => {
+  const coverSource = readFileSync(new URL("../components/ProjectCover.js", import.meta.url), "utf8");
+
+  assert.match(coverSource, /function ApplyAssistantCover\(\)/);
+  assert.match(coverSource, /AI投递助手：岗位输入到判断、话术和记录闭环/);
+  assert.match(coverSource, /apply-persona-grid/);
+  assert.match(coverSource, /"ai-apply-assistant": ApplyAssistantCover/);
+  assert.match(styleSource, /\.project-cover-apply\s*\{[\s\S]*grid-template-columns: 96px 40px minmax\(0, 1fr\);/);
+  assert.match(styleSource, /\.apply-record\s*\{[\s\S]*grid-column: 1 \/ -1;/);
+});
+
 test("home desktop canvas zooms around the viewport center", () => {
   assert.match(indexSource, /import \{ useEffect, useRef, useState \} from "react";/);
   assert.match(indexSource, /const canvasSize = \{ width: 3000, height: 2120 \};/);

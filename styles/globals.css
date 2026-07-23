@@ -3890,6 +3890,174 @@ main {
   left: 20%;
 }
 
+.project-cover-apply-assistant {
+  background:
+    linear-gradient(140deg, color-mix(in srgb, var(--cover-accent) 7%, #fff), rgba(255, 255, 255, 0.95)),
+    radial-gradient(color-mix(in srgb, var(--cover-accent) 12%, transparent) 1px, transparent 1px);
+  background-size: auto, 14px 14px;
+}
+
+.project-cover-apply {
+  position: absolute;
+  inset: 52px 18px 16px;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 96px 40px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) 24px;
+  gap: 9px;
+  align-items: stretch;
+}
+
+.apply-card,
+.apply-output,
+.apply-record {
+  border: 1px solid color-mix(in srgb, var(--cover-accent) 24%, rgba(255, 255, 255, 0.92));
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 8px 18px rgba(6, 95, 70, 0.07);
+}
+
+.apply-card {
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  border-radius: 9px;
+  padding: 10px;
+}
+
+.apply-card span,
+.apply-record span {
+  color: color-mix(in srgb, var(--cover-accent) 72%, #1f3154);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.apply-card b,
+.apply-record b {
+  color: #10251e;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.apply-card small {
+  color: #64748b;
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.apply-bridge {
+  display: grid;
+  place-items: center;
+  align-self: center;
+  justify-self: center;
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border: 2px solid color-mix(in srgb, var(--cover-accent) 24%, #fff);
+  border-radius: 50%;
+  background: var(--cover-accent);
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 0 8px 16px rgba(6, 95, 70, 0.16);
+}
+
+.apply-bridge::before,
+.apply-bridge::after {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 2px;
+  background: color-mix(in srgb, var(--cover-accent) 48%, #fff);
+  content: "";
+}
+
+.apply-bridge::before {
+  right: 100%;
+}
+
+.apply-bridge::after {
+  left: 100%;
+}
+
+.apply-bridge i {
+  position: absolute;
+  right: -14px;
+  top: 15px;
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid var(--cover-accent);
+  border-right: 2px solid var(--cover-accent);
+  transform: rotate(45deg);
+}
+
+.apply-output {
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  min-width: 0;
+  border-radius: 10px;
+  padding: 9px;
+}
+
+.apply-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cover-accent) 10%, white);
+  padding: 5px 8px;
+  color: #10251e;
+}
+
+.apply-score span {
+  color: var(--cover-accent);
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.apply-score b {
+  font-size: 10px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.apply-persona-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.apply-persona-grid span {
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--cover-accent) 22%, transparent);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 5px 4px;
+  color: color-mix(in srgb, var(--cover-accent) 78%, #1f3154);
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apply-record {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 5px 10px;
+}
+
 .canvas-project-copy {
   display: grid;
   gap: 14px;
@@ -4335,6 +4503,46 @@ main {
 
   .project-cover {
     height: 124px;
+  }
+
+  .project-cover-apply {
+    inset: 42px 14px 12px;
+    grid-template-columns: 82px 32px minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 7px;
+  }
+
+  .apply-card,
+  .apply-output {
+    padding: 8px;
+  }
+
+  .apply-card small,
+  .apply-record {
+    display: none;
+  }
+
+  .apply-bridge {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .apply-output {
+    gap: 6px;
+  }
+
+  .apply-score {
+    padding: 5px 7px;
+  }
+
+  .apply-persona-grid {
+    gap: 4px;
+  }
+
+  .apply-persona-grid span {
+    padding: 5px 3px;
+    font-size: 7px;
   }
 
   .canvas-project-copy {

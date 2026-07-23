@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">AI 投递助手模型接入与安全边界</title>
+  <desc id="desc">展示前端工作台、Next.js Route Handler、mock 模式、火山方舟豆包模型和服务端环境变量的关系。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#059669"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#064e3b" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" rx="36" fill="#f8fbf7"/>
+  <text x="70" y="92" fill="#0f172a" font-family="PingFang SC, Arial, sans-serif" font-size="34" font-weight="800">模型接入与安全边界</text>
+  <text x="70" y="128" fill="#64748b" font-family="PingFang SC, Arial, sans-serif" font-size="18">作品集只展示静态原型；代码实践中保留服务端模型调用方案，不在前端暴露 API Key。</text>
+
+  <g font-family="PingFang SC, Arial, sans-serif" filter="url(#shadow)">
+    <rect x="80" y="250" width="230" height="190" rx="24" fill="#ffffff" stroke="#c7e5d5"/>
+    <text x="112" y="306" fill="#0f172a" font-size="25" font-weight="900">Browser UI</text>
+    <text x="112" y="348" fill="#64748b" font-size="17">岗位输入</text>
+    <text x="112" y="378" fill="#64748b" font-size="17">话术结果</text>
+    <text x="112" y="408" fill="#64748b" font-size="17">投递记录</text>
+  </g>
+
+  <g font-family="PingFang SC, Arial, sans-serif" filter="url(#shadow)">
+    <rect x="405" y="250" width="250" height="190" rx="24" fill="#ffffff" stroke="#86efac"/>
+    <text x="437" y="306" fill="#047857" font-size="25" font-weight="900">Route Handler</text>
+    <text x="437" y="348" fill="#64748b" font-size="17">统一请求入口</text>
+    <text x="437" y="378" fill="#64748b" font-size="17">整理 Prompt</text>
+    <text x="437" y="408" fill="#64748b" font-size="17">控制模型模式</text>
+  </g>
+
+  <g font-family="PingFang SC, Arial, sans-serif" filter="url(#shadow)">
+    <rect x="750" y="190" width="330" height="130" rx="24" fill="#ffffff" stroke="#c7e5d5"/>
+    <text x="782" y="244" fill="#0f172a" font-size="24" font-weight="900">mock 模式</text>
+    <text x="782" y="282" fill="#64748b" font-size="17">无服务端时仍可展示核心交互</text>
+  </g>
+
+  <g font-family="PingFang SC, Arial, sans-serif" filter="url(#shadow)">
+    <rect x="750" y="380" width="330" height="150" rx="24" fill="#ffffff" stroke="#c7e5d5"/>
+    <text x="782" y="434" fill="#0f172a" font-size="24" font-weight="900">火山方舟 / 豆包</text>
+    <text x="782" y="472" fill="#64748b" font-size="17">真实模型模式走服务端环境变量</text>
+    <text x="782" y="502" fill="#047857" font-size="17" font-weight="800">API Key 不进入客户端</text>
+  </g>
+
+  <path d="M 320 345 H 390" stroke="#059669" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 665 320 C 710 300 708 260 740 254" stroke="#059669" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 665 380 C 710 405 710 446 740 455" stroke="#059669" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+  <g font-family="PingFang SC, Arial, sans-serif">
+    <rect x="130" y="585" width="430" height="78" rx="22" fill="#ecfdf5" stroke="#b9dec9"/>
+    <text x="166" y="632" fill="#065f46" font-size="21" font-weight="900">前端可公开：静态 UI、交互路径、记录状态</text>
+    <rect x="640" y="585" width="430" height="78" rx="22" fill="#fefce8" stroke="#fde68a"/>
+    <text x="676" y="632" fill="#854d0e" font-size="21" font-weight="900">后端需保护：模型密钥、请求参数、错误处理</text>
+  </g>
+</svg>

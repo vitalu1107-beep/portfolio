@@ -41,7 +41,8 @@ test("project cards expose ordered presentation metadata", () => {
   cards.forEach((card) => {
     assert.equal(card.steps.length, 4);
   });
-  assert.equal(projectCards["ai-apply-assistant"].image, "/assets/cases/ai-apply-assistant-workbench.png");
+  assert.equal(projectCards["ai-apply-assistant"].image, undefined);
+  assert.equal(projectCards["ai-apply-assistant"].cover, "ai-apply-assistant");
   assert.equal(projectCards["ai-apply-assistant"].proofs[0].value, "0→1");
   assert.equal(projectCards["ai-apply-assistant"].proofs[1].value, "4类");
 });

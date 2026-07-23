@@ -86,11 +86,44 @@ function CampaignMapCover() {
   );
 }
 
+function ApplyAssistantCover() {
+  return (
+    <div className="project-cover-apply" aria-label="AI投递助手：岗位输入到判断、话术和记录闭环">
+      <div className="apply-card apply-input">
+        <span>JD INPUT</span>
+        <b>岗位输入</b>
+        <small>职责 / 要求 / 风险</small>
+      </div>
+      <div className="apply-bridge" aria-hidden="true">
+        <i />
+        <b>AI</b>
+      </div>
+      <div className="apply-output">
+        <div className="apply-score">
+          <span>优先级 A</span>
+          <b>建议投递</b>
+        </div>
+        <div className="apply-persona-grid" aria-label="分对象话术">
+          <span>HR话术</span>
+          <span>猎头</span>
+          <span>主管</span>
+          <span>创始人</span>
+        </div>
+      </div>
+      <div className="apply-record">
+        <span>localStorage</span>
+        <b>投递记录</b>
+      </div>
+    </div>
+  );
+}
+
 const coverBodies = {
   "product-validation": ProductValidationCover,
   "supply-flywheel": SupplyFlywheelCover,
   "growth-funnel": GrowthFunnelCover,
-  "campaign-map": CampaignMapCover
+  "campaign-map": CampaignMapCover,
+  "ai-apply-assistant": ApplyAssistantCover
 };
 
 export default function ProjectCover({ variant, accent, title, image, imageAlt }) {
