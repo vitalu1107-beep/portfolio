@@ -20,13 +20,13 @@ test("home identity card exposes four contact actions", () => {
 });
 
 test("home identity card uses a balanced compact card rhythm", () => {
-  assert.match(indexSource, /"personal-info": \{ left: 300, top: 250, width: 390, height: 470 \}/);
-  assert.match(styleSource, /\.identity-card\s*\{[\s\S]*left: 300px;[\s\S]*top: 250px;[\s\S]*width: 390px;[\s\S]*min-height: 470px;[\s\S]*display: grid;/);
+  assert.match(indexSource, /"personal-info": \{ left: 300, top: 280, width: 390, height: 470 \}/);
+  assert.match(styleSource, /\.identity-card\s*\{[\s\S]*left: 300px;[\s\S]*top: 280px;[\s\S]*width: 390px;[\s\S]*min-height: 470px;[\s\S]*display: grid;/);
   assert.match(styleSource, /\.identity-avatar-photo\s*\{[\s\S]*object-position: center top;/);
 });
 
 test("timeline uses compact three-line entries", () => {
-  assert.match(indexSource, /timeline: \{ left: 980, top: 245, width: 380, height: 455 \}/);
+  assert.match(indexSource, /timeline: \{ left: 980, top: 260, width: 380, height: 455 \}/);
   assert.match(styleSource, /\.timeline-mini b\s*\{[\s\S]*white-space: nowrap;[\s\S]*text-overflow: ellipsis;/);
   assert.match(styleSource, /\.timeline-mini small\s*\{[\s\S]*white-space: nowrap;[\s\S]*text-overflow: ellipsis;/);
 
@@ -63,14 +63,14 @@ test("home canvas replaces duplicate contact block with a working method system"
 });
 
 test("home canvas adds an explicit AI product operations thread", () => {
-  assert.match(indexSource, /"ai-thread": \{ left: 500, top: 820, width: 390, height: 112 \}/);
+  assert.match(indexSource, /"ai-thread": \{ left: 560, top: 860, width: 390, height: 112 \}/);
   assert.match(indexSource, /AI PRODUCT OPS THREAD/);
   assert.match(indexSource, /把运营经验迁移到 AI 产品闭环/);
   ["用户洞察", "任务定义", "AI辅助原型", "数据复盘"].forEach((label) => {
     assert.match(indexSource, new RegExp(label));
   });
   assert.match(indexSource, /id: "personal-info-ai-thread"/);
-  assert.match(styleSource, /\.ai-thread-card\s*\{[\s\S]*left: 500px;[\s\S]*top: 820px;[\s\S]*width: 390px;/);
+  assert.match(styleSource, /\.ai-thread-card\s*\{[\s\S]*left: 560px;[\s\S]*top: 860px;[\s\S]*width: 390px;/);
 });
 
 test("timeline and working method headings share one visual type scale", () => {
@@ -82,11 +82,11 @@ test("timeline and working method headings share one visual type scale", () => {
 });
 
 test("working method card stays compact and does not cover capabilities", () => {
-  assert.match(indexSource, /methods: \{ left: 1510, top: 310, width: 470, height: 455 \}/);
-  assert.match(indexSource, /capabilities: \{ left: 2070, top: 940, width: 470, height: 250 \}/);
+  assert.match(indexSource, /methods: \{ left: 1510, top: 330, width: 470, height: 455 \}/);
+  assert.match(indexSource, /capabilities: \{ left: 2130, top: 760, width: 470, height: 250 \}/);
   assert.match(indexSource, /fromSide: "right"[\s\S]*toSide: "left"/);
   assert.match(styleSource, /\.methods-card\s*\{[\s\S]*width: 470px;[\s\S]*padding: 22px 24px;/);
-  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*left: 2070px;[\s\S]*top: 940px;[\s\S]*width: 470px;[\s\S]*min-height: 250px;/);
+  assert.match(styleSource, /\.capability-card\s*\{[\s\S]*left: 2130px;[\s\S]*top: 760px;[\s\S]*width: 470px;[\s\S]*min-height: 250px;/);
   assert.match(styleSource, /\.method-lead\s*\{[\s\S]*font-size: 22px !important;[\s\S]*line-height: 1\.35;/);
   assert.match(styleSource, /\.method-step\s*\{[\s\S]*grid-template-columns: 44px minmax\(0, 1fr\);/);
 });
@@ -121,14 +121,21 @@ test("home canvas guides recruiters through a portfolio reading path", () => {
 test("home reading path centers the matching canvas card at a readable zoom", () => {
   assert.match(indexSource, /const readableZoomIndex = 4;/);
   assert.match(indexSource, /const projectCanvasNodes = \{/);
-  assert.match(indexSource, /"tiny-achievement-app": \{ left: 240, top: 1120, width: 400, height: 520 \}/);
-  assert.match(indexSource, /"ai-apply-assistant": \{ left: 2260, top: 1300, width: 400, height: 520 \}/);
+  assert.match(indexSource, /"tiny-achievement-app": \{ left: 300, top: 1240, width: 400, height: 520 \}/);
+  assert.match(indexSource, /"ai-apply-assistant": \{ left: 2380, top: 1240, width: 400, height: 520 \}/);
+  assert.match(indexSource, /const canvasConnectionNodes = \{/);
+  assert.match(indexSource, /`project-\$\{slug\}`/);
+  assert.match(indexSource, /id: "capabilities-ai-apply-assistant"/);
   assert.match(indexSource, /function getCanvasNavigationTarget\(targetId\)/);
   assert.match(indexSource, /function scrollCanvasToBox\(box, targetZoom = zoom, behavior = "smooth"\)/);
-  assert.match(indexSource, /canvas\.scrollTo\(\{[\s\S]*left: Math\.max\(0, targetLeft - canvas\.clientWidth \/ 2\),[\s\S]*behavior/);
+  assert.match(indexSource, /function scrollCanvasToPoint\(point, targetZoom = zoom, behavior = "auto"\)/);
+  assert.match(indexSource, /left: Math\.max\(0, focusLeft - canvas\.clientWidth \/ 2\)/);
   assert.match(indexSource, /function focusCanvasTarget\(targetId\)/);
   assert.match(indexSource, /pendingFocusRef\.current = targetId;/);
   assert.match(indexSource, /setZoomIndex\(nextZoomIndex\);/);
+  assert.match(indexSource, /const initialHashHandledRef = useRef\(false\);/);
+  assert.match(indexSource, /const initialHash = typeof window !== "undefined" \? window\.location\.hash : "";/);
+  assert.match(indexSource, /setActiveLayer\(initialHash\);/);
   assert.match(indexSource, /function handleLayerClick\(event, href\)/);
   assert.match(indexSource, /event\.preventDefault\(\);/);
   assert.match(indexSource, /onClick=\{\(event\) => handleLayerClick\(event, layer\.href\)\}/);
@@ -139,12 +146,12 @@ test("home reading path centers the matching canvas card at a readable zoom", ()
 test("home project cards form a spacious lower case-study row", () => {
   assert.doesNotMatch(indexSource, /card\?\.copy \|\| item\.summary/);
   assert.match(styleSource, /\.project-node-card\s*\{[\s\S]*width: 400px;[\s\S]*min-height: 0;/);
-  assert.match(styleSource, /\.project-node-1\s*\{[\s\S]*left: 240px;[\s\S]*top: 1120px;/);
-  assert.match(styleSource, /\.project-node-2\s*\{[\s\S]*left: 760px;[\s\S]*top: 1210px;/);
-  assert.match(styleSource, /\.project-node-3\s*\{[\s\S]*left: 1280px;[\s\S]*top: 1080px;/);
-  assert.match(styleSource, /\.project-node-4\s*\{[\s\S]*left: 1800px;[\s\S]*top: 1230px;/);
-  assert.match(styleSource, /\.project-node-5\s*\{[\s\S]*left: 2260px;[\s\S]*top: 1300px;/);
-  assert.match(styleSource, /\.project-section-label\s*\{[\s\S]*top: 980px;/);
+  assert.match(styleSource, /\.project-node-1\s*\{[\s\S]*left: 300px;[\s\S]*top: 1240px;/);
+  assert.match(styleSource, /\.project-node-2\s*\{[\s\S]*left: 820px;[\s\S]*top: 1360px;/);
+  assert.match(styleSource, /\.project-node-3\s*\{[\s\S]*left: 1340px;[\s\S]*top: 1210px;/);
+  assert.match(styleSource, /\.project-node-4\s*\{[\s\S]*left: 1860px;[\s\S]*top: 1340px;/);
+  assert.match(styleSource, /\.project-node-5\s*\{[\s\S]*left: 2380px;[\s\S]*top: 1240px;/);
+  assert.match(styleSource, /\.project-section-label\s*\{[\s\S]*top: 1080px;/);
   assert.match(styleSource, /\.project-label-row\s*\{[\s\S]*min-height: 96px;[\s\S]*border-bottom:/);
   assert.match(styleSource, /\.project-evidence-line\s*\{[\s\S]*width: max-content;/);
   assert.match(styleSource, /\.project-badge-stack\s*\{[\s\S]*display: grid;/);
@@ -161,20 +168,20 @@ test("home project cards form a spacious lower case-study row", () => {
 
 test("home desktop canvas zooms around the viewport center", () => {
   assert.match(indexSource, /import \{ useEffect, useRef, useState \} from "react";/);
-  assert.match(indexSource, /const canvasSize = \{ width: 2860, height: 1960 \};/);
-  assert.match(indexSource, /const canvasFocus = \{ x: 1510, y: 1040 \};/);
+  assert.match(indexSource, /const canvasSize = \{ width: 3000, height: 2120 \};/);
+  assert.match(indexSource, /const canvasFocus = \{ x: 1580, y: 1090 \};/);
   assert.match(indexSource, /const scaledCanvasWidth = canvasSize\.width \* zoom;/);
   assert.match(indexSource, /"--scaled-canvas-width": `\$\{scaledCanvasWidth\}px`/);
   assert.match(indexSource, /function centerCanvasViewport\(\)/);
-  assert.match(indexSource, /const focusLeft =[\s\S]*canvasFocus\.x[\s\S]*canvasSize\.width \/ 2[\s\S]*zoom;/);
-  assert.match(indexSource, /const focusTop =[\s\S]*canvasFocus\.y[\s\S]*canvasSize\.height \/ 2[\s\S]*zoom;/);
-  assert.match(indexSource, /canvas\.scrollLeft = Math\.max\(0, focusLeft - canvas\.clientWidth \/ 2\);/);
-  assert.match(indexSource, /canvas\.scrollTop = Math\.max\(0, focusTop - canvas\.clientHeight \/ 2\);/);
+  assert.match(indexSource, /function getCurrentCanvasCenterPoint\(\)/);
+  assert.match(indexSource, /zoomAnchorRef\.current = getCurrentCanvasCenterPoint\(\);/);
+  assert.match(indexSource, /if \(zoomAnchorRef\.current\) \{/);
+  assert.match(indexSource, /scrollCanvasToPoint\(zoomAnchor, zoom, "auto"\);/);
   assert.match(indexSource, /useEffect\(\(\) => \{[\s\S]*centerCanvasViewport\(\);[\s\S]*\}, \[zoom\]\);/);
   assert.match(styleSource, /\.canvas-stage-shell\s*\{[\s\S]*display: grid;[\s\S]*place-items: center;/);
-  assert.match(styleSource, /\.canvas-stage-shell\s*\{[\s\S]*margin: max\(96px, calc\(\(100vh - var\(--scaled-canvas-height\)\) \/ 2\)\) max\(96px, calc\(\(100% - var\(--scaled-canvas-width\)\) \/ 2\)\);/);
+  assert.match(styleSource, /\.canvas-stage-shell\s*\{[\s\S]*margin: max\(128px, 50vh, calc\(\(100vh - var\(--scaled-canvas-height\)\) \/ 2\)\) max\(128px, 50%, calc\(\(100% - var\(--scaled-canvas-width\)\) \/ 2\)\);/);
   assert.match(styleSource, /\.canvas-stage\s*\{[\s\S]*transform-origin: center center;/);
-  assert.match(styleSource, /\.canvas-connections\s*\{[\s\S]*width: 2860px;[\s\S]*height: 1960px;/);
+  assert.match(styleSource, /\.canvas-connections\s*\{[\s\S]*width: 3000px;[\s\S]*height: 2120px;/);
 });
 
 test("home mobile reading flow prioritizes identity, method, cases, capability, and timeline", () => {

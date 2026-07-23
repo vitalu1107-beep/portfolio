@@ -2662,7 +2662,7 @@ main {
   place-items: center;
   min-width: 0;
   min-height: 0;
-  margin: max(96px, calc((100vh - var(--scaled-canvas-height)) / 2)) max(96px, calc((100% - var(--scaled-canvas-width)) / 2));
+  margin: max(128px, 50vh, calc((100vh - var(--scaled-canvas-height)) / 2)) max(128px, 50%, calc((100% - var(--scaled-canvas-width)) / 2));
 }
 
 .canvas-stage {
@@ -2677,8 +2677,8 @@ main {
   position: absolute;
   inset: 0;
   z-index: 0;
-  width: 2860px;
-  height: 1960px;
+  width: 3000px;
+  height: 2120px;
   overflow: visible;
   pointer-events: none;
 }
@@ -2754,7 +2754,7 @@ main {
 
 .identity-card {
   left: 300px;
-  top: 250px;
+  top: 280px;
   width: 390px;
   min-height: 470px;
   display: grid;
@@ -2975,8 +2975,8 @@ main {
 }
 
 .ai-thread-card {
-  left: 500px;
-  top: 820px;
+  left: 560px;
+  top: 860px;
   width: 390px;
   min-height: 112px;
   border-color: rgba(22, 163, 74, 0.2);
@@ -3025,7 +3025,7 @@ main {
 
 .timeline-card {
   left: 980px;
-  top: 245px;
+  top: 260px;
   width: 380px;
   padding: 20px 22px 22px;
 }
@@ -3118,8 +3118,8 @@ main {
 }
 
 .capability-card {
-  left: 2070px;
-  top: 940px;
+  left: 2130px;
+  top: 760px;
   z-index: 2;
   width: 470px;
   min-height: 250px;
@@ -3128,7 +3128,7 @@ main {
 
 .methods-card {
   left: 1510px;
-  top: 310px;
+  top: 330px;
   z-index: 1;
   width: 470px;
   padding: 22px 24px;
@@ -3335,34 +3335,34 @@ main {
 }
 
 .project-node-1 {
-  left: 240px;
-  top: 1120px;
+  left: 300px;
+  top: 1240px;
 }
 
 .project-node-2 {
-  left: 760px;
-  top: 1210px;
+  left: 820px;
+  top: 1360px;
 }
 
 .project-node-3 {
-  left: 1280px;
-  top: 1080px;
+  left: 1340px;
+  top: 1210px;
 }
 
 .project-node-4 {
-  left: 1800px;
-  top: 1230px;
+  left: 1860px;
+  top: 1340px;
 }
 
 .project-node-5 {
-  left: 2260px;
-  top: 1300px;
+  left: 2380px;
+  top: 1240px;
 }
 
 .project-section-label {
   position: absolute;
-  top: 980px;
-  left: 120px;
+  top: 1080px;
+  left: 180px;
   z-index: 1;
   display: flex;
   align-items: center;

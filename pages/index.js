@@ -13,21 +13,27 @@ const layerColors = ["red", "blue", "yellow", "green"];
 const zoomSteps = [0.1, 0.2, 0.35, 0.5, 0.72, 0.85, 1, 1.15, 1.3];
 const defaultZoomIndex = 2;
 const readableZoomIndex = 4;
-const canvasSize = { width: 2860, height: 1960 };
-const canvasFocus = { x: 1510, y: 1040 };
+const canvasSize = { width: 3000, height: 2120 };
+const canvasFocus = { x: 1580, y: 1090 };
 const canvasNodes = {
-  "personal-info": { left: 300, top: 250, width: 390, height: 470 },
-  "ai-thread": { left: 500, top: 820, width: 390, height: 112 },
-  timeline: { left: 980, top: 245, width: 380, height: 455 },
-  methods: { left: 1510, top: 310, width: 470, height: 455 },
-  capabilities: { left: 2070, top: 940, width: 470, height: 250 }
+  "personal-info": { left: 300, top: 280, width: 390, height: 470 },
+  "ai-thread": { left: 560, top: 860, width: 390, height: 112 },
+  timeline: { left: 980, top: 260, width: 380, height: 455 },
+  methods: { left: 1510, top: 330, width: 470, height: 455 },
+  capabilities: { left: 2130, top: 760, width: 470, height: 250 }
 };
 const projectCanvasNodes = {
-  "tiny-achievement-app": { left: 240, top: 1120, width: 400, height: 520 },
-  "meituan-supply-growth": { left: 760, top: 1210, width: 400, height: 520 },
-  "community-growth": { left: 1280, top: 1080, width: 400, height: 520 },
-  "campaign-marketing": { left: 1800, top: 1230, width: 400, height: 520 },
-  "ai-apply-assistant": { left: 2260, top: 1300, width: 400, height: 520 }
+  "tiny-achievement-app": { left: 300, top: 1240, width: 400, height: 520 },
+  "meituan-supply-growth": { left: 820, top: 1360, width: 400, height: 520 },
+  "community-growth": { left: 1340, top: 1210, width: 400, height: 520 },
+  "campaign-marketing": { left: 1860, top: 1340, width: 400, height: 520 },
+  "ai-apply-assistant": { left: 2380, top: 1240, width: 400, height: 520 }
+};
+const canvasConnectionNodes = {
+  ...canvasNodes,
+  ...Object.fromEntries(
+    Object.entries(projectCanvasNodes).map(([slug, box]) => [`project-${slug}`, box])
+  )
 };
 const canvasNavigationTargets = {
   "personal-info": { box: canvasNodes["personal-info"], zoomIndex: readableZoomIndex },
@@ -73,6 +79,14 @@ const canvasConnections = [
     to: "capabilities",
     toSide: "left",
     color: "#f4d758"
+  },
+  {
+    id: "capabilities-ai-apply-assistant",
+    from: "capabilities",
+    fromSide: "bottom",
+    to: "project-ai-apply-assistant",
+    toSide: "top",
+    color: "#059669"
   }
 ];
 
@@ -223,6 +237,8 @@ export default function HomePage() {
   const dragRef = useRef(null);
   const panRef = useRef(null);
   const pendingFocusRef = useRef(null);
+  const zoomAnchorRef = useRef(null);
+  const initialHashHandledRef = useRef(false);
   const [positions, setPositions] = useState({});
   const [zoomIndex, setZoomIndex] = useState(defaultZoomIndex);
   const [visibleContact, setVisibleContact] = useState(null);
@@ -242,39 +258,52 @@ export default function HomePage() {
     transform: `translate(-50%, -50%) scale(${zoom})`
   };
 
-  function centerCanvasViewport() {
+  function scrollCanvasToPoint(point, targetZoom = zoom, behavior = "auto") {
     const canvas = canvasRef.current;
-    if (!canvas || isMobileCanvas()) return;
+    if (!canvas || !point || isMobileCanvas()) return;
 
     window.requestAnimationFrame(() => {
       const focusLeft =
-        canvas.scrollWidth / 2 + (canvasFocus.x - canvasSize.width / 2) * zoom;
+        canvas.scrollWidth / 2 + (point.x - canvasSize.width / 2) * targetZoom;
       const focusTop =
-        canvas.scrollHeight / 2 + (canvasFocus.y - canvasSize.height / 2) * zoom;
-
-      canvas.scrollLeft = Math.max(0, focusLeft - canvas.clientWidth / 2);
-      canvas.scrollTop = Math.max(0, focusTop - canvas.clientHeight / 2);
-    });
-  }
-
-  function scrollCanvasToBox(box, targetZoom = zoom, behavior = "smooth") {
-    const canvas = canvasRef.current;
-    if (!canvas || !box || isMobileCanvas()) return;
-
-    window.requestAnimationFrame(() => {
-      const centerX = box.left + box.width / 2;
-      const centerY = box.top + box.height / 2;
-      const targetLeft =
-        canvas.scrollWidth / 2 + (centerX - canvasSize.width / 2) * targetZoom;
-      const targetTop =
-        canvas.scrollHeight / 2 + (centerY - canvasSize.height / 2) * targetZoom;
+        canvas.scrollHeight / 2 + (point.y - canvasSize.height / 2) * targetZoom;
 
       canvas.scrollTo({
-        left: Math.max(0, targetLeft - canvas.clientWidth / 2),
-        top: Math.max(0, targetTop - canvas.clientHeight / 2),
+        left: Math.max(0, focusLeft - canvas.clientWidth / 2),
+        top: Math.max(0, focusTop - canvas.clientHeight / 2),
         behavior
       });
     });
+  }
+
+  function centerCanvasViewport() {
+    scrollCanvasToPoint(canvasFocus, zoom, "auto");
+  }
+
+  function getCurrentCanvasCenterPoint() {
+    const canvas = canvasRef.current;
+    if (!canvas || isMobileCanvas()) return canvasFocus;
+
+    const viewportCenterX = canvas.scrollLeft + canvas.clientWidth / 2;
+    const viewportCenterY = canvas.scrollTop + canvas.clientHeight / 2;
+
+    return {
+      x: canvasSize.width / 2 + (viewportCenterX - canvas.scrollWidth / 2) / zoom,
+      y: canvasSize.height / 2 + (viewportCenterY - canvas.scrollHeight / 2) / zoom
+    };
+  }
+
+  function scrollCanvasToBox(box, targetZoom = zoom, behavior = "smooth") {
+    if (!box) return;
+
+    scrollCanvasToPoint(
+      {
+        x: box.left + box.width / 2,
+        y: box.top + box.height / 2
+      },
+      targetZoom,
+      behavior
+    );
   }
 
   function focusCanvasTarget(targetId) {
@@ -300,6 +329,37 @@ export default function HomePage() {
   }
 
   useEffect(() => {
+    if (!initialHashHandledRef.current) {
+      initialHashHandledRef.current = true;
+      const initialHash = typeof window !== "undefined" ? window.location.hash : "";
+      const initialTargetId = initialHash.replace("#", "");
+      const initialTarget = getCanvasNavigationTarget(initialTargetId);
+
+      if (initialTarget) {
+        setActiveLayer(initialHash);
+
+        if (isMobileCanvas()) {
+          document.getElementById(initialTargetId)?.scrollIntoView({
+            behavior: "auto",
+            block: "start"
+          });
+          return;
+        }
+
+        const nextZoomIndex = initialTarget.zoomIndex ?? readableZoomIndex;
+        pendingFocusRef.current = initialTargetId;
+
+        if (nextZoomIndex !== zoomIndex) {
+          setZoomIndex(nextZoomIndex);
+        } else {
+          pendingFocusRef.current = null;
+          scrollCanvasToBox(initialTarget.box, zoomSteps[nextZoomIndex], "auto");
+        }
+
+        return;
+      }
+    }
+
     const pendingTargetId = pendingFocusRef.current;
 
     if (pendingTargetId) {
@@ -310,6 +370,13 @@ export default function HomePage() {
         scrollCanvasToBox(target.box, zoom, "smooth");
       }
 
+      return;
+    }
+
+    if (zoomAnchorRef.current) {
+      const zoomAnchor = zoomAnchorRef.current;
+      zoomAnchorRef.current = null;
+      scrollCanvasToPoint(zoomAnchor, zoom, "auto");
       return;
     }
 
@@ -424,10 +491,12 @@ export default function HomePage() {
   }
 
   function zoomOut() {
+    zoomAnchorRef.current = getCurrentCanvasCenterPoint();
     setZoomIndex((current) => Math.max(0, current - 1));
   }
 
   function zoomIn() {
+    zoomAnchorRef.current = getCurrentCanvasCenterPoint();
     setZoomIndex((current) => Math.min(zoomSteps.length - 1, current + 1));
   }
 
@@ -506,7 +575,7 @@ export default function HomePage() {
             <div className="canvas-stage" style={canvasStageStyle}>
             <CanvasConnections
               connections={canvasConnections}
-              nodes={canvasNodes}
+              nodes={canvasConnectionNodes}
               positions={positions}
               width={canvasSize.width}
               height={canvasSize.height}
