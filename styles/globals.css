@@ -842,9 +842,37 @@ main {
 }
 
 .case-report-hero-workbench {
-  grid-template-columns: 150px minmax(0, 0.92fr) minmax(470px, 0.96fr);
-  gap: 32px;
-  align-items: center;
+  grid-template-columns: 150px minmax(0, 1fr);
+  grid-template-areas:
+    "index copy"
+    "index visual";
+  gap: 30px 38px;
+  align-items: start;
+  min-height: auto;
+}
+
+.case-report-hero-workbench .case-hero-index {
+  grid-area: index;
+  min-height: 800px;
+}
+
+.case-report-hero-workbench .case-narrative-copy {
+  grid-area: copy;
+}
+
+.case-report-hero-workbench .case-narrative-copy h1 {
+  max-width: 860px;
+}
+
+.case-report-hero-workbench .case-narrative-lead,
+.case-report-hero-workbench .case-hero-role,
+.case-report-hero-workbench .case-hero-proof-grid,
+.case-report-hero-workbench .case-validation-note {
+  max-width: 880px;
+}
+
+.case-report-hero-workbench .case-hero-visual-workbench {
+  grid-area: visual;
 }
 
 .case-hero-index {
@@ -1079,7 +1107,7 @@ main {
   position: relative;
   display: grid;
   width: 100%;
-  min-height: 366px;
+  min-height: auto;
   place-items: center;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--case-accent) 24%, rgba(26, 26, 46, 0.1));
@@ -1095,7 +1123,7 @@ main {
 
 .case-hero-visual-workbench img {
   width: 100%;
-  max-height: 344px;
+  max-height: none;
   object-fit: contain;
   filter: drop-shadow(0 12px 20px rgba(6, 78, 59, 0.09));
 }
@@ -2403,12 +2431,24 @@ main {
   }
 
   .case-hero-visual-workbench > div {
-    width: min(100%, 560px);
+    width: 100%;
     min-height: auto;
   }
 
   .case-hero-visual-workbench img {
     max-height: none;
+  }
+
+  .case-report-hero-workbench {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "index"
+      "copy"
+      "visual";
+  }
+
+  .case-report-hero-workbench .case-hero-index {
+    min-height: 0;
   }
 
   .case-hero-copy p,

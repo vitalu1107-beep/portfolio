@@ -77,6 +77,7 @@ test("AI apply assistant uses a larger workbench hero visual treatment", () => {
   const source = readFileSync(new URL("../styles/globals.css", import.meta.url), "utf8");
 
   assert.match(source, /\.case-report-hero-workbench/);
+  assert.match(source, /grid-template-areas:\s*"index copy"\s*"index visual"/);
   assert.match(source, /\.case-hero-visual-workbench > div/);
-  assert.match(source, /minmax\(470px, 0\.96fr\)/);
+  assert.match(source, /max-height: none/);
 });
