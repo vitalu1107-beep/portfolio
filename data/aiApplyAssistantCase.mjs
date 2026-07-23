@@ -17,9 +17,9 @@ export const aiApplyAssistantCase = {
     title: "把高频求职投递流程做成 AI 判断与沟通工作台",
     summary:
       "不是做一个单点话术生成器，而是把 JD 结构化、岗位取舍、分对象沟通、简历微调和投递记录串成可复盘的最小闭环。",
-    visual: "/assets/cases/ai-apply-assistant-workbench.png",
-    visualAlt: "AI 智能投递助手工作台界面截图",
-    visualCaption: "静态 UI 原型 · 工作台界面",
+    visual: "/assets/cases/ai-apply-assistant-workbench-latest.svg",
+    visualAlt: "AI 智能投递助手本地最新版工作台界面证据图",
+    visualCaption: "本地最新版工作台 · 127.0.0.1:3000 mock界面",
     validationNote:
       "当前可核验的是静态 UI 原型、流程图、Prompt 矩阵、架构边界和公开代码；不把 GitHub Pages 原型描述为可运行服务端 API 的在线 AI 完整版。",
     metrics: [
@@ -38,7 +38,7 @@ export const aiApplyAssistantCase = {
       }
     ]
   },
-  heroImage: "/assets/cases/ai-apply-assistant-workbench.png",
+  heroImage: "/assets/cases/ai-apply-assistant-workbench-latest.svg",
   accent: "#059669",
   metrics: [
     { value: "0→1", label: "完成可用产品闭环" },
@@ -61,7 +61,7 @@ export const aiApplyAssistantCase = {
   ],
   executionVisuals: [
     "/assets/cases/ai-apply-assistant-flow.svg",
-    "/assets/cases/ai-apply-assistant-workbench.png",
+    "/assets/cases/ai-apply-assistant-workbench-latest.svg",
     "/assets/cases/ai-apply-assistant-persona-prompts.svg",
     "/assets/cases/ai-apply-assistant-validation-plan.svg",
     "/assets/cases/ai-apply-assistant-architecture.svg"
@@ -118,9 +118,9 @@ export const aiApplyAssistantCase = {
   ],
   gallery: [
     {
-      src: "/assets/cases/ai-apply-assistant-workbench.png",
+      src: "/assets/cases/ai-apply-assistant-workbench-latest.svg",
       title: "AI 智能投递助手工作台",
-      caption: "公开静态原型界面，展示岗位 JD 输入、岗位判断、分对象话术、简历微调和投递记录入口。",
+      caption: "基于本地 127.0.0.1:3000 最新 mock 工作台重制，展示岗位 JD 输入、岗位薪资/城市、个人筛选偏好、AI 判断、分对象话术、简历微调和投递记录入口。",
       kind: "product-screen"
     },
     {
@@ -145,7 +145,7 @@ export const aiApplyAssistantCase = {
     }
   ],
   evidenceStrip: [
-    "/assets/cases/ai-apply-assistant-workbench.png",
+    "/assets/cases/ai-apply-assistant-workbench-latest.svg",
     "/assets/cases/ai-apply-assistant-flow.svg",
     "/assets/cases/ai-apply-assistant-persona-prompts.svg",
     "/assets/cases/ai-apply-assistant-architecture.svg",

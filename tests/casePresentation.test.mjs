@@ -56,12 +56,16 @@ test("AI apply assistant case separates product evidence from unverified metrics
 
   assert.ok(item.gallery.length >= 5);
   assert.deepEqual(item.evidenceStrip, [
-    "/assets/cases/ai-apply-assistant-workbench.png",
+    "/assets/cases/ai-apply-assistant-workbench-latest.svg",
     "/assets/cases/ai-apply-assistant-flow.svg",
     "/assets/cases/ai-apply-assistant-persona-prompts.svg",
     "/assets/cases/ai-apply-assistant-architecture.svg",
     "/assets/cases/ai-apply-assistant-validation-plan.svg"
   ]);
+  assert.equal(item.hero.visual, "/assets/cases/ai-apply-assistant-workbench-latest.svg");
+  assert.match(serialized, /127\.0\.0\.1:3000/);
+  assert.match(serialized, /岗位薪资/);
+  assert.match(serialized, /个人筛选偏好/);
   assert.match(serialized, /静态 UI 原型/);
   assert.match(serialized, /不虚构用户量、转化率或商业成绩/);
   assert.match(serialized, /单个 JD 判断耗时/);
