@@ -842,32 +842,30 @@ main {
 }
 
 .case-report-hero-workbench {
-  grid-template-columns: 150px minmax(0, 1fr);
-  grid-template-areas:
-    "index copy"
-    "index visual";
-  gap: 34px 42px;
-  align-items: start;
-  min-height: auto;
+  grid-template-columns: 150px minmax(460px, 0.88fr) minmax(580px, 1.12fr);
+  grid-template-areas: "index copy visual";
+  gap: 42px;
+  align-items: center;
+  min-height: 660px;
 }
 
 .case-report-hero-workbench .case-hero-index {
   grid-area: index;
-  justify-content: flex-start;
-  min-height: 850px;
-  padding-top: 34px;
+  justify-content: center;
+  min-height: 620px;
+  padding-top: 0;
 }
 
 .case-report-hero-workbench .case-narrative-copy {
   grid-area: copy;
   display: grid;
-  width: min(100%, 1040px);
+  width: min(100%, 580px);
   justify-self: start;
   gap: 22px;
 }
 
 .case-report-hero-workbench .case-narrative-copy h1 {
-  max-width: 980px;
+  max-width: 580px;
   margin: 0;
 }
 
@@ -880,8 +878,8 @@ main {
 
 .case-report-hero-workbench .case-hero-visual-workbench {
   grid-area: visual;
-  width: min(100%, 1040px);
-  justify-self: start;
+  width: 100%;
+  justify-self: stretch;
 }
 
 .case-report-hero-workbench .case-kicker,
@@ -896,7 +894,7 @@ main {
 }
 
 .case-report-hero-workbench .case-hero-proof-grid {
-  width: min(100%, 760px);
+  width: min(100%, 560px);
 }
 
 .case-report-hero-workbench .case-hero-visual figcaption {
@@ -1412,7 +1410,7 @@ main {
 }
 
 .case-reading-ai-apply-assistant .case-report {
-  width: min(1240px, 100%);
+  width: min(1480px, 100%);
 }
 
 .case-reading-ai-apply-assistant .case-metric-strip {
@@ -2247,6 +2245,27 @@ main {
 
 .site-footer a:hover {
   color: var(--text);
+}
+
+@media (max-width: 1180px) {
+  .case-report-hero-workbench {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "index"
+      "copy"
+      "visual";
+    min-height: auto;
+  }
+
+  .case-report-hero-workbench .case-hero-index {
+    min-height: 0;
+    padding-top: 0;
+  }
+
+  .case-report-hero-workbench .case-narrative-copy,
+  .case-report-hero-workbench .case-hero-visual-workbench {
+    width: 100%;
+  }
 }
 
 @media (max-width: 960px) {
