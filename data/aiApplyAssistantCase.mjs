@@ -4,28 +4,26 @@ export const aiApplyAssistantCase = {
   shortTitle: "AI 投递助手",
   category: "AI产品实践",
   company: "独立 AI 工具",
-  role: "产品设计 / Prompt 设计 / AI 辅助开发 / 运营流程拆解",
+  role: "产品设计 / Prompt 设计 / AI 辅助开发",
   period: "2026.07",
   summary:
-    "面向高频求职投递场景，将岗位 JD 分析、岗位筛选判断、分对象打招呼话术、简历微调建议和投递记录整合到一个工作台中，减少重复判断、重复改写和漏跟进成本。",
+    "面向高频求职投递场景，把岗位 JD 分析、岗位筛选、分对象沟通、简历微调建议和投递记录整合到一个轻量工作台中。",
   hero: {
     layout: "narrative-product",
     visualStyle: "workbench",
     index: "05",
     meta: ["Independent AI Tool", "Practice Project"],
     label: "AI 智能投递助手 · APPLY ASSISTANT",
-    title: "把高频求职投递流程做成 AI 判断与沟通工作台",
+    title: "用 AI 辅助完成岗位判断、沟通话术和投递记录",
     summary:
-      "不是做一个单点话术生成器，而是把 JD 结构化、岗位取舍、分对象沟通、简历微调和投递记录串成可复盘的最小闭环。",
+      "我把投递前最重复的判断和改写动作拆成五步：读 JD、判断匹配、生成沟通话术、提示简历调整、记录跟进状态。",
     visual: "/assets/cases/ai-apply-assistant-workbench-latest.svg",
-    visualAlt: "AI 智能投递助手本地最新版工作台界面证据图",
-    visualCaption: "本地最新版工作台 · 127.0.0.1:3000 mock界面",
-    validationNote:
-      "当前可核验的是静态 UI 原型、流程图、Prompt 矩阵、架构边界和公开代码；不把 GitHub Pages 原型描述为可运行服务端 API 的在线 AI 完整版。",
+    visualAlt: "AI 智能投递助手工作台界面",
+    visualCaption: "本地 mock 工作台界面",
     metrics: [
       { value: "0→1", label: "可用产品闭环" },
       { value: "4类", label: "沟通对象话术" },
-      { value: "2种", label: "mock/模型模式" }
+      { value: "5步", label: "投递前路径" }
     ],
     actions: [
       {
@@ -47,17 +45,17 @@ export const aiApplyAssistantCase = {
     { value: "2种", label: "mock与真实模型模式" }
   ],
   problem:
-    "高频求职投递的真实成本不只在写开场白，而是候选人需要反复读 JD、判断是否值得投、按不同对象改写表达、微调简历证据，并把投递状态记录下来。动作本身不复杂，但分散在网页、聊天窗口、文档和表格里，导致判断成本、表达成本和跟进成本不断重复。",
+    "高频投递的时间主要耗在连续判断上：这份 JD 值不值得投、该强调哪段经历、应该用什么口径联系 HR/猎头/业务负责人、投递后有没有及时记录。原来这些动作分散在招聘网站、简历、聊天窗口和表格里，容易重复判断，也容易漏跟进。",
   strategy:
-    "把首版范围收敛为“岗位输入 -> AI 判断 -> 话术生成 -> 简历建议 -> 投递记录”的最短工作台闭环。首版不做完整求职 CRM，也不引入账号、职位库和长期数据看板，优先证明 AI 能否帮助用户完成投递前最关键的判断、表达和记录。",
+    "首版只保留一条投递前路径：岗位输入 -> 匹配判断 -> 话术生成 -> 简历建议 -> 投递记录。这个范围足够小，可以先验证流程是否顺；也足够完整，能体现我对 AI 任务拆解、Prompt 设计和运营流程复盘的理解。",
   executionIntro:
-    "执行中把过往用户运营里的分层、话术匹配、任务记录和复盘经验迁移到 AI 产品工作流：人负责定义场景与证据边界，AI 负责辅助结构化判断和生成，人再对输出质量与可用路径做验收。",
+    "执行时，我先用运营视角拆清楚“谁在沟通、沟通什么、如何跟进”，再把这些判断写成可执行的 AI 任务和页面状态。",
   actions: [
-    "先把问题从“生成一句投递话术”重写为“投递前判断、表达和记录分散”，明确产品不是替代求职决策，而是降低重复判断和文案整理成本。",
-    "将岗位 JD 拆成公司、岗位、职责、要求、匹配关键词和风险点，再让 AI 输出岗位优先级、是否建议投递和需要强调的能力证据。",
+    "把岗位 JD 拆成公司、岗位、职责、要求、匹配关键词和风险点，先得到一份结构化判断，再决定是否值得继续沟通。",
     "按 HR、猎头、业务主管和创始人四类对象设计不同 Prompt 口径：HR看硬性匹配，猎头看推荐标签，主管看业务解决能力，创始人看结果意识与自驱。",
-    "把简历微调建议、面试问题预测和投递记录放在同一工作台中，让生成结果能回到下一次沟通和复盘，而不是一次性复制完就结束。",
-    "在工程实现上保留 mock 与真实模型双模式；真实模型通过 Next.js Route Handler 调用火山方舟 / 豆包模型，API Key 仅在服务端环境变量中读取，不提交到仓库。"
+    "把简历微调建议和面试问题预测放进同一屏，让用户知道这份岗位应该补哪类证据，避免只拿到一段话术。",
+    "用 localStorage 做轻量投递记录，记录公司、岗位、对象、建议动作和跟进状态，方便后续复盘。",
+    "工程上保留 mock 与真实模型双模式；真实模型通过 Next.js Route Handler 调用火山方舟 / 豆包模型，API Key 只从服务端环境变量读取。"
   ],
   executionVisuals: [
     "/assets/cases/ai-apply-assistant-flow.svg",
@@ -75,9 +73,9 @@ export const aiApplyAssistantCase = {
     "mock与真实模型双模式"
   ],
   result:
-    "完成 0→1 可用产品闭环：岗位输入、AI 判断、分对象话术、简历微调建议、面试问题预测和投递记录可以在同一工作台中完成。当前结果用于证明 AI 产品实践、工作流设计、Prompt 分层和工程边界意识，不虚构用户量、转化率或商业成绩。",
+    "已完成 0→1 可用产品闭环：岗位输入、AI 判断、分对象话术、简历微调建议、面试问题预测和投递记录可以在同一工作台中完成。当前证据用于证明产品拆解、Prompt 分层、页面交互和工程边界；用户量、转化率和商业结果留到真实样本验证后再呈现。",
   review:
-    "从运营主管视角，这个项目的价值在于把高频、重复、容易遗漏的求职投递动作产品化；从 CEO 视角，当前更适合作为“AI 产品实践与执行力证据”，还不能证明真实商业价值。下一轮应围绕单个 JD 判断耗时、AI 建议采纳率、话术二次修改比例、跟进记录完整率和有效回复质量做小样本验证。",
+    "这个案例定位为 AI 产品实践证据，重点放在流程拆解、Prompt 设计、界面交互和工程边界。下一轮需要用真实投递样本验证单个 JD 判断耗时、AI 建议采纳率、话术二次修改比例和跟进记录完整率。",
   sectionVisuals: {
     problem: "/assets/cases/ai-apply-assistant-flow.svg",
     strategy: "/assets/cases/ai-apply-assistant-persona-prompts.svg",
@@ -93,9 +91,9 @@ export const aiApplyAssistantCase = {
   validationStatus: [
     {
       status: "已完成",
-      title: "静态 UI 原型与投递工作台闭环",
+      title: "投递工作台闭环",
       detail: "完成岗位输入、筛选判断、话术生成、简历建议、面试问题和投递记录的工作台界面。",
-      evidence: "公开 GitHub Pages 静态原型 + 产品界面截图"
+      evidence: "静态原型页面 + 本地工作台截图"
     },
     {
       status: "已沉淀",
@@ -113,20 +111,20 @@ export const aiApplyAssistantCase = {
       status: "待验证",
       title: "真实投递效率与沟通质量",
       detail: "后续需要用真实投递过程验证是否减少 JD 判断耗时、降低话术二次修改比例，并提高跟进记录完整率。",
-      evidence: "当前不写用户量、转化率或商业成绩"
+      evidence: "真实样本验证后再补充用户量、转化率或商业结果"
     }
   ],
   gallery: [
     {
       src: "/assets/cases/ai-apply-assistant-workbench-latest.svg",
       title: "AI 智能投递助手工作台",
-      caption: "基于本地 127.0.0.1:3000 最新 mock 工作台重制，展示岗位 JD 输入、岗位薪资/城市、个人筛选偏好、AI 判断、分对象话术、简历微调和投递记录入口。",
+      caption: "基于本地 mock 工作台重制，展示岗位 JD 输入、岗位薪资/城市、个人筛选偏好、AI 判断、分对象话术、简历微调和投递记录入口。",
       kind: "product-screen"
     },
     {
       src: "/assets/cases/ai-apply-assistant-flow.svg",
       title: "投递前工作流闭环",
-      caption: "把投递动作拆成岗位输入、AI 判断、分对象话术和投递记录四步，说明产品不是单点话术生成器。"
+      caption: "把投递前动作拆成岗位输入、AI 判断、分对象话术和投递记录四步，说明产品覆盖的是完整投递准备流程。"
     },
     {
       src: "/assets/cases/ai-apply-assistant-persona-prompts.svg",
@@ -141,7 +139,7 @@ export const aiApplyAssistantCase = {
     {
       src: "/assets/cases/ai-apply-assistant-validation-plan.svg",
       title: "下一轮验证计划",
-      caption: "明确当前只证明产品闭环和工程实践，下一轮才验证效率、质量、跟进和有效回复指标。"
+      caption: "明确当前证据边界，下一轮再验证效率、质量、跟进和有效回复指标。"
     }
   ],
   evidenceStrip: [

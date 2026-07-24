@@ -64,13 +64,23 @@ test("AI apply assistant case separates product evidence from unverified metrics
   ]);
   assert.equal(item.hero.visualStyle, "workbench");
   assert.equal(item.hero.visual, "/assets/cases/ai-apply-assistant-workbench-latest.svg");
-  assert.match(serialized, /127\.0\.0\.1:3000/);
   assert.match(serialized, /岗位薪资/);
   assert.match(serialized, /个人筛选偏好/);
-  assert.match(serialized, /静态 UI 原型/);
-  assert.match(serialized, /不虚构用户量、转化率或商业成绩/);
+  assert.match(serialized, /静态原型页面/);
+  assert.match(serialized, /真实样本验证后再补充用户量、转化率或商业结果/);
   assert.match(serialized, /单个 JD 判断耗时/);
-  assert.match(serialized, /API Key 仅在服务端环境变量中读取/);
+  assert.match(serialized, /API Key.*服务端环境变量/);
+});
+
+test("AI apply assistant hero avoids defensive or promotional proof copy", () => {
+  const item = caseStudies.find((caseItem) => caseItem.slug === "ai-apply-assistant");
+  const heroCopy = JSON.stringify(item.hero);
+
+  assert.doesNotMatch(heroCopy, /不是/);
+  assert.doesNotMatch(heroCopy, /而是/);
+  assert.doesNotMatch(heroCopy, /GitHub Pages/);
+  assert.doesNotMatch(heroCopy, /在线 AI 完整版/);
+  assert.doesNotMatch(heroCopy, /127\.0\.0\.1/);
 });
 
 test("AI apply assistant uses a larger workbench hero visual treatment", () => {
@@ -80,4 +90,5 @@ test("AI apply assistant uses a larger workbench hero visual treatment", () => {
   assert.match(source, /grid-template-areas:\s*"index copy"\s*"index visual"/);
   assert.match(source, /\.case-hero-visual-workbench > div/);
   assert.match(source, /max-height: none/);
+  assert.match(source, /\.case-reading-ai-apply-assistant \.case-report/);
 });

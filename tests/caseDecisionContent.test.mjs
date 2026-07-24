@@ -90,7 +90,7 @@ const applyAssistantSerialized = JSON.stringify(applyAssistantDecision);
   "API Key",
   "单个 JD 判断耗时",
   "话术二次修改比例",
-  "不写用户量、转化率或商业成绩"
+  "真实效率与商业结果留到样本验证阶段"
 ].forEach((phrase) => {
   assert.match(
     applyAssistantSerialized,

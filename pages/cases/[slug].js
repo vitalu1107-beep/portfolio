@@ -30,7 +30,7 @@ const caseBlueprints = {
   "meituan-supply-growth": {
     eyebrow: "Supply Growth Flywheel",
     title: "团买买的供给增长飞轮",
-    summary: "把达人训练、商家供给、爆品运营和GMV放大串成一套系统，而不是依赖单次招商或活动。",
+    summary: "把达人训练、商家供给、爆品运营和GMV放大串成一套系统，减少对单次招商或活动节点的依赖。",
     nodes: ["KOS训练", "商家评估", "爆品池", "直播种草", "GMV放大"],
     proof: "核心证据：KOS生态520人，单场GMV峰值120万。"
   },
@@ -51,9 +51,9 @@ const caseBlueprints = {
   "ai-apply-assistant": {
     eyebrow: "AI Apply Workbench",
     title: "AI 投递助手的判断-表达-记录闭环",
-    summary: "把求职投递前最重复的动作拆成结构化输入、AI岗位判断、分对象表达、简历建议和投递记录。",
+    summary: "把投递前的岗位输入、匹配判断、分对象表达、简历建议和投递记录放进同一条路径。",
     nodes: ["岗位输入", "结构化分析", "优先级判断", "分对象话术", "投递记录"],
-    proof: "当前证据：静态原型、流程图、Prompt矩阵、架构边界和公开代码；不包装真实转化结果。"
+    proof: "当前证据覆盖静态原型、流程图、Prompt 矩阵、架构边界和公开代码；真实效率指标留到下一轮验证。"
   }
 };
 
@@ -391,7 +391,9 @@ function NarrativeCaseHero({ item }) {
           ))}
         </div>
 
-        <p className="case-validation-note">{hero.validationNote}</p>
+        {hero.validationNote && (
+          <p className="case-validation-note">{hero.validationNote}</p>
+        )}
 
         {actions.length > 0 && (
           <div className="case-link-row case-narrative-links">
@@ -450,7 +452,10 @@ export default function CaseDetailPage({ item }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <main className="case-reading-page" style={{ "--case-accent": item.accent }}>
+      <main
+        className={`case-reading-page case-reading-${item.slug}`}
+        style={{ "--case-accent": item.accent }}
+      >
         <Link className="case-back" href="/">
           返回我的OS
         </Link>
@@ -681,7 +686,7 @@ export default function CaseDetailPage({ item }) {
                 <span className="case-section-label">06 / Evidence</span>
                 <h2>证据链总览</h2>
                 <p>
-                  这些材料不是单独展示的图片，而是支撑前面问题判断、方案取舍、执行难点、结果口径和方法沉淀的项目证据。
+                  这些材料对应前面的问题判断、方案取舍、执行难点、结果口径和方法沉淀，用来补足每个结论背后的证据。
                 </p>
                 <div className="case-evidence-strip">
                   {evidenceStrip.map((visual, index) => (
